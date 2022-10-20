@@ -8,6 +8,8 @@ import java.util.List;
 
 public class SP {
     static List<LineParameter> lineParameters = new ArrayList<>();
+    static List<ParameterDB> parametersDB = new ArrayList<>();
+    
     public static void main(String[] args) {
 
         try {
@@ -66,5 +68,18 @@ public class SP {
     }
 
 
+    public static void parserDB (String filename) throws FileNotFoundException, SintaxeIncorretaException {
+        String[] componente;
+        List<String> linhas = lerFicheiro(filename);
+        int line = 0;
+        for (String linha : linhas) {
+            componente = linha.split(" ");
+            if (!linha.isEmpty() && componente[0].charAt(0) != '#' && componente.length<=5 && componente.length>=3) {
+                ParameterDB l = new ParameterDB(componente[0], componente[1], componente[2], componente[3], componente[4]);
+                parametersDB.add(l);
+            } else if(componente[0].charAt(0) != '#' && componente.length>5) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
+            line++;
+        }
+    }
 
 }
