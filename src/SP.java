@@ -1,5 +1,8 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -7,30 +10,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SP {
-    static List<LineParameter> lineParameters = new ArrayList<>();
-    static List<ParameterDB> parametersDB = new ArrayList<>();
-    
-    public static void main(String[] args) {
+    private static List<LineParameter> lineParameters = new ArrayList<>();
 
-        try {
+    public static void main(String[] args) throws IOException, SintaxeIncorretaException{
+        InetAddress address;
+        DatagramSocket socket = new DatagramSocket(4445);;
+        byte[] buf = new byte[256];
+        boolean running = true;
+        while (running) {
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);
+            socket.receive(packet);
+
             //path completo do ficheiro de configuracao
-            parser("src/sp.conf");
+            parser("/home/joao/IdeaProjects/parsefile/src/main/java/sp.conf");
 
 
-            //while(true){;}
+            address = packet.getAddress();
+            int port = packet.getPort();
+            packet = new DatagramPacket(buf, buf.length, address, port);
+            String received = new String(packet.getData(), 0, packet.getLength());
+            System.out.println(received);
+            socket.send(packet);
+        }
+        socket.close();
 
-            /** DEBUG*/
-            for(LineParameter l : lineParameters){
-                System.out.print(l.toString());
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (SintaxeIncorretaException s) {
-            System.out.print(s.getMessage());
         }
 
-    }
 
     /**
      * Autor: João Castro
@@ -68,18 +73,6 @@ public class SP {
     }
 
 
-    public static void parserDB (String filename) throws FileNotFoundException, SintaxeIncorretaException {
-        String[] componente;
-        List<String> linhas = lerFicheiro(filename);
-        int line = 0;
-        for (String linha : linhas) {
-            componente = linha.split(" ");
-            if (!linha.isEmpty() && componente[0].charAt(0) != '#' && componente.length<=5 && componente.length>=3) {
-                ParameterDB l = new ParameterDB(componente[0], componente[1], componente[2], componente[3], componente[4]);
-                parametersDB.add(l);
-            } else if(componente[0].charAt(0) != '#' && componente.length>5) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
-            line++;
-        }
-    }
 
 }
+
