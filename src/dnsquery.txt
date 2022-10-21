@@ -1,0 +1,16 @@
+# Header
+MESSAGE-ID = 3874, FLAGS = R+A, RESPONSE-CODE = 0,
+N-VALUES = 2, N-AUTHORITIES = 3, N-EXTRA-VALUES = 5;
+# Data: Query Info
+QUERY-INFO.NAME = example.com., QUERY-INFO.TYPE = MX;
+# Data: List of Response, Authorities and Extra Values
+RESPONSE-VALUES = example.com. MX mx1.example.com 86400 10,
+RESPONSE-VALUES = example.com. MX mx2.example.com 86400 20;
+AUTHORITIES-VALUES = example.com. NS ns1.example.com. 86400,
+AUTHORITIES-VALUES = example.com. NS ns2.example.com. 86400,
+AUTHORITIES-VALUES = example.com. NS ns3.example.com. 86400;
+EXTRA-VALUES = mx1.example.com. A 193.136.130.200 86400,
+EXTRA-VALUES = mx2.example.com. A 193.136.130.201 86400,
+EXTRA-VALUES = ns1.example.com. A 193.136.130.250 86400,
+EXTRA-VALUES = ns2.example.com. A 193.137.100.250 86400,
+EXTRA-VALUES = ns3.example.com. A 193.136.130.251 86400;
