@@ -1,4 +1,6 @@
-public class Qinfo {
+import java.io.Serializable;
+
+public class Qinfo implements Serializable {
     String name;
     String type_value;
 
@@ -31,8 +33,9 @@ public class Qinfo {
 
     @Override
     public String toString() {
-        return "Qinfo [name=" + name + ", type_value=" + type_value + "]";
+        return "Qinfo [name=" + name + "\n type_value=" + type_value + "]\n";
     }
 
 
 }
+

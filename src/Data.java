@@ -1,4 +1,6 @@
-public class Data {
+import java.io.Serializable;
+
+public class Data implements Serializable {
     Qinfo qinfo;
     
     String resp_values;
@@ -60,8 +62,8 @@ public class Data {
 
     @Override
     public String toString() {
-        return "Data [qinfo=" + qinfo + ", resp_values=" + resp_values + ", authorties_values=" + authorties_values
-                + ", ext_values=" + ext_values + "]";
+        return "Data [qinfo=" + qinfo + "\n resp_values=" + resp_values + "\n authorties_values=" + authorties_values
+                + "\n ext_values=" + ext_values + "]";
     }
 
     

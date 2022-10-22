@@ -1,5 +1,7 @@
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -13,15 +15,14 @@ public class SP {
     private static List<LineParameter> lineParameters = new ArrayList<>();
     private static List<ParameterDB> linesParametersDB = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException, SintaxeIncorretaException{
+    public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
         InetAddress address;
         DatagramSocket socket = new DatagramSocket(4445);
-        byte[] buf = new byte[256];
+        byte[] buf = new byte[1000];
         boolean running = true;
         while (running) {
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
-
 
             //path completo do ficheiro de configuracao
             //parser("/home/joao/IdeaProjects/parsefile/src/main/java/sp.conf");
@@ -30,9 +31,13 @@ public class SP {
             address = packet.getAddress();
             int port = packet.getPort();
             packet = new DatagramPacket(buf, buf.length, address, port);
-            String received = new String(packet.getData(), 0, packet.getLength());
-            System.out.println(received);
-            socket.send(packet);
+
+
+            byte [] data = packet.getData();
+            ByteArrayInputStream in = new ByteArrayInputStream(data);
+            ObjectInputStream is = new ObjectInputStream(in);
+            DNSMsg m = (DNSMsg) is.readObject();
+            System.out.println(m);
         }
         socket.close();
 
@@ -92,6 +97,22 @@ public class SP {
         }
         if (lines.isEmpty()) throw new FileNotFoundException("Ficheiro não encontrado");
         return lines;
+    }
+
+    public int countAuthoritatives(){
+         int c=0;
+         for(ParameterDB p : linesParametersDB){
+             if(p.getTipo().equals(ParameterDB.Tipo.NS)) c++;
+         }
+         return c;
+    }
+
+    public int countExtravalues(){
+        int c=0;
+        for(ParameterDB p : linesParametersDB){
+            if(p.getTipo().equals(ParameterDB.Tipo.A)) c++;
+        }
+        return c;
     }
 
 }

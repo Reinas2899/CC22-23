@@ -21,12 +21,12 @@ public class Client {
          //String msg = "Olá servidor, eu sou o cliente.";
 
             //System.out.println(readquery("/home/joao/IdeaProjects/parsefile/src/main/java/querydebug.txt").toString());
-            DNSMsg msg = readOptionalquery("optionalquery.txt");
-
+            //DNSMsg msg = readOptionalquery("optionalquery.txt");
+            DNSMsg msg = readquery("querydebug.txt");
             buf = msg.getBytes(msg);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
             socket.send(packet); //envia datagrama pelo socket
-
+            //System.out.println(msg);
 
     }
 

@@ -1,4 +1,6 @@
-public class Header {
+import java.io.Serializable;
+
+public class Header implements Serializable {
     private String messageID; 
     private String flags; 
     private String response_code; 
@@ -87,9 +89,10 @@ public class Header {
 
     @Override
     public String toString() {
-        return "Header [messageID=" + messageID + ", flags=" + flags + ", response_code=" + response_code
-                + ", n_values=" + n_values + ", n_authorities=" + n_authorities + ", n_extravalues=" + n_extravalues
-                + "]";
+        return "Header [messageID=" + messageID + "\n flags=" + flags + "\n response_code=" + response_code
+                + "\n n_values=" + n_values + "\n n_authorities=" + n_authorities + "\n n_extravalues=" + n_extravalues
+                + "]\n";
     }
 
 }
+

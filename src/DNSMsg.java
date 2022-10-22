@@ -1,8 +1,9 @@
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class DNSMsg {
+public class DNSMsg implements Serializable {
     private Header header; 
     private Data data; 
     
@@ -17,7 +18,7 @@ public class DNSMsg {
 
     @Override
     public String toString() {
-        return "DNSMsg [header=" + header + ", data=" + data + "]";
+        return "DNSMsg [header=" + header + "\n data=" + data + "]";
     }
 
 
