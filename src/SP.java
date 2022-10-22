@@ -11,19 +11,21 @@ import java.util.List;
 
 public class SP {
     private static List<LineParameter> lineParameters = new ArrayList<>();
+    private static List<ParameterDB> linesParametersDB = new ArrayList<>();
 
     public static void main(String[] args) throws IOException, SintaxeIncorretaException{
         InetAddress address;
-        DatagramSocket socket = new DatagramSocket(4445);;
+        DatagramSocket socket = new DatagramSocket(4445);
         byte[] buf = new byte[256];
         boolean running = true;
         while (running) {
-            DatagramPacket packet = new DatagramPacket(buf, buf.length);
-            socket.receive(packet);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
+            socket.receive(packet); //fica à espera de receber
+
 
             //path completo do ficheiro de configuracao
-            parser("/home/joao/IdeaProjects/parsefile/src/main/java/sp.conf");
-
+            //parser("/home/joao/IdeaProjects/parsefile/src/main/java/sp.conf");
+            //dbContent("/home/joao/IdeaProjects/parsefile/src/main/java/example-com.db");
 
             address = packet.getAddress();
             int port = packet.getPort();
@@ -33,6 +35,7 @@ public class SP {
             socket.send(packet);
         }
         socket.close();
+
 
         }
 
@@ -51,7 +54,26 @@ public class SP {
             if (!linha.isEmpty() && componente[0].charAt(0) != '#' && componente.length==3) {
                 LineParameter l = new LineParameter(componente[0], componente[1], componente[2]);
                 lineParameters.add(l);
-            } else if(componente[0].charAt(0) != '#' && componente.length>3) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
+            } else if(componente[0].charAt(0) != '#' && componente.length>3) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta."+line);
+            line++;
+        }
+    }
+
+    public static void dbContent(String filename) throws FileNotFoundException,SintaxeIncorretaException {
+        //linesParametersDB.clear();
+        String[] componente;
+        ParameterDB p = null;
+        List<String> linhas = lerFicheiro(filename);
+        int line = 0;
+        for (String linha : linhas) {
+            componente = linha.split(" ");
+            if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==4) {
+                linesParametersDB.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], null));
+            }
+            if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==5){
+                linesParametersDB.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], componente[4]));
+            }
+            else if(componente[0].charAt(0) != '#' && componente.length>5) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta."+line);
             line++;
         }
     }
@@ -71,8 +93,6 @@ public class SP {
         if (lines.isEmpty()) throw new FileNotFoundException("Ficheiro não encontrado");
         return lines;
     }
-
-
 
 }
 

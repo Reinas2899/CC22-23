@@ -1,3 +1,7 @@
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 public class DNSMsg {
     private Header header; 
     private Data data; 
@@ -17,6 +21,13 @@ public class DNSMsg {
     }
 
 
-
+    public byte[] getBytes(Object object) throws IOException {
+        try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+             objectOutputStream.writeObject(object);
+             return byteArrayOutputStream.toByteArray();
+        }
+    }
 
 }
+

@@ -6,6 +6,10 @@ public class Data {
     String ext_values;
 
 
+    public Data(Qinfo qinfo){
+        this.qinfo = qinfo;
+    }
+
     public Data(Qinfo qinfo, String resp_values, String authorties_values, String ext_values) {
         this.qinfo = qinfo;
         this.resp_values = resp_values;
@@ -62,3 +66,4 @@ public class Data {
 
     
 }
+

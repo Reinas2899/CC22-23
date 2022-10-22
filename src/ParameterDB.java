@@ -69,4 +69,15 @@ public class ParameterDB {
         }
         return t;
     }
+
+    @Override
+    public String toString() {
+        return "ParameterDB{" +
+                "parametro='" + parametro + '\'' +
+                ", tipo=" + tipo +
+                ", valor='" + valor + '\'' +
+                ", ttl='" + ttl + '\'' +
+                ", prioridade='" + prioridade + '\'' +
+                '}';
+    }
 }

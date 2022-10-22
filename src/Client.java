@@ -11,38 +11,43 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-
 
 public class Client {
-
-    
-    //private DNSMsg dns_Msg;
-    public static void main(String[] args) throws IOException {
-/*         DatagramSocket socket= new DatagramSocket();;
+    public static void main(String[] args) throws IOException,SintaxeIncorretaException {
+         DatagramSocket socket= new DatagramSocket();;
          InetAddress address= InetAddress.getByName("localhost");
          byte[] buf;
-     COLOCAR DNSMSG
-         String msg = "Olá servidor, eu sou o cliente.";
+         //COLOCAR DNSMSG
+         //String msg = "Olá servidor, eu sou o cliente.";
 
-        buf = msg.getBytes();
-        DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
-        socket.send(packet); *///envia datagrama pelo socket
-        try {
+            //System.out.println(readquery("/home/joao/IdeaProjects/parsefile/src/main/java/querydebug.txt").toString());
+            DNSMsg msg = readOptionalquery("optionalquery.txt");
 
-            System.out.println(parser("dnsquery.txt").toString());
-        } catch (SintaxeIncorretaException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
+            buf = msg.getBytes(msg);
+            DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
+            socket.send(packet); //envia datagrama pelo socket
+
+
     }
 
 
-    
 
-    public static DNSMsg parser (String filename) throws FileNotFoundException, SintaxeIncorretaException {
+    public static DNSMsg readquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
+        String[] componente=new String[7];
+        String [] componente2=new String[2];
+        List<String> linhas = lerFicheiro(filename);
+        int c = 0;
+        for (String linha : linhas) {
+            componente = linha.split(",");
+            componente2 = componente[5].split(";");
+        }
+        Header header = new Header(componente[0],componente[1],componente[2],componente[3],componente[4],componente2[0]);
+        Qinfo qinfo = new Qinfo(componente2[1],componente[6]);
+        Data data = new Data(qinfo);
+        return new DNSMsg(header,data);
+    }
+
+    public static DNSMsg readOptionalquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
         String[] componente;
         HashMap<String,String> query_values = new HashMap<>();
         List<String> linhas = lerFicheiro(filename);
@@ -64,7 +69,7 @@ public class Client {
      * Modificado: 20/out/2022
      * Descrição:
      * */
-     public static List<String> lerFicheiro (String nomeFich) throws FileNotFoundException {
+    public static List<String> lerFicheiro (String nomeFich) throws FileNotFoundException {
         List<String> lines;
         try {
             lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8);
@@ -78,9 +83,9 @@ public class Client {
 
 
     public static void dividevalor(String[] componentes, HashMap<String,String> query_values){
-        
+
         String[] dividido = new String[2];
-        
+
         for (String string : componentes) {
             dividido = string.split(" = ");
             query_values.put(dividido[0], dividido[1]);
@@ -88,18 +93,18 @@ public class Client {
     }
 
     public static DNSMsg constroiMsg(HashMap<String,String> query_values){
-     Header header = new Header(query_values.get("MESSAGE-ID"), 
-        query_values.get("FLAGS"), 
-        query_values.get("RESPONSE-CODE"), 
-        query_values.get("N-VALUES"), 
-        query_values.get("N-AUTHORITIES"), 
-        query_values.get("N-EXTRA-VALUES"));
-    Qinfo qinfo = new Qinfo(query_values.get("QUERY-INFO.NAME"), query_values.get("QUERY-INFO.TYPE"));
-    Data data = new Data(qinfo, query_values.get("RESPONSE-VALUES"), query_values.get("AUTHORITIES-VALUES"), query_values.get("EXTRA-VALUES"));
+        Header header = new Header(query_values.get("MESSAGE-ID"),
+                query_values.get("FLAGS"),
+                query_values.get("RESPONSE-CODE"),
+                query_values.get("N-VALUES"),
+                query_values.get("N-AUTHORITIES"),
+                query_values.get("N-EXTRA-VALUES"));
+        Qinfo qinfo = new Qinfo(query_values.get("QUERY-INFO.NAME"), query_values.get("QUERY-INFO.TYPE"));
+        Data data = new Data(qinfo, query_values.get("RESPONSE-VALUES"), query_values.get("AUTHORITIES-VALUES"), query_values.get("EXTRA-VALUES"));
 
-    DNSMsg dns_Msg = new DNSMsg(header, data);
-    return dns_Msg;
+        DNSMsg dns_Msg = new DNSMsg(header, data);
+        return dns_Msg;
 
-    } 
-     
+    }
+
 }  
