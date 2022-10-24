@@ -14,11 +14,9 @@ import java.util.List;
 
 public class Client {
     public static void main(String[] args) throws IOException,SintaxeIncorretaException {
-         DatagramSocket socket= new DatagramSocket();;
+         DatagramSocket socket= new DatagramSocket();
          InetAddress address= InetAddress.getByName("localhost");
          byte[] buf;
-         //COLOCAR DNSMSG
-         //String msg = "Olá servidor, eu sou o cliente.";
 
             //System.out.println(readquery("/home/joao/IdeaProjects/parsefile/src/main/java/querydebug.txt").toString());
             //DNSMsg msg = readOptionalquery("optionalquery.txt");
@@ -26,17 +24,13 @@ public class Client {
             buf = msg.getBytes(msg);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
             socket.send(packet); //envia datagrama pelo socket
-            //System.out.println(msg);
 
     }
-
-
 
     public static DNSMsg readquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
         String[] componente=new String[7];
         String [] componente2=new String[2];
         List<String> linhas = lerFicheiro(filename);
-        int c = 0;
         for (String linha : linhas) {
             componente = linha.split(",");
             componente2 = componente[5].split(";");
