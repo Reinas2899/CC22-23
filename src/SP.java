@@ -4,6 +4,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,16 +24,17 @@ public class SP {
         LocalDateTime runningNow = LocalDateTime.now();
         String modo = "debug";
         int timeout = 2000;
-        updateLogFile(porta,modo,timeout,runningNow,"ST","");
+        parser("sp.conf");
+        System.out.println(logFilename());
+        updateLogFile(porta,modo,timeout,runningNow,"ST","",logFilename());
         while (running) {
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
 
             LocalDateTime receivedNow = LocalDateTime.now();
-            updateLogFile(porta,modo,timeout,receivedNow,"QR","");
+            updateLogFile(porta,modo,timeout,receivedNow,"QR","",logFilename());
 
             //path completo do ficheiro de configuracao
-            //parser("/home/joao/IdeaProjects/parsefile/src/main/java/sp.conf");
             //dbContent("/home/joao/IdeaProjects/parsefile/src/main/java/example-com.db");
 
             address = packet.getAddress();
@@ -46,13 +48,13 @@ public class SP {
             DNSMsg m = (DNSMsg) is.readObject();
             if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
                 LocalDateTime errorconvertNow = LocalDateTime.now();
-                updateLogFile(porta,modo,timeout,errorconvertNow,"ER","");
+                updateLogFile(porta,modo,timeout,errorconvertNow,"ER","",logFilename());
             }
             System.out.println(m);
         }
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
-        updateLogFile(porta,modo,timeout,shutdownNow,"SP","");
+        updateLogFile(porta,modo,timeout,shutdownNow,"SP","",logFilename());
 
 
     }
@@ -112,17 +114,22 @@ public class SP {
         return lines;
     }
 
-    public static void updateLogFile(int porta,String modo,int timeout,LocalDateTime date,String type,String info){
+    public static void updateLogFile(int porta,String modo,int timeout,LocalDateTime date,String type,String info,String logFilename){
         boolean result= false;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         try {
-            File myObj = new File("SP.log");
+            String [] dirs = logFilename.split("/");
+            Path path = Paths.get(dirs[1]+"/"+dirs[2]);
+            if(Files.notExists(path)){
+                Files.createDirectories(path);
+            }
+            File myObj = new File(logFilename);
             result = myObj.createNewFile();
             if(result){
                 LocalDateTime createdNow = LocalDateTime.now();
                 String datacriacao = dtf.format(createdNow);
-                FileWriter myWriter = new FileWriter("SP.log",true);
-                myWriter.write(datacriacao + " " + "EV" + " " +  "log-file-created" + " " + "SP.log"+"\n");
+                FileWriter myWriter = new FileWriter(logFilename,true);
+                myWriter.write(datacriacao + " " + "EV" + " " +  "log-file-created" + " " + logFilename+"\n");
                 myWriter.close();
 
             }
@@ -132,13 +139,30 @@ public class SP {
         }
         String data = dtf.format(date);
         try {
-                FileWriter myWriter = new FileWriter("SP.log",true);
+                FileWriter myWriter = new FileWriter(logFilename,true);
                 myWriter.write(data + " " + type + " " + porta + " " + timeout + " " + modo+"\n");
                 myWriter.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public String dbFilename(){
+         String filename = "";
+         for(LineParameter lp : lineParameters){
+             if(lp.getParametro().equals("DB")) filename = lp.getValor();
+         }
+         return filename;
+    }
+
+    public static String logFilename(){
+        String filename = "";
+        for(LineParameter lp : lineParameters){
+            if(lp.getTipo().equals(LineParameter.Tipo.LG) && lp.getParametro().equals("all")) filename = lp.getValor();
+        }
+        return filename;
+    }
+
 
     public int countAuthoritatives(){
          int c=0;
