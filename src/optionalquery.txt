@@ -1,9 +1,0 @@
-# Header 
-MESSAGE-ID = 3874, FLAGS = Q+R, RESPONSE-CODE = 0, 
-N-VALUES = 0, N-AUTHORITIES = 0, N-EXTRA-VALUES = 0,; 
-# Data: Query Info 
-QUERY-INFO.NAME = example.com., QUERY-INFO.TYPE = MX,; 
-# Data: List of Response, Authorities and Extra Values 
-RESPONSE-VALUES = (Null) 
-AUTHORITIES-VALUES = (Null) 
-EXTRA-VALUES = (Null)

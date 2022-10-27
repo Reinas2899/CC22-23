@@ -26,6 +26,15 @@ public class Header implements Serializable {
         this.n_extravalues = n_extravalues;
     }
 
+    public Header(String messageID, String flags) {
+        this.messageID = messageID;
+        this.flags = flags;
+        this.response_code = "0";
+        this.n_values = "0";
+        this.n_authorities = "0";
+        this.n_extravalues = "0";
+    }
+
 
     public String getMessageID() {
         return messageID;

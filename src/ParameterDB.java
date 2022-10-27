@@ -91,6 +91,9 @@ public class ParameterDB {
             case ("SOAEXPIRE"):
                 t=Tipo.SOAEXPIRE;
                 break;
+            case ("SOARETRY"):
+                t=Tipo.SOARETRY;
+                break;
             case ("NS"):
                 t=Tipo.NS;
                 break; 

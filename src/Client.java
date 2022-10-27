@@ -14,17 +14,17 @@ import java.util.List;
 
 public class Client {
     public static void main(String[] args) throws IOException,SintaxeIncorretaException {
-         DatagramSocket socket= new DatagramSocket();
-         InetAddress address= InetAddress.getByName("localhost");
-         byte[] buf;
+            DatagramSocket socket= new DatagramSocket();
+            InetAddress address= InetAddress.getByName("localhost");
+            byte[] buf;
 
-            //System.out.println(readquery("/home/joao/IdeaProjects/parsefile/src/main/java/querydebug.txt").toString());
-            //DNSMsg msg = readOptionalquery("optionalquery.txt");
             DNSMsg msg = readquery("querydebug.txt");
             buf = msg.getBytes(msg);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
             socket.send(packet); //envia datagrama pelo socket
-
+            socket.receive(packet);
+            String received = new String(packet.getData(), 0, packet.getLength());
+            System.out.println(received);
     }
 
     public static DNSMsg readquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
@@ -35,29 +35,11 @@ public class Client {
             componente = linha.split(",");
             componente2 = componente[5].split(";");
         }
-        Header header = new Header(componente[0],componente[1],componente[2],componente[3],componente[4],componente2[0]);
+        Header header = new Header(componente[0],componente[1]);
         Qinfo qinfo = new Qinfo(componente2[1],componente[6]);
         Data data = new Data(qinfo);
         return new DNSMsg(header,data);
     }
-
-    public static DNSMsg readOptionalquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
-        String[] componente;
-        HashMap<String,String> query_values = new HashMap<>();
-        List<String> linhas = lerFicheiro(filename);
-        int line = 0;
-        for (String linha : linhas) {
-            componente = linha.split(", ");
-            if (!linha.isEmpty() && componente[0].charAt(0) != '#') {
-
-                dividevalor(componente, query_values);
-            } else if(componente[0].charAt(0) != '#' && componente.length>3) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
-            line++;
-        }
-        return constroiMsg(query_values);
-
-    }
-
     /**
      * Autor: João Castro
      * Modificado: 20/out/2022
@@ -75,7 +57,7 @@ public class Client {
     }
 
 
-
+    /*
     public static void dividevalor(String[] componentes, HashMap<String,String> query_values){
 
         String[] dividido = new String[2];
@@ -99,6 +81,24 @@ public class Client {
         DNSMsg dns_Msg = new DNSMsg(header, data);
         return dns_Msg;
 
-    }
+    }*/
 
+    /*
+    public static DNSMsg readOptionalquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
+        String[] componente;
+        HashMap<String,String> query_values = new HashMap<>();
+        List<String> linhas = lerFicheiro(filename);
+        int line = 0;
+        for (String linha : linhas) {
+            componente = linha.split(", ");
+            if (!linha.isEmpty() && componente[0].charAt(0) != '#') {
+
+                dividevalor(componente, query_values);
+            } else if(componente[0].charAt(0) != '#' && componente.length>3) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
+            line++;
+        }
+        return constroiMsg(query_values);
+
+    }
+    */
 }  

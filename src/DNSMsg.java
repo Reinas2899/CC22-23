@@ -1,7 +1,4 @@
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 
 public class DNSMsg implements Serializable {
     private Header header; 
@@ -14,7 +11,21 @@ public class DNSMsg implements Serializable {
         this.header = header;
     }
 
+    public Header getHeader() {
+        return header;
+    }
 
+    public void setHeader(Header header) {
+        this.header = header;
+    }
+
+    public Data getData() {
+        return data;
+    }
+
+    public void setData(Data data) {
+        this.data = data;
+    }
 
     @Override
     public String toString() {
@@ -29,6 +40,5 @@ public class DNSMsg implements Serializable {
              return byteArrayOutputStream.toByteArray();
         }
     }
-
 }
 
