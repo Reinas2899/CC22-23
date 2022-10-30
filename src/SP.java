@@ -9,6 +9,10 @@ public class SP {
     public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
         InetAddress address;
         int porta = 4445;
+        int portaSS = 4444;
+        ServerSocket server = new ServerSocket(portaSS);
+
+
         DatagramSocket socket = new DatagramSocket(porta);
         byte[] buf = new byte[1000];
         boolean running = true;
@@ -48,6 +52,14 @@ public class SP {
                 DatagramPacket packet2 = new DatagramPacket(buf, buf.length, address2, port);
                 socket.send(packet2);
             }
+            /* LÊ O SOCKET DO SS
+            Socket socketSS = server.accept();
+            ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
+            if(((String) ois.readObject()).contains(parserDB.serverDomain())){
+                ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
+                int NofLines = parserDB.getNumberofLines();
+                oos.writeObject(NofLines);
+            }*/
         }
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();

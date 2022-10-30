@@ -1,24 +1,27 @@
 import java.io.*;
-import java.net.ServerSocket;
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 public class SS {
-    public static void main(String[] args) throws IOException, SintaxeIncorretaException {
-        int porta = 4444; //confirmar
-        ServerSocket serverSocket = new ServerSocket(porta);
-        Socket sp = serverSocket.accept();
-
-        String db_name = new String(sp.getOutputStream().toString()); // coletar nome da DB
-        ParserDB parserDB = new ParserDB(db_name);
-
-        /* 
-         Falta:
-         1. Construir DB
-         2. Conectar no lado do SP
-         3. Confirmar valores
-        */
-
-        serverSocket.close();
-        sp.close();
+    public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
+        InetAddress host = InetAddress.getLocalHost();
+        Socket socket = null;
+        ObjectOutputStream oos = null;
+        ObjectInputStream ois = null;
+        while (true) {
+            socket = new Socket(host.getHostName(), 4444);
+            socket.setSoTimeout(5000);
+            try {
+                oos = new ObjectOutputStream(socket.getOutputStream());
+                oos.writeObject("joao.example.com");//qual é o dominio?
+                ois = new ObjectInputStream(socket.getInputStream());
+                String m = (String) ois.readObject();
+                if(Integer.parseInt(m)<65535) System.out.println(m);
+            } catch (SocketTimeoutException e) {
+                System.out.println("Servidor Primário inativo.");
+                socket.close();
+            }
+        }
     }
 }
