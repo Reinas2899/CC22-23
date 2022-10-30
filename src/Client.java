@@ -11,6 +11,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 public class Client {
     public static void main(String[] args) throws IOException,SintaxeIncorretaException {
@@ -22,9 +23,16 @@ public class Client {
             buf = msg.getBytes(msg);
             DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
             socket.send(packet); //envia datagrama pelo socket
-            socket.receive(packet);
-            String received = new String(packet.getData(), 0, packet.getLength());
-            System.out.println(received);
+            socket.setSoTimeout(5000);
+            
+            try {
+                socket.receive(packet);
+                String received = new String(packet.getData(), 0, packet.getLength());
+                System.out.println(received);
+            } catch (SocketTimeoutException e) {
+                System.out.println("Servidor Inativo");
+                socket.close();
+            }
     }
 
     public static DNSMsg readquery(String filename) throws FileNotFoundException, SintaxeIncorretaException {
