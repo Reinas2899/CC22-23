@@ -42,6 +42,7 @@ public class SP {
                 System.out.println(m);
                 parserDB.respondeQuery(m);
                 String a = parserDB.respondeQuery(m);//chamar a funcao
+                System.out.println(a);
                 buf = a.getBytes();
                 InetAddress address2 = InetAddress.getByName("localhost");
                 DatagramPacket packet2 = new DatagramPacket(buf, buf.length, address2, port);

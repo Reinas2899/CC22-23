@@ -98,8 +98,26 @@ public class ParserDB {
     }
     public String respondeQuery(DNSMsg msg){
         String resposta="Nao somos do mesmo dominio";
-        if(msg.getData().getQinfo().getName().equals(serverDomain())) resposta ="O SP conhece esse dominio";
+        if(msg.getData().getQinfo().getName().equals(serverDomain())){
+          resposta =  msg.getHeader().getMessageID() + "," + msg.getHeader().getFlags() + "," + msg.getHeader().getResponse_code() + "," + msg.getHeader().getN_values() + "," 
+          + msg.getHeader().getN_authorities()+ "," + msg.getHeader().getN_extravalues()+ ";" + msg.getData().getQinfo().getName() + "," +msg.getData().getQinfo().getType_value() + ";" 
+          + msg.getData().getResp_values()+ ";" + msg.getData().getAuthorties_values()+ ";" + msg.getData().getExt_values()+ ";";
+        
+        }
         return resposta;
+        
     }
+    /*public String toStringParser(String[] s){
+        String r ="";
+
+        if (s.length == 1) r = s[0];
+        if(s!=null){
+        for (int i = 0; i < s.length-1; i++) {
+            r = r + s[i] + ",";
+            
+        }}
+        return r;
+
+    }*/
 }
 
