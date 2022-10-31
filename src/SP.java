@@ -50,15 +50,29 @@ public class SP {
                 DatagramPacket packet2 = new DatagramPacket(buf, buf.length, address2, port);
                 socket.send(packet2);
             }
-            /* LÊ O SOCKET DO SS
+            // LÊ O SOCKET DO SS
             Socket socketSS = server.accept();
-            ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
+
+            /*PrintWriter outSS = new PrintWriter(socketSS.getOutputStream(), true);
+            BufferedReader inSS = new BufferedReader(new InputStreamReader(socketSS.getInputStream()));
+
+            String inputLine;
+                while ((inputLine = inSS.readLine()) != null) {
+                if (".".equals(inputLine)) {
+                    outSS.println("good bye");
+                    break;
+                 }
+                 outSS.println(inputLine);
+                }*/
+
+            /*ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
             if(((String) ois.readObject()).contains(parserDB.serverDomain())){
                 ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
                 int NofLines = parserDB.getNumberofLines();
                 oos.writeObject(NofLines);
             }*/
         }
+        server.close();
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
         //updateLogFile(porta,modo,timeout,shutdownNow,"SP","",parserConfig.logFilename());

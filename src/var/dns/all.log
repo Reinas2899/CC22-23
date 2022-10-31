@@ -50,3 +50,11 @@
 30:10:2022.18:52:31:881 QR 4445 2000 debug
 30:10:2022.18:54:16:820 EV log-file-created /var/dns/all.log
 30:10:2022.18:54:20:699 QR 4445 2000 debug
+30:10:2022.22:16:50:807 EV log-file-created /var/dns/all.log
+30:10:2022.22:17:15:442 EV log-file-created /var/dns/all.log
+30:10:2022.22:23:27:828 EV log-file-created /var/dns/all.log
+30:10:2022.23:43:13:630 EV log-file-created /var/dns/all.log
+30:10:2022.23:51:17:942 EV log-file-created /var/dns/all.log
+31:10:2022.00:05:28:882 EV log-file-created /var/dns/all.log
+31:10:2022.00:06:26:014 EV log-file-created /var/dns/all.log
+31:10:2022.00:09:29:618 EV log-file-created /var/dns/all.log
