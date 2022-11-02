@@ -15,7 +15,7 @@
         public static void main(String[] args) throws IOException,SintaxeIncorretaException {
                 DatagramSocket socket= new DatagramSocket();
                 InetAddress address= InetAddress.getByName("localhost");
-                byte[] buf = new byte[5000];
+                byte[] buf = new byte[1024];
 
                 DNSMsg msg = readquery("querydebug.txt");
                 //System.out.println(msg.toString());
@@ -27,18 +27,21 @@
                 DatagramPacket packet2= new DatagramPacket(buf,buf.length);
                 socket.receive(packet2);
 
+
                 address = packet2.getAddress();
                 int port = packet2.getPort();
-                packet2= new DatagramPacket(buf, buf.length, address, port);
+               // packet2= new DatagramPacket(buf, buf.length, address, port);
                 byte [] data = packet2.getData();
-                ByteArrayInputStream in = new ByteArrayInputStream(data);
-                ObjectInputStream is = new ObjectInputStream(in);
-            try {
-                DNSMsg m = (DNSMsg) is.readObject();
-                System.out.println(m);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+                String a = new String(data,0,packet2.getLength());
+                System.out.println(a);
+                //ByteArrayInputStream in = new ByteArrayInputStream(data);
+                ///ObjectInputStream is = new ObjectInputStream(in);
+            //try {
+            //    DNSMsg m = (DNSMsg) is.readObject();
+            //    System.out.println(m);
+           // } catch (ClassNotFoundException e) {
+           //    e.printStackTrace();
+           // }
             socket.close();
 
         }

@@ -189,7 +189,6 @@ public class ParserDB {
     }
 
     public DNSMsg respondeQuery(DNSMsg msg){
-        String resposta="Nao respondo para esse dominio";
         if(msg.getData().getQinfo().getName().equals(serverDomain())){
             msg.getHeader().setN_extravalues(String.valueOf(countExtra(msg.getData().getQinfo().getType_value(),msg.getData().getQinfo().getName())));
             msg.getHeader().setN_values(String.valueOf(countValues(msg.getData().getQinfo().getType_value())));
@@ -197,8 +196,8 @@ public class ParserDB {
             msg.getData().setResp_values(getListofValues(msg.getData().getQinfo().getType_value()));
             msg.getData().setAuthorties_values(getListofAuthorities(msg.getData().getQinfo().getName()));
             msg.getData().setExt_values(getListofExtra());
-        }
-        return msg;
+            return msg;
+        }else return null;
     }
 }
 

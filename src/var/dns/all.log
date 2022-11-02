@@ -152,3 +152,36 @@
 02:11:2022.13:17:40:897 QR 4445 2000 debug
 02:11:2022.13:23:47:051 EV log-file-created /var/dns/all.log
 02:11:2022.13:23:51:586 QR 4445 2000 debug
+02:11:2022.15:10:18:981 EV log-file-created /var/dns/all.log
+02:11:2022.15:10:25:590 QR 4445 2000 debug
+02:11:2022.15:14:56:585 EV log-file-created /var/dns/all.log
+02:11:2022.15:15:00:093 QR 4445 2000 debug
+02:11:2022.15:24:53:667 EV log-file-created /var/dns/all.log
+02:11:2022.15:27:19:251 EV log-file-created /var/dns/all.log
+02:11:2022.15:27:25:507 QR 4445 2000 debug
+02:11:2022.15:58:06:218 EV log-file-created /var/dns/all.log
+02:11:2022.15:58:08:862 QR 4445 2000 debug
+02:11:2022.16:10:55:859 EV log-file-created /var/dns/all.log
+02:11:2022.16:10:59:000 QR 4445 2000 debug
+02:11:2022.16:13:56:083 EV log-file-created /var/dns/all.log
+02:11:2022.16:13:58:754 QR 4445 2000 debug
+02:11:2022.16:16:06:603 EV log-file-created /var/dns/all.log
+02:11:2022.16:16:09:454 QR 4445 2000 debug
+02:11:2022.16:21:04:615 EV log-file-created /var/dns/all.log
+02:11:2022.16:21:08:344 QR 4445 2000 debug
+02:11:2022.21:00:42:201 EV log-file-created /var/dns/all.log
+02:11:2022.21:00:48:010 QR 4445 2000 debug
+02:11:2022.21:06:40:656 EV log-file-created /var/dns/all.log
+02:11:2022.21:06:43:237 QR 4445 2000 debug
+02:11:2022.21:57:23:102 EV log-file-created /var/dns/all.log
+02:11:2022.21:57:35:767 QR 4445 2000 debug
+02:11:2022.22:27:11:386 EV log-file-created /var/dns/all.log
+02:11:2022.23:00:21:772 EV log-file-created /var/dns/all.log
+02:11:2022.23:00:31:606 QR 4445 2000 debug
+02:11:2022.23:01:44:066 EV log-file-created /var/dns/all.log
+02:11:2022.23:03:57:709 EV log-file-created /var/dns/all.log
+02:11:2022.23:06:47:268 EV log-file-created /var/dns/all.log
+02:11:2022.23:07:33:095 EV log-file-created /var/dns/all.log
+02:11:2022.23:07:51:606 QR 4445 2000 debug
+02:11:2022.23:10:20:021 EV log-file-created /var/dns/all.log
+02:11:2022.23:10:25:428 QR 4445 2000 debug

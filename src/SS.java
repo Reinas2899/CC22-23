@@ -9,19 +9,16 @@ public class SS {
         Socket socket = null;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
-        while (true) {
-            socket = new Socket(host.getHostName(), 4444);
-            socket.setSoTimeout(5000);
-            try {
-                oos = new ObjectOutputStream(socket.getOutputStream());
-                oos.writeObject("joao.example.com");//qual é o dominio?
-                ois = new ObjectInputStream(socket.getInputStream());
-                String m = (String) ois.readObject();
-                if(Integer.parseInt(m)<65535) System.out.println(m);
-            } catch (SocketTimeoutException e ) {
-                System.out.println("Servidor Primário inativo.");
-                socket.close();
-            }
-        }
+       
+        socket = new Socket(host.getHostName(), 4444);
+
+        oos = new ObjectOutputStream(socket.getOutputStream());
+        oos.writeObject("ola");
+        ois = new ObjectInputStream(socket.getInputStream());
+        String m = (String) ois.readObject();
+        System.out.println(m);
+
+        socket.close();
+       
     }
 }
