@@ -29,7 +29,7 @@ public class DNSMsg implements Serializable {
 
     @Override
     public String toString() {
-        return "DNSMsg [header=" + header + "\n data=" + data + "]";
+        return header + ";" + data;
     }
 
 

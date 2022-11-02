@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ParserDB {
     private List<ParameterDB> linesParametersDB = new ArrayList<>();
+    private int numberofLines;
 
     public ParserDB(String filename) throws FileNotFoundException, SintaxeIncorretaException {
         String[] componente;
@@ -23,32 +24,39 @@ public class ParserDB {
         List<String> linhas = lerFicheiro(filename);
         int line = 0;
         for (String linha : linhas) {
+            //System.out.println(linha);
             componente = linha.split(" ");
             if(componente[0].equals("@") && componente[1].equals("DEFAULT")) {
                 parameter=componente[0];
                 defaultname=componente[1];
                 defaultdomain=componente[2];
+                line++;
             }
             else if(componente[0].equals("TTL")){
                 ttldefault=componente[0]+componente[1];
                 defaultprior=componente[2];
+                line++;
             }
             else if(componente[0].equals("Smaller.@")){
                 subdomain=componente[0];
                 domaintipo = componente[1];
                 fulldomain = componente[2];
+                line++;
             }
             else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==4) {
                 linesParametersDB.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], null));
+                line++;
             }
             else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==5){
                 linesParametersDB.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], componente[4]));
+                line++;
             }
             else if(componente[0].charAt(0) != '#' && componente.length>5) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta."+line);
-            line++;
+
         }
         linesParametersDB.add(new ParameterDB(parameter, defaultname, defaultdomain, ttldefault, defaultprior));
         linesParametersDB.add(new ParameterDB(subdomain,domaintipo,fulldomain,null,null));
+        setNumberofLines(line);
     }
 
     public List<String> lerFicheiro (String nomeFich) throws FileNotFoundException {
@@ -66,29 +74,54 @@ public class ParserDB {
         return lines;
     }
 
-    public int countAuthoritatives(){
-        int c=0;
-        for(ParameterDB p : linesParametersDB){
-            if(p.getTipo().equals(ParameterDB.Tipo.NS)) c++;
-        }
-        return c;
-    }
-
-    public int countExtravalues(){
-        int c=0;
-        for(ParameterDB p : linesParametersDB){
-            if(p.getTipo().equals(ParameterDB.Tipo.A)) c++;
-        }
-        return c;
-    }
-
     public List<ParameterDB> getLinesParametersDB() {
         return linesParametersDB;
+    }
+
+    public int getNumberofLines() {
+        return numberofLines;
+    }
+
+    public void setNumberofLines(int numberofLines) {
+        this.numberofLines = numberofLines;
     }
 
     public void setLinesParametersDB(List<ParameterDB> linesParametersDB) {
         this.linesParametersDB = linesParametersDB;
     }
+
+    public List<String> getServers(){
+        List<String> allServers= new ArrayList<>();
+        for(ParameterDB db : this.linesParametersDB) {
+            if (db.getTipo().equals(ParameterDB.Tipo.NS) || db.getTipo().equals(ParameterDB.Tipo.MX)){
+                String [] valores= new String[10];
+                valores = db.getValor().split("\\.");
+                allServers.add(valores[0]);
+            }
+        }
+        return allServers;
+    }
+
+    public String getIPDomain(String domain){
+        String ip="";
+        String [] sub= new String[10];
+        sub = domain.split("\\.");
+        for(ParameterDB db : this.linesParametersDB) {
+            if(sub[0].equals(db.getParametro())) ip= db.getValor();
+        }
+        return ip;
+    }
+
+    public List<String> getDomains(){
+        List<String> allServerDomains= new ArrayList<>();
+        for(ParameterDB db : this.linesParametersDB) {
+            if (db.getParametro().equals("@") && db.getTipo().equals(ParameterDB.Tipo.NS) || db.getTipo().equals(ParameterDB.Tipo.MX)){
+                allServerDomains.add(db.getValor());
+            }
+        }
+        return allServerDomains;
+    }
+
     public String serverDomain(){
         String valor="";
         for (ParameterDB pdb : linesParametersDB){
@@ -96,28 +129,76 @@ public class ParserDB {
         }
         return valor;
     }
-    public String respondeQuery(DNSMsg msg){
-        String resposta="Nao somos do mesmo dominio";
-        if(msg.getData().getQinfo().getName().equals(serverDomain())){
-          resposta =  msg.getHeader().getMessageID() + "," + msg.getHeader().getFlags() + "," + msg.getHeader().getResponse_code() + "," + msg.getHeader().getN_values() + "," 
-          + msg.getHeader().getN_authorities()+ "," + msg.getHeader().getN_extravalues()+ ";" + msg.getData().getQinfo().getName() + "," +msg.getData().getQinfo().getType_value() + ";" 
-          + msg.getData().getResp_values()+ ";" + msg.getData().getAuthorties_values()+ ";" + msg.getData().getExt_values()+ ";";
-        
+
+    public String ttlValue(){
+        String ttl=null;
+        for(ParameterDB db : this.linesParametersDB) {
+            if (db.getTtl()!=null && db.getTtl().equals("TTLDEFAULT") && db.getPrioridade()!=null) ttl = db.getPrioridade() ;
         }
-        return resposta;
-        
+        return ttl;
     }
-    /*public String toStringParser(String[] s){
-        String r ="";
 
-        if (s.length == 1) r = s[0];
-        if(s!=null){
-        for (int i = 0; i < s.length-1; i++) {
-            r = r + s[i] + ",";
-            
-        }}
-        return r;
+    public int countValues(String queryinfotype){
+        int c=0;
+        for(ParameterDB db : this.linesParametersDB){
+            if(db.getTipo().equals(db.convStrTipo(queryinfotype))) c++;
+        }
+        return c;
+    }
 
-    }*/
+    public int countAuthorities(String name){
+        int c=0;
+        for(ParameterDB db : this.linesParametersDB){
+            if(db.getParametro().equals("@") && db.getTipo().equals(ParameterDB.Tipo.NS) && db.getValor().contains(name)) c++;
+        }
+        return c;
+    }
+
+    public int countExtra(String queryinfotype,String name){
+        return countValues(queryinfotype)+countAuthorities(name);
+    }
+
+    public List<String> getListofValues(String type){//MX
+        List<String> listofValues=new ArrayList<>();
+        for(ParameterDB db : this.linesParametersDB){
+            if(db.getTipo().equals(db.convStrTipo(type))) listofValues.add(serverDomain()+" "+db.getTipo()+" "+db.getValor()+" "+ttlValue()+" "+db.getPrioridade());
+        }
+        /*int lastIndex = listofValues.size()-1;
+        String lastValue= listofValues.get(lastIndex).substring(0,lastIndex);
+        listofValues.set(lastIndex,lastValue);*/
+        return listofValues;
+    }
+
+    public List<String> getListofAuthorities(String domain){//EXAMPLE.COM
+        List<String> listofAuthorities=new ArrayList<>();
+        for(ParameterDB db : this.linesParametersDB){
+            if(db.getParametro().equals("@") && db.getTipo().equals(ParameterDB.Tipo.NS) && db.getValor().contains(domain)) listofAuthorities.add(serverDomain()+" "+db.getTipo()+" "+db.getValor()+" "+ttlValue());
+        }
+        /*int lastIndex = listofAuthorities.size()-1;
+        String lastValue= listofAuthorities.get(lastIndex).substring(0,lastIndex);
+        listofAuthorities.set(lastIndex,lastValue);*/
+        return listofAuthorities;
+    }
+
+    public List<String> getListofExtra(){
+        List<String> listofExtra=new ArrayList<>();
+        for(String domain : getDomains()){
+            listofExtra.add(domain+" "+ParameterDB.Tipo.A+" "+getIPDomain(domain)+ " "+ttlValue());
+        }
+        return listofExtra;
+    }
+
+    public DNSMsg respondeQuery(DNSMsg msg){
+        String resposta="Nao respondo para esse dominio";
+        if(msg.getData().getQinfo().getName().equals(serverDomain())){
+            msg.getHeader().setN_extravalues(String.valueOf(countExtra(msg.getData().getQinfo().getType_value(),msg.getData().getQinfo().getName())));
+            msg.getHeader().setN_values(String.valueOf(countValues(msg.getData().getQinfo().getType_value())));
+            msg.getHeader().setN_authorities(String.valueOf(countAuthorities(msg.getData().getQinfo().getName())));
+            msg.getData().setResp_values(getListofValues(msg.getData().getQinfo().getType_value()));
+            msg.getData().setAuthorties_values(getListofAuthorities(msg.getData().getQinfo().getName()));
+            msg.getData().setExt_values(getListofExtra());
+        }
+        return msg;
+    }
 }
 

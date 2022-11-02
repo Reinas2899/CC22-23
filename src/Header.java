@@ -51,8 +51,8 @@ public class Header implements Serializable {
     }
 
 
-    public void setFlags(String flags) {
-        this.flags = flags;
+    public void setFlags(String mflags) {
+        this.flags=mflags;
     }
 
 
@@ -98,9 +98,8 @@ public class Header implements Serializable {
 
     @Override
     public String toString() {
-        return "Header [messageID=" + messageID + "\n flags=" + flags + "\n response_code=" + response_code
-                + "\n n_values=" + n_values + "\n n_authorities=" + n_authorities + "\n n_extravalues=" + n_extravalues
-                + "]\n";
+        return  messageID + "," + flags + "," + response_code
+                + "," + n_values + "," + n_authorities + "," + n_extravalues;
     }
 
 }

@@ -116,14 +116,6 @@ public class ParameterDB {
 
     @Override
     public String toString() {
-        return "ParameterDB{" +
-                "parametro='" + parametro + '\'' +
-                ", tipo=" + tipo +
-                ", valor='" + valor + '\'' +
-                ", ttl='" + ttl + '\'' +
-                ", prioridade='" + prioridade + '\'' +
-                '}';
+        return  parametro + "," + tipo +"," + valor + "," + ttl +  ","+ prioridade+",";
     }
-
-
 }

@@ -10,6 +10,10 @@ public class Qinfo implements Serializable {
         this.type_value = type_value;
     }
 
+    public Qinfo(Qinfo q){
+        this.name = q.getName();
+        this.type_value = q.getType_value();
+    }
 
     public String getName() {
         return name;
@@ -33,7 +37,11 @@ public class Qinfo implements Serializable {
 
     @Override
     public String toString() {
-        return "Qinfo [name=" + name + "\n type_value=" + type_value + "]\n";
+        return name + ";" + type_value;
+    }
+
+    public Qinfo clone(){
+        return new Qinfo(this);
     }
 
 
