@@ -46,7 +46,7 @@ public class SP {
             socket.receive(packet); //fica à espera de receber
 
             LocalDateTime receivedNow = LocalDateTime.now();
-            logfile.updateLogFile(porta,modo,timeout,receivedNow,"QR","",logfilename);
+            logfile.updateLogFileQR_QE("", "dados a inserir", receivedNow, "QR", logfilename, "localhost");
 
             address = packet.getAddress();
             int port = packet.getPort();

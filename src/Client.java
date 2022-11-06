@@ -22,18 +22,27 @@
                 buf = msg.getBytes(msg);
                 DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
                 socket.send(packet); //envia datagrama pelo socket
-
-
-                DatagramPacket packet2= new DatagramPacket(buf,buf.length);
-                socket.receive(packet2);
-
-
-                address = packet2.getAddress();
-                int port = packet2.getPort();
+                DatagramPacket packet2= new DatagramPacket(buf,buf.length); 
+                socket.setSoTimeout(5000);
+                
+            
+                try {
+                    socket.receive(packet2);
+                    address = packet2.getAddress();
+                    int port = packet2.getPort();
                // packet2= new DatagramPacket(buf, buf.length, address, port);
-                byte [] data = packet2.getData();
-                String a = new String(data,0,packet2.getLength());
-                System.out.println(a);
+                    byte [] data = packet2.getData();
+                    String a = new String(data,0,packet2.getLength());
+                    System.out.println(a);
+                } catch (SocketTimeoutException e) {
+                    System.out.println("Servidor Inativo");
+                    socket.close();
+                }
+
+                
+
+
+                
                 //ByteArrayInputStream in = new ByteArrayInputStream(data);
                 ///ObjectInputStream is = new ObjectInputStream(in);
             //try {
