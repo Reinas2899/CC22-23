@@ -60,6 +60,7 @@ public class SP {
             if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
                 LocalDateTime errorconvertNow = LocalDateTime.now();
                 //updateLogFile(porta,modo,timeout,errorconvertNow,"ER","",parserConfig.logFilename());
+                
             }else {
                 //System.out.println(m);
                 parserDB.respondeQuery(m);
@@ -79,7 +80,7 @@ public class SP {
         }
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
-        //updateLogFile(porta,modo,timeout,shutdownNow,"SP","",parserConfig.logFilename());
+        logfile.updateLogFileSP(shutdownNow, "SP", logfilename, "localhost", "razao qualquer");
 
     }
     public static void ServerSocket() throws IOException, ClassNotFoundException {
