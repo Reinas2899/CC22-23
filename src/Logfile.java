@@ -10,9 +10,21 @@ import java.time.format.DateTimeFormatter;
 
 public class Logfile {
 
-    public Logfile(int porta, String modo, int timeout, LocalDateTime date, String type, String info, String logFilename) throws FileNotFoundException {
+    String logFilename;
+    
+
+    public String getLogFilename() {
+        return logFilename;
+    }
+
+    public void setLogFilename(String logFilename) {
+        this.logFilename = logFilename;
+    }
+
+    public Logfile(String logFilename) throws FileNotFoundException {
         boolean result= false;
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
+        this.logFilename = logFilename;
         try {
 
             String [] dirs = logFilename.split("/");
@@ -44,7 +56,7 @@ public class Logfile {
             e.printStackTrace();
         }}
 
-    public void updateLogFileST(int porta,String modo,int timeout,LocalDateTime date,String type,String logFilename, String endereço){
+    public void updateLogFileST(int porta,String modo,int timeout,LocalDateTime date,String type, String endereço){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -62,7 +74,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileSP(LocalDateTime date,String type,String logFilename, String endereço, String razao){
+    public void updateLogFileSP(LocalDateTime date,String type, String endereço, String razao){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -80,7 +92,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileTO(String tipo,int timeout,LocalDateTime date,String type,String logFilename, String endereço){
+    public void updateLogFileTO(String tipo,int timeout,LocalDateTime date,String type, String endereço){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -98,7 +110,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileFL(String erro,LocalDateTime date,String type,String logFilename, String endereço){
+    public void updateLogFileFL(String erro,LocalDateTime date,String type, String endereço){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -116,7 +128,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileEZ(String endereçoNlocal,LocalDateTime date,String type,String logFilename, String endereçolocal, String papel){
+    public void updateLogFileEZ(String endereçoNlocal,LocalDateTime date,String type, String endereçolocal, String papel){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -135,7 +147,7 @@ public class Logfile {
     }
 
 
-    public void updateLogFileER(String dadosopcionais,int timeout,LocalDateTime date,String type,String logFilename, String endereço){ 
+    public void updateLogFileER(String dadosopcionais,int timeout,LocalDateTime date,String type, String endereço){ 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -153,7 +165,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileEV(String info,int timeout,LocalDateTime date,String type,String logFilename, String endereço){
+    public void updateLogFileEV(String info,int timeout,LocalDateTime date,String type, String endereço){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -171,7 +183,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileZT(String papel,String endereçoOutraPonta,String duraçao, String tamanho,LocalDateTime date,String type,String logFilename){
+    public void updateLogFileZT(String papel,String endereçoOutraPonta,String duraçao, String tamanho,LocalDateTime date,String type){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -189,7 +201,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileRP_RR(String dados,LocalDateTime date,String type,String logFilename, String endereço, String sintaxe){
+    public void updateLogFileRP_RR(String dados,LocalDateTime date,String type, String endereço){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -198,7 +210,7 @@ public class Logfile {
         try {
 
         FileWriter myWriter = new FileWriter(pathFinal,true);
-        myWriter.write(data + " " + type + " " + endereço + " " +  dados+ " " + sintaxe +"\n");
+        myWriter.write(data + " " + type + " " + endereço + " " +  dados+"\n");
         myWriter.close();
                    
             
@@ -207,7 +219,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileQR_QE(String sintaxe,String dados,LocalDateTime date,String type,String logFilename, String endereço){
+    public void updateLogFileQR_QE(String dados,LocalDateTime date,String type, String endereço){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");
@@ -216,7 +228,7 @@ public class Logfile {
         try {
 
         FileWriter myWriter = new FileWriter(pathFinal,true);
-        myWriter.write(data + " " + type + " " + endereço + " " + dados + " " + sintaxe +"\n");
+        myWriter.write(data + " " + type + " " + endereço + " " + dados +"\n");
         myWriter.close();
                    
             

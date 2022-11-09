@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.lang.*;
 
 public class SP {
+
+    
     public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
         new Thread(()-> {
             try {
@@ -40,17 +42,23 @@ public class SP {
         LocalDateTime runningNow = LocalDateTime.now();
         String modo = "debug";
         int timeout = 2000;
+        String packetAdress = "";
         ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
-        String logfilename= parserConfig.getLogfilename();
-        Logfile logfile = new Logfile(porta,modo,timeout,runningNow,"ST","",logfilename);
+        String logFilename= parserConfig.getLogfilename(); 
+        Logfile logfile = new Logfile(logFilename);
+        
+        
         while (running) {
 
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
+            packetAdress = packet.getAddress().toString();
+            System.out.println(packetAdress);
+
 
             LocalDateTime receivedNow = LocalDateTime.now();
-            logfile.updateLogFileQR_QE("", "dados a inserir", receivedNow, "QR", logfilename, "localhost");
+            logfile.updateLogFileQR_QE("dados a inserir", receivedNow, "QR", packetAdress);
 
             address = packet.getAddress();
             int port = packet.getPort();
@@ -79,12 +87,15 @@ public class SP {
                 InetAddress address2 = InetAddress.getByName("localhost");
                 DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address2, port);
                 socket.send(packet2);
+                LocalDateTime sentNow = LocalDateTime.now();
+                String finalAdress[]=address2.toString().split("/");
+                logfile.updateLogFileRP_RR("dados", sentNow, "RP", finalAdress[1]);
             }
 
         }
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
-        logfile.updateLogFileSP(shutdownNow, "SP", logfilename, "localhost", "razao qualquer");
+        logfile.updateLogFileSP(shutdownNow, "SP", packetAdress, "razao qualquer");
 
     }
     public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException {
@@ -96,8 +107,10 @@ public class SP {
         int soaretryTime = parserDB.getSOARETRY();
         int soarexpireTime = parserDB.getSOAEXPIRE();
         String domain = parserConfig.getWorkingDomain();
+        
         int i = 1;
         int n;
+        
         while (running) {
             System.out.println("Shit here we go again");
             Socket socketSS = server.accept();
@@ -108,6 +121,8 @@ public class SP {
                 oos.writeObject(parserDB.getNumberofLines());//envia para o SS o numero de linhas a enviar
                 ois = new ObjectInputStream(socketSS.getInputStream());
                 receivedMessage = (String) ois.readObject();
+                LocalDateTime timeRR = LocalDateTime.now();
+                //updateLogFileRP_RR(receivedMessage, timeRR, "RR", socketSS.getInetAddress().toString());
                 if (receivedMessage.equals("Aceito")) {
                     oos = new ObjectOutputStream(socketSS.getOutputStream());
                     oos.writeObject(soaretryTime);
