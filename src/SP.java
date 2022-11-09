@@ -23,6 +23,10 @@ public class SP {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+            } catch (SintaxeIncorretaException e) {
+                e.printStackTrace();
+            }catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }).start();
 
@@ -37,7 +41,7 @@ public class SP {
         String modo = "debug";
         int timeout = 2000;
         ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
-        ParserDB parserDB = new ParserDB("example-com.db");
+        ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         String logfilename= parserConfig.getLogfilename();
         Logfile logfile = new Logfile(porta,modo,timeout,runningNow,"ST","",logfilename);
         while (running) {
@@ -83,16 +87,67 @@ public class SP {
         logfile.updateLogFileSP(shutdownNow, "SP", logfilename, "localhost", "razao qualquer");
 
     }
-    public static void ServerSocket() throws IOException, ClassNotFoundException {
+   public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException {
         int portaSS = 4444;
         ServerSocket server = new ServerSocket(portaSS);
         boolean running = true;
-
-        Socket socketSS = server.accept();
-        ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
-        String receivedMessage= (String) ois.readObject();
-        ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
-        oos.writeObject(receivedMessage+"para ti também");
-       
+        ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
+        ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
+        int time = parserDB.getSOARETRY();
+        String domain = parserConfig.getWorkingDomain();
+        int i = 1;
+        int n;
+        while (running) {
+            System.out.println("Shit here we go again");
+            Socket socketSS = server.accept();
+            ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
+            String receivedMessage = (String) ois.readObject();
+            if (receivedMessage.equals(domain)) { // O SP e o SS trabalham no mesmo dominio
+                ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
+                oos.writeObject(parserDB.getNumberofLines());//envia para o SS o numero de linhas a enviar
+                ois = new ObjectInputStream(socketSS.getInputStream());
+                receivedMessage = (String) ois.readObject();
+                if (receivedMessage.equals("Aceito")) {
+                    oos = new ObjectOutputStream(socketSS.getOutputStream());
+                    oos.writeObject(time);
+                    oos.flush();
+                    final SocketConnected socketConnected = new SocketConnected();
+                    Thread thread = new Thread(){
+                        public void run() {
+                            try {
+                                ObjectInputStream objectInputStream = new ObjectInputStream(socketSS.getInputStream());
+                                String mensagem = (String) objectInputStream.readObject();
+                                if (mensagem.equals("FIN")) socketConnected.setIsClosed(true);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    };
+                    thread.start();
+                    try{
+                        for (n=0;n<parserDB.getFileLines().size();n++) {
+                            if(socketConnected.isClosed) break;
+                            oos = new ObjectOutputStream(socketSS.getOutputStream());
+                            oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
+                            oos.flush();
+                            n++;
+                            //Thread.sleep(2000);
+                        }
+                        if(n==parserDB.getFileLines().size()) running=false;
+                    }catch(SocketException e){
+                        System.out.println("A conexão TCP foi terminada.");
+                        socketSS.close();
+                        running=false;
+                    }
+                    oos.flush();
+                }
+            } else {
+                ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
+                oos.writeObject("Não te aceito.");
+            }
+        }
+        System.out.println("Acabei");
     }
 }

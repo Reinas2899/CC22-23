@@ -185,3 +185,16 @@
 02:11:2022.23:07:51:606 QR 4445 2000 debug
 02:11:2022.23:10:20:021 EV log-file-created /var/dns/all.log
 02:11:2022.23:10:25:428 QR 4445 2000 debug
+09:11:2022.12:07:23:863 EV log-file-created /var/dns/all.log
+09:11:2022.12:09:05:248 EV log-file-created /var/dns/all.log
+09:11:2022.12:09:07:953 QR localhost dados a inserir 
+09:11:2022.12:23:50:693 EV log-file-created /var/dns/all.log
+09:11:2022.12:27:51:536 EV log-file-created /var/dns/all.log
+09:11:2022.12:31:16:484 EV log-file-created /var/dns/all.log
+09:11:2022.12:32:01:316 EV log-file-created /var/dns/all.log
+09:11:2022.12:43:05:462 EV log-file-created /var/dns/all.log
+09:11:2022.12:49:26:774 EV log-file-created /var/dns/all.log
+09:11:2022.12:51:38:114 EV log-file-created /var/dns/all.log
+09:11:2022.13:00:46:320 EV log-file-created /var/dns/all.log
+09:11:2022.13:01:35:762 EV log-file-created /var/dns/all.log
+09:11:2022.13:02:28:672 QR localhost dados a inserir 

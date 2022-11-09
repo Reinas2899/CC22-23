@@ -1,3 +1,4 @@
+import javax.sound.sampled.Line;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -10,6 +11,7 @@ public class ParserConfig {
     private List<LineParameter> lineParameters = new ArrayList<>();
     private String logfilename;
     private String dbfile;
+    private String workingDomain;
 
     public  ParserConfig(String filename) throws FileNotFoundException, SintaxeIncorretaException {
         String[] componente;
@@ -25,6 +27,7 @@ public class ParserConfig {
         }
         logFilename();
         dbFilename();
+        workDomain();
     }
 
     public List<String> lerFicheiro (String nomeFich) throws FileNotFoundException {
@@ -57,9 +60,23 @@ public class ParserConfig {
     public void dbFilename(){
         String filename = "";
         for(LineParameter lp : lineParameters){
-            if(lp.getParametro().equals("DB")) filename = lp.getValor();
+            if(lp.getTipo().equals(LineParameter.Tipo.DB)){
+                String [] dirs = lp.getValor().split("/");
+                String pathaux = dirs[1]+"//"+dirs[2];
+                String pathFinal = pathaux+"//" + dirs[3] ;
+
+                filename =pathFinal;
+            }
         }
         setDbfile(filename);
+    }
+
+    public void workDomain(){
+        String domain="";
+        for(LineParameter lp : lineParameters){
+            if(lp.getTipo().equals(LineParameter.Tipo.LG) && !lp.getParametro().equals("all")) domain = lp.getParametro();
+        }
+        setWorkingDomain(domain);
     }
 
     public String getLogfilename() {
@@ -76,6 +93,14 @@ public class ParserConfig {
 
     public void setDbfile(String dbfile) {
         this.dbfile = dbfile;
+    }
+
+    public String getWorkingDomain() {
+        return workingDomain;
+    }
+
+    public void setWorkingDomain(String workingDomain) {
+        this.workingDomain = workingDomain;
     }
 }
 

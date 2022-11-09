@@ -8,6 +8,7 @@ import java.util.List;
 
 public class ParserDB {
     private List<ParameterDB> linesParametersDB = new ArrayList<>();
+    private List<String> fileLines = new ArrayList<>();
     private int numberofLines;
 
     public ParserDB(String filename) throws FileNotFoundException, SintaxeIncorretaException {
@@ -22,6 +23,7 @@ public class ParserDB {
         String domaintipo="";
         String fulldomain="";
         List<String> linhas = lerFicheiro(filename);
+        setFileLines(linhas);
         int line = 0;
         for (String linha : linhas) {
             //System.out.println(linha);
@@ -88,6 +90,24 @@ public class ParserDB {
 
     public void setLinesParametersDB(List<ParameterDB> linesParametersDB) {
         this.linesParametersDB = linesParametersDB;
+    }
+
+    public List<String> getFileLines() {
+        return fileLines;
+    }
+
+    public void setFileLines(List<String> fileLines) {
+        for(String l : fileLines) {
+            if(!l.startsWith("#")) this.fileLines.add(l);
+        }
+    }
+
+    public int getSOARETRY(){
+        String time="";
+        for(ParameterDB parameterDB:this.linesParametersDB){
+            if(parameterDB.getTipo().equals(ParameterDB.Tipo.SOARETRY)) time = parameterDB.getValor();
+        }
+        return Integer.parseInt(time);
     }
 
     public List<String> getServers(){
