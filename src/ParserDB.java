@@ -110,6 +110,14 @@ public class ParserDB {
         return Integer.parseInt(time);
     }
 
+    public int getSOAEXPIRE(){
+        String time="";
+        for(ParameterDB parameterDB:this.linesParametersDB){
+            if(parameterDB.getTipo().equals(ParameterDB.Tipo.SOAEXPIRE)) time = parameterDB.getValor();
+        }
+        return Integer.parseInt(time);
+    }
+
     public List<String> getServers(){
         List<String> allServers= new ArrayList<>();
         for(ParameterDB db : this.linesParametersDB) {

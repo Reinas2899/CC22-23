@@ -87,13 +87,14 @@ public class SP {
         logfile.updateLogFileSP(shutdownNow, "SP", logfilename, "localhost", "razao qualquer");
 
     }
-   public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException {
+    public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException {
         int portaSS = 4444;
         ServerSocket server = new ServerSocket(portaSS);
         boolean running = true;
         ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
-        int time = parserDB.getSOARETRY();
+        int soaretryTime = parserDB.getSOARETRY();
+        int soarexpireTime = parserDB.getSOAEXPIRE();
         String domain = parserConfig.getWorkingDomain();
         int i = 1;
         int n;
@@ -109,7 +110,10 @@ public class SP {
                 receivedMessage = (String) ois.readObject();
                 if (receivedMessage.equals("Aceito")) {
                     oos = new ObjectOutputStream(socketSS.getOutputStream());
-                    oos.writeObject(time);
+                    oos.writeObject(soaretryTime);
+                    oos.flush();
+                    oos = new ObjectOutputStream(socketSS.getOutputStream());
+                    oos.writeObject(soarexpireTime);
                     oos.flush();
                     final SocketConnected socketConnected = new SocketConnected();
                     Thread thread = new Thread(){
@@ -135,7 +139,7 @@ public class SP {
                             n++;
                             //Thread.sleep(2000);
                         }
-                        if(n==parserDB.getFileLines().size()) running=false;
+                        running=false;
                     }catch(SocketException e){
                         System.out.println("A conexão TCP foi terminada.");
                         socketSS.close();

@@ -24,18 +24,24 @@ public class SS {
             ois = new ObjectInputStream(socket.getInputStream());
             int i = (Integer) ois.readObject();
             int n = 0;
+            int soaretry = 0;
+            int soarexpire =0;
             if (i < 65535) {
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject("Aceito");//SS aceita receber o n de linhas
                 ois = new ObjectInputStream(socket.getInputStream());
-                int time = (Integer) ois.readObject();
-                socket.setSoTimeout(1000);
+                soaretry = (Integer) ois.readObject();
+                ois = new ObjectInputStream(socket.getInputStream());
+                soarexpire = (Integer) ois.readObject();
+                System.out.println(soaretry);
+                System.out.println(soarexpire);
+                socket.setSoTimeout(soarexpire);
                 try {
                     while (n < i) {
                         ois = new ObjectInputStream(socket.getInputStream());
                         String m = (String) ois.readObject();
-                        String [] aux = m.split(" ",2);
-                        entradas.put(Integer.parseInt(aux[0]),aux[1]);
+                        String[] aux = m.split(" ", 2);
+                        entradas.put(Integer.parseInt(aux[0]), aux[1]);
                         System.out.println(m);
                         n++;
                     }
@@ -49,10 +55,11 @@ public class SS {
             }
             socket.close();
             oos.flush();
-            System.out.println("Vou adormecer");
-            Thread.sleep(5000);
-            if(n==i) running=false;
+            System.out.println("Vou esperar soaretry time");
+            long start = System.currentTimeMillis();
+            while(System.currentTimeMillis()-soaretry!=start){;}
+            running=false;
         }
-        System.out.println("Acabei");
+        System.out.println("Acabei de receber todas as entradas.");
     }
 }
