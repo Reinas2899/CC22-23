@@ -208,6 +208,21 @@ public class ParserDB {
         return listofAuthorities;
     }
 
+    public List<String> cnameRecords(){
+        List<String> list = new ArrayList<>();
+        String soasp="";
+        for(ParameterDB db : this.linesParametersDB){
+            if(db.getTipo().equals(ParameterDB.Tipo.SOASP)) list.add("primary name server = "+db.getValor());
+            if(db.getTipo().equals(ParameterDB.Tipo.SOAADMIN)) list.add("responsible mail addr = "+db.getValor());
+            if(db.getTipo().equals(ParameterDB.Tipo.SOASERIAL)) list.add("serial = "+db.getValor());
+            if(db.getTipo().equals(ParameterDB.Tipo.SOAREFRESH)) list.add("refresh = "+db.getValor());
+            if(db.getTipo().equals(ParameterDB.Tipo.SOAEXPIRE)) list.add("expire = "+db.getValor());
+            if(db.getTipo().equals(ParameterDB.Tipo.DEFAULT)) list.add("default TTL = "+db.getPrioridade());
+        }
+        return list;
+    }
+
+
     public List<String> getListofExtra(){
         List<String> listofExtra=new ArrayList<>();
         for(String domain : getDomains()){
@@ -216,16 +231,34 @@ public class ParserDB {
         return listofExtra;
     }
 
+     public int checkQuery(DNSMsg query,String domain){
+        int r=0;
+        ExceptionHandler exceptionHandler = new ExceptionHandler();
+        if(!exceptionHandler.isNumeric(query.getHeader().getMessageID()) || !exceptionHandler.isNumeric(query.getHeader().getResponse_code())
+                || !exceptionHandler.isNumeric(query.getHeader().getN_values()) || !exceptionHandler.isNumeric(query.getHeader().getN_authorities())
+                || !exceptionHandler.isNumeric(query.getHeader().getN_extravalues()) || !exceptionHandler.checksFlags(query.getHeader().getFlags())) r=3;
+        if(!exceptionHandler.typeExists(query.getData().getQinfo().getType_value())) r=1;
+        if(!query.getData().getQinfo().getName().equals(domain)) r=2;
+        return r;
+    }
+
+
     public DNSMsg respondeQuery(DNSMsg msg){
-        if(msg.getData().getQinfo().getName().equals(serverDomain())){
-            msg.getHeader().setN_extravalues(String.valueOf(countExtra(msg.getData().getQinfo().getType_value(),msg.getData().getQinfo().getName())));
+        //if(msg.getData().getQinfo().getName().equals(serverDomain())){
+            int code = checkQuery(msg,serverDomain());
+            msg.getHeader().setResponse_code(String.valueOf(code));
+            msg.getHeader().setN_extravalues(String.valueOf(countExtra(msg.getData().getQinfo().getType_value(), msg.getData().getQinfo().getName())));
             msg.getHeader().setN_values(String.valueOf(countValues(msg.getData().getQinfo().getType_value())));
             msg.getHeader().setN_authorities(String.valueOf(countAuthorities(msg.getData().getQinfo().getName())));
-            msg.getData().setResp_values(getListofValues(msg.getData().getQinfo().getType_value()));
-            msg.getData().setAuthorties_values(getListofAuthorities(msg.getData().getQinfo().getName()));
-            msg.getData().setExt_values(getListofExtra());
+            if(msg.getData().getQinfo().getType_value().equals("MX")) {
+                msg.getData().setResp_values(getListofValues(msg.getData().getQinfo().getType_value()));
+                msg.getData().setAuthorties_values(getListofAuthorities(msg.getData().getQinfo().getName()));
+                msg.getData().setExt_values(getListofExtra());
+            }if(msg.getData().getQinfo().getType_value().equals("CNAME")){
+                 msg.getData().setResp_values(cnameRecords());
+            }
             return msg;
-        }else return null;
+        //}else return null;
     }
 }
 

@@ -72,22 +72,28 @@ public class Data implements Serializable {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         int i=0;
-        for(String s : resp_values) {
-            if(i==resp_values.size()-1) stringBuilder.append(s).append(";").append("\n");
-            else stringBuilder.append(s).append(",").append("\n");
-            i++;
+        if(resp_values!=null) {
+            for (String s : resp_values) {
+                if (i == resp_values.size() - 1) stringBuilder.append(s).append(";").append("\n");
+                else stringBuilder.append(s).append(",").append("\n");
+                i++;
+            }
         }
         i=0;
-        for(String s : authorties_values){
-            if(i==authorties_values.size()-1) stringBuilder.append(s).append(";").append("\n");
-            else stringBuilder.append(s).append(",").append("\n");
-            i++;
+        if(authorties_values!=null) {
+            for (String s : authorties_values) {
+                if (i == authorties_values.size() - 1) stringBuilder.append(s).append(";").append("\n");
+                else stringBuilder.append(s).append(",").append("\n");
+                i++;
+            }
         }
         i=0;
-        for(String s : ext_values){
-            if(i==ext_values.size()-1) stringBuilder.append(s).append(";");
-            else stringBuilder.append(s).append(",").append("\n");
-            i++;
+        if(ext_values!=null) {
+            for (String s : ext_values) {
+                if (i == ext_values.size() - 1) stringBuilder.append(s).append(";");
+                else stringBuilder.append(s).append(",").append("\n");
+                i++;
+            }
         }
         return  qinfo + "\n" + stringBuilder;
     }

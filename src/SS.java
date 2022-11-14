@@ -56,9 +56,10 @@ public class SS {
             socket.close();
             oos.flush();
             System.out.println("Vou esperar soaretry time");
-            long start = System.currentTimeMillis();
-            while(System.currentTimeMillis()-soaretry!=start){;}
-            running=false;
+            //long start = System.currentTimeMillis();
+            //while(System.currentTimeMillis()-soaretry!=start){;}
+            Thread.sleep(soaretry);
+	    running=false;
         }
         System.out.println("Acabei de receber todas as entradas.");
     }

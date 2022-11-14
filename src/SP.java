@@ -152,7 +152,7 @@ public class SP {
                             oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
                             oos.flush();
                             n++;
-                            //Thread.sleep(2000);
+                            if(n==2) Thread.sleep(8000);
                         }
                         running=false;
                     }catch(SocketException e){
