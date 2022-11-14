@@ -152,9 +152,9 @@ public class SP {
                             oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
                             oos.flush();
                             n++;
-                            if(n==2) Thread.sleep(8000);
+                            Thread.sleep(8000);
                         }
-                        running=false;
+                        //running=false;
                     }catch(SocketException e){
                         System.out.println("A conexão TCP foi terminada.");
                         socketSS.close();

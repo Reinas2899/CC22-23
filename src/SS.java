@@ -26,6 +26,7 @@ public class SS {
             int n = 0;
             int soaretry = 0;
             int soarexpire =0;
+            int flag =0;
             if (i < 65535) {
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject("Aceito");//SS aceita receber o n de linhas
@@ -48,6 +49,7 @@ public class SS {
                 } catch (SocketTimeoutException e) {
                     oos = new ObjectOutputStream(socket.getOutputStream());
                     oos.writeObject("FIN");
+                    flag=2;
                 }
             } else {
                 System.out.println("Não aceito receber essa quantidade de entradas.");
@@ -59,7 +61,7 @@ public class SS {
             //long start = System.currentTimeMillis();
             //while(System.currentTimeMillis()-soaretry!=start){;}
             Thread.sleep(soaretry);
-	    running=false;
+	    if(flag!=2) running=false;
         }
         System.out.println("Acabei de receber todas as entradas.");
     }
