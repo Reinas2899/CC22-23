@@ -37,7 +37,7 @@ public class Qinfo implements Serializable {
 
     @Override
     public String toString() {
-        return name + ";" + type_value;
+        return name + "," + type_value + ";";
     }
 
     public Qinfo clone(){

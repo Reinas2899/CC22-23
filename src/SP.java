@@ -54,8 +54,6 @@ public class SP {
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
             packetAdress = packet.getAddress().toString();
-            System.out.println(packetAdress);
-
 
             LocalDateTime receivedNow = LocalDateTime.now();
             logfile.updateLogFileQR_QE("dados a inserir", receivedNow, "QR", packetAdress);
@@ -78,7 +76,7 @@ public class SP {
                 parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
                 if(mensagem.getHeader().getFlags().equals("Q+R")) mensagem.getHeader().setFlags("R+A");
-                System.out.println(mensagem);
+                //System.out.println(mensagem);
                 //buf = mensagem.getBytes(mensagem);
 
                 String servidormensagem = mensagem.toString();
@@ -98,7 +96,7 @@ public class SP {
         logfile.updateLogFileSP(shutdownNow, "SP", packetAdress, "razao qualquer");
 
     }
-    public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException {
+    public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {
         int portaSS = 4444;
         ServerSocket server = new ServerSocket(portaSS);
         boolean running = true;
@@ -110,9 +108,8 @@ public class SP {
         
         int i = 1;
         int n;
-        
         while (running) {
-            System.out.println("Shit here we go again");
+            //System.out.println("here we go again");
             Socket socketSS = server.accept();
             ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
             String receivedMessage = (String) ois.readObject();
@@ -131,7 +128,7 @@ public class SP {
                     oos.writeObject(soarexpireTime);
                     oos.flush();
                     final SocketConnected socketConnected = new SocketConnected();
-                    Thread thread = new Thread(){
+		    Thread thread = new Thread(){
                         public void run() {
                             try {
                                 ObjectInputStream objectInputStream = new ObjectInputStream(socketSS.getInputStream());
@@ -146,13 +143,12 @@ public class SP {
                     };
                     thread.start();
                     try{
-                        for (n=0;n<parserDB.getFileLines().size();n++) {
+			for (n=0;n<parserDB.getFileLines().size();n++) {
                             if(socketConnected.isClosed) break;
                             oos = new ObjectOutputStream(socketSS.getOutputStream());
-                            oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
-                            oos.flush();
-                            n++;
-                            Thread.sleep(8000);
+			    oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
+			    oos.flush();
+                            //if(n==4) Thread.sleep(8000);
                         }
                         //running=false;
                     }catch(SocketException e){
@@ -166,7 +162,8 @@ public class SP {
                 ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
                 oos.writeObject("Não te aceito.");
             }
-        }
-        System.out.println("Acabei");
+        	running=false;
+	}
+        System.out.println("Acabou o processo de zona de transferência.");
     }
 }

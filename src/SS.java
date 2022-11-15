@@ -55,14 +55,14 @@ public class SS {
                 System.out.println("Não aceito receber essa quantidade de entradas.");
                 socket.close();
             }
-            socket.close();
             oos.flush();
             System.out.println("Vou esperar soaretry time");
             //long start = System.currentTimeMillis();
             //while(System.currentTimeMillis()-soaretry!=start){;}
             Thread.sleep(soaretry);
-	    if(flag!=2) running=false;
+	    System.out.println("Acabei de receber todas as entradas.");
+	    //if(flag!=2) running=false;
         }
-        System.out.println("Acabei de receber todas as entradas.");
+	socket.close();
     }
 }
