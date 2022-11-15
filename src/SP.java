@@ -108,6 +108,7 @@ public class SP {
         
         int i = 1;
         int n;
+	int flag=0;
         while (running) {
             //System.out.println("here we go again");
             Socket socketSS = server.accept();
@@ -144,13 +145,15 @@ public class SP {
                     thread.start();
                     try{
 			for (n=0;n<parserDB.getFileLines().size();n++) {
-                            if(socketConnected.isClosed) break;
+                            if(socketConnected.isClosed){
+				    flag=2;
+				    break;
+			    }
                             oos = new ObjectOutputStream(socketSS.getOutputStream());
 			    oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
 			    oos.flush();
                             //if(n==4) Thread.sleep(8000);
                         }
-                        //running=false;
                     }catch(SocketException e){
                         System.out.println("A conexão TCP foi terminada.");
                         socketSS.close();
@@ -162,7 +165,7 @@ public class SP {
                 ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
                 oos.writeObject("Não te aceito.");
             }
-        	running=false;
+        	if(flag!=2) running=false;
 	}
         System.out.println("Acabou o processo de zona de transferência.");
     }

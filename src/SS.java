@@ -60,7 +60,6 @@ public class SS {
             //long start = System.currentTimeMillis();
             //while(System.currentTimeMillis()-soaretry!=start){;}
             Thread.sleep(soaretry);
-	    System.out.println("Acabei de receber todas as entradas.");
 	    //if(flag!=2) running=false;
         }
 	socket.close();
