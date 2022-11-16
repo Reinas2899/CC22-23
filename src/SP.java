@@ -2,6 +2,8 @@ import java.io.*;
 import java.net.*;
 import java.time.LocalDateTime;
 import java.lang.*;
+import java.util.Arrays;
+
 
 public class SP {
 
@@ -79,12 +81,25 @@ public class SP {
                 //System.out.println(mensagem);
                 //buf = mensagem.getBytes(mensagem);
 
-                String servidormensagem = mensagem.toString();
 
+		String servidormensagem=mensagem.toString();
                 byte[] dados = servidormensagem.getBytes();
+                
+                Fragmentation fragmentation = new Fragmentation(dados.length,1024);
+                int numpacotes = fragmentation.numberofFragments();
+                String nPackets = String.valueOf(numpacotes);
+                byte[] n = nPackets.getBytes();
                 InetAddress address2 = InetAddress.getByName("localhost");
-                DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address2, port);
+                DatagramPacket packet2 = new DatagramPacket(n, n.length, address2, port);
                 socket.send(packet2);
+                int v =0;
+                while(v<numpacotes){
+                    byte[] fragment = new byte[1024];
+                    fragment = Arrays.copyOfRange(dados,1024*v,1024*(v+1));
+                    DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address2, port);
+                    socket.send(packet3);
+                    v++;
+                }
                 LocalDateTime sentNow = LocalDateTime.now();
                 String finalAdress[]=address2.toString().split("/");
                 logfile.updateLogFileRP_RR("dados", sentNow, "RP", finalAdress[1]);

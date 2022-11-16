@@ -312,3 +312,82 @@
 15:11:2022.15:50:56:905 EV log-file-created /var/dns/all.log
 15:11:2022.15:58:34:362 EV log-file-created /var/dns/all.log
 15:11:2022.15:59:42:842 EV log-file-created /var/dns/all.log
+16:11:2022.00:35:06:017 EV log-file-created /var/dns/all.log
+16:11:2022.10:24:45:960 EV log-file-created /var/dns/all.log
+16:11:2022.10:24:51:821 QR /127.0.0.1 dados a inserir
+16:11:2022.10:25:58:490 EV log-file-created /var/dns/all.log
+16:11:2022.10:26:02:411 QR /127.0.0.1 dados a inserir
+16:11:2022.10:47:55:497 EV log-file-created /var/dns/all.log
+16:11:2022.10:48:04:841 EV log-file-created /var/dns/all.log
+16:11:2022.10:48:08:426 QR /127.0.0.1 dados a inserir
+16:11:2022.10:49:14:777 EV log-file-created /var/dns/all.log
+16:11:2022.10:49:17:715 QR /127.0.0.1 dados a inserir
+16:11:2022.10:51:13:483 EV log-file-created /var/dns/all.log
+16:11:2022.10:51:16:070 QR /127.0.0.1 dados a inserir
+16:11:2022.10:52:16:885 EV log-file-created /var/dns/all.log
+16:11:2022.10:52:24:401 QR /127.0.0.1 dados a inserir
+16:11:2022.10:55:16:556 EV log-file-created /var/dns/all.log
+16:11:2022.10:55:18:388 QR /127.0.0.1 dados a inserir
+16:11:2022.10:55:18:572 RP 127.0.0.1 dados
+16:11:2022.10:56:07:480 QR /127.0.0.1 dados a inserir
+16:11:2022.10:56:07:512 RP 127.0.0.1 dados
+16:11:2022.11:11:25:730 EV log-file-created /var/dns/all.log
+16:11:2022.11:11:30:611 QR /127.0.0.1 dados a inserir
+16:11:2022.11:11:30:701 RP 127.0.0.1 dados
+16:11:2022.11:15:19:688 EV log-file-created /var/dns/all.log
+16:11:2022.11:15:23:133 QR /127.0.0.1 dados a inserir
+16:11:2022.11:15:23:226 RP 127.0.0.1 dados
+16:11:2022.11:17:10:186 EV log-file-created /var/dns/all.log
+16:11:2022.11:17:13:487 QR /127.0.0.1 dados a inserir
+16:11:2022.11:17:13:600 RP 127.0.0.1 dados
+16:11:2022.11:53:01:838 EV log-file-created /var/dns/all.log
+16:11:2022.11:53:05:278 QR /127.0.0.1 dados a inserir
+16:11:2022.11:53:05:415 RP 127.0.0.1 dados
+16:11:2022.11:59:43:370 EV log-file-created /var/dns/all.log
+16:11:2022.11:59:46:400 QR /127.0.0.1 dados a inserir
+16:11:2022.11:59:46:515 RP 127.0.0.1 dados
+16:11:2022.12:04:00:491 EV log-file-created /var/dns/all.log
+16:11:2022.12:04:03:622 QR /127.0.0.1 dados a inserir
+16:11:2022.12:04:03:758 RP 127.0.0.1 dados
+16:11:2022.12:05:10:079 EV log-file-created /var/dns/all.log
+16:11:2022.12:05:13:592 QR /127.0.0.1 dados a inserir
+16:11:2022.12:05:13:706 RP 127.0.0.1 dados
+16:11:2022.12:10:15:968 EV log-file-created /var/dns/all.log
+16:11:2022.12:10:18:223 QR /127.0.0.1 dados a inserir
+16:11:2022.12:10:18:343 RP 127.0.0.1 dados
+16:11:2022.12:13:38:819 EV log-file-created /var/dns/all.log
+16:11:2022.12:13:41:148 QR /127.0.0.1 dados a inserir
+16:11:2022.12:13:41:270 RP 127.0.0.1 dados
+16:11:2022.12:14:35:597 EV log-file-created /var/dns/all.log
+16:11:2022.12:14:40:330 QR /127.0.0.1 dados a inserir
+16:11:2022.12:14:40:425 RP 127.0.0.1 dados
+16:11:2022.12:21:59:002 EV log-file-created /var/dns/all.log
+16:11:2022.12:22:08:514 QR /127.0.0.1 dados a inserir
+16:11:2022.12:22:08:633 RP 127.0.0.1 dados
+16:11:2022.12:24:18:562 EV log-file-created /var/dns/all.log
+16:11:2022.12:24:21:370 QR /127.0.0.1 dados a inserir
+16:11:2022.12:24:21:527 RP 127.0.0.1 dados
+16:11:2022.12:32:46:874 EV log-file-created /var/dns/all.log
+16:11:2022.12:32:52:118 QR /127.0.0.1 dados a inserir
+16:11:2022.12:32:52:205 RP 127.0.0.1 dados
+16:11:2022.12:38:53:927 EV log-file-created /var/dns/all.log
+16:11:2022.12:38:56:221 QR /127.0.0.1 dados a inserir
+16:11:2022.12:38:56:357 RP 127.0.0.1 dados
+16:11:2022.12:42:16:757 EV log-file-created /var/dns/all.log
+16:11:2022.12:42:22:168 QR /127.0.0.1 dados a inserir
+16:11:2022.12:42:22:299 RP 127.0.0.1 dados
+16:11:2022.13:02:39:449 EV log-file-created /var/dns/all.log
+16:11:2022.13:02:42:608 QR /127.0.0.1 dados a inserir
+16:11:2022.13:02:42:853 RP 127.0.0.1 dados
+16:11:2022.13:10:29:815 EV log-file-created /var/dns/all.log
+16:11:2022.13:10:33:036 QR /127.0.0.1 dados a inserir
+16:11:2022.13:10:33:229 RP 127.0.0.1 dados
+16:11:2022.13:10:39:782 QR /127.0.0.1 dados a inserir
+16:11:2022.13:10:39:787 RP 127.0.0.1 dados
+16:11:2022.13:11:05:334 QR /127.0.0.1 dados a inserir
+16:11:2022.13:11:05:339 RP 127.0.0.1 dados
+16:11:2022.13:12:42:205 EV log-file-created /var/dns/all.log
+16:11:2022.13:12:58:258 QR /127.0.0.1 dados a inserir
+16:11:2022.13:12:58:365 RP 127.0.0.1 dados
+16:11:2022.13:13:22:327 QR /127.0.0.1 dados a inserir
+16:11:2022.13:13:22:368 RP 127.0.0.1 dados

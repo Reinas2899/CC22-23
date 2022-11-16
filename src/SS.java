@@ -2,11 +2,13 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SS {
-    static Map<Integer,String> entradas = new HashMap<>();
+    static Map<Integer, List<String>> entradas = new HashMap<>();
     public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException, InterruptedException {
         InetAddress host = InetAddress.getLocalHost();
         Socket socket = null;
@@ -15,10 +17,10 @@ public class SS {
         ParserConfig parserConfig = new ParserConfig("SS.conf");
         System.out.println(parserConfig.getWorkingDomain());
         boolean running=true;
-
         while(running) {
-            socket = new Socket(host.getHostName(), 4444);
 
+            socket = new Socket(host.getHostName(), 4444);
+            
             oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(parserConfig.getWorkingDomain());//SS envia o domínio em que trabalha
             ois = new ObjectInputStream(socket.getInputStream());
@@ -42,7 +44,15 @@ public class SS {
                         ois = new ObjectInputStream(socket.getInputStream());
                         String m = (String) ois.readObject();
                         String[] aux = m.split(" ", 2);
-                        entradas.put(Integer.parseInt(aux[0]), aux[1]);
+                        if(entradas.containsKey(Integer.parseInt(aux[0]))) {
+                            List<String> l = entradas.get(Integer.parseInt(aux[0]));
+                            l.add(aux[1]);
+                            entradas.replace(Integer.parseInt(aux[0]),l);
+                        }else{
+                            List<String> l = new ArrayList<>();
+                            l.add(aux[1]);
+                            entradas.put(Integer.parseInt(aux[0]),l);
+                        }
                         System.out.println(m);
                         n++;
                     }
@@ -60,8 +70,8 @@ public class SS {
             //long start = System.currentTimeMillis();
             //while(System.currentTimeMillis()-soaretry!=start){;}
             Thread.sleep(soaretry);
-	    //if(flag!=2) running=false;
+            //if(flag!=2) running=false;
         }
-	socket.close();
+        socket.close();
     }
 }
