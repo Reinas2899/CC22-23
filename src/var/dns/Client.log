@@ -40,3 +40,13 @@
 17:11:2022.16:03:58:847 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
 
 17:11:2022.16:04:03:893 SP /127.0.0.1 Encerrou sem problemas
+17:11:2022.17:04:24:390 EV log-file-created /var/dns/Client.log
+17:11:2022.17:04:24:450 ST localhost/127.0.0.1 4445 5000 debug
+17:11:2022.17:04:24:451 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.17:04:29:486 SP /127.0.0.1 Encerrou sem problemas
+17:11:2022.17:05:47:364 EV log-file-created /var/dns/Client.log
+17:11:2022.17:05:47:424 ST localhost/127.0.0.1 4445 5000 debug
+17:11:2022.17:05:47:425 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.17:05:52:468 SP /127.0.0.1 Encerrou sem problemas

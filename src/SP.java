@@ -107,7 +107,10 @@ public class SP {
                     socket.send(packet3);
                     v++;
                     LocalDateTime sentNow = LocalDateTime.now();
-                    logfile.updateLogFileRP_RR(new String(fragment,0,fragment.length), sentNow, "RP", address2.toString());
+                    String resposta = new String(fragment,0,fragment.length);
+                    String [] componente = resposta.split(";");
+
+                    logfile.updateLogFileRP_RR(componente[0]+componente[1]+";", sentNow, "RP", address2.toString());
                 }
                                              
             }
