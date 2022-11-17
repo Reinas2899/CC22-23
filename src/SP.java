@@ -46,6 +46,7 @@ public class SP {
         String modo = "debug";
         int timeout = 2000;
         String packetAdress = "";
+        String [] endereco = packetAdress.split("/");
         ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         String logFilename= parserConfig.getLogfilename(); 
@@ -60,7 +61,8 @@ public class SP {
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
             packetAdress = packet.getAddress().toString();
-            logfile.updateLogFileST(porta, modo, timeout, LocalDateTime.now(), "ST", packetAdress);
+            endereco = packetAdress.split("/");
+            logfile.updateLogFileST(porta, modo, timeout, LocalDateTime.now(), "ST", endereco[1]);
 
             LocalDateTime receivedNow = LocalDateTime.now();
             
@@ -68,6 +70,7 @@ public class SP {
             address = packet.getAddress();
             int port = packet.getPort();
             packet = new DatagramPacket(buf, buf.length, address, port);
+            endereco = address.toString().split("/");
 
 
             byte [] data = packet.getData();
@@ -77,10 +80,10 @@ public class SP {
             
             if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
                 LocalDateTime errorconvertNow = LocalDateTime.now();
-                logfile.updateLogFileER("Menssagem vazia", timeout, errorconvertNow, "ER", address.toString());
+                logfile.updateLogFileER("Menssagem vazia", timeout, errorconvertNow, "ER", endereco[1]);
                 
             }else {
-                logfile.updateLogFileQR_QE(m.toString(), receivedNow, "QR", packetAdress);
+                logfile.updateLogFileQR_QE(m.toString(), receivedNow, "QR", endereco[1]);
                 //System.out.println(m);
                 parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
@@ -109,8 +112,9 @@ public class SP {
                     LocalDateTime sentNow = LocalDateTime.now();
                     String resposta = new String(fragment,0,fragment.length);
                     String [] componente = resposta.split(";");
+                    endereco = address2.toString().split("/");
 
-                    logfile.updateLogFileRP_RR(componente[0]+";"+componente[1]+";", sentNow, "RP", address2.toString());
+                    logfile.updateLogFileRP_RR(componente[0]+";"+componente[1]+";", sentNow, "RP", endereco[1]);
                 }
                                              
             }
@@ -118,7 +122,7 @@ public class SP {
         }
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
-        logfile.updateLogFileSP(shutdownNow, "SP", packetAdress, "Servidor Encerrou");
+        logfile.updateLogFileSP(shutdownNow, "SP", endereco[1], "Servidor Encerrou");
 
     }
     public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {

@@ -18,9 +18,10 @@ public class Client {
 
         DNSMsg msg = readquery("3874,Q+R,0,0,0,0;example.com.,MX;");
         buf = msg.getBytes(msg);
-        logfile.updateLogFileST(4445, "debug", 5000, LocalDateTime.now(), "ST",  address.toString());
+        String [] endereco = address.toString().split("/");
+        logfile.updateLogFileST(4445, "debug", 5000, LocalDateTime.now(), "ST",  endereco[1]);
         DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
-        logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", address.toString());
+        logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", endereco[1]);
         socket.send(packet); //envia datagrama pelo socket
         DatagramPacket packet2= new DatagramPacket(buf,buf.length);
         StringBuilder stringBuilder = new StringBuilder();
@@ -44,6 +45,7 @@ public class Client {
             byte [] data = packet2.getData();
             String a = new String(data,0,packet2.getLength());
             int npackets = Integer.parseInt(a);
+            endereco = address.toString().split("/");
             int i=0;
             while(i<npackets){
                 DatagramPacket packet3= new DatagramPacket(buf,buf.length,address,port);
@@ -56,7 +58,7 @@ public class Client {
             System.out.println(stringBuilder.toString());
         } catch (SocketTimeoutException e) {
             System.out.println("Servidor SP Inativo");
-            logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", address.toString());
+            logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", endereco[1]);
             
             connectionFailed=1;
         }
@@ -65,17 +67,17 @@ public class Client {
             buffer=msg.getBytes(msg);
             DatagramPacket packetSS= new DatagramPacket(buffer,buffer.length,address,4444);
             socket.send(packetSS);
-            logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", address.toString());
+            logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", endereco[1]);
             DatagramPacket packet2SS = new DatagramPacket(buffer,buffer.length,address,4444);
             socket.receive(packet2SS);
             
             byte[] dados = new byte[1024];
             dados=packet2SS.getData();
             String a = new String(dados,0,packet2SS.getLength());
-            logfile.updateLogFileRP_RR(a, LocalDateTime.now(), "RR", address.toString());
+            logfile.updateLogFileRP_RR(a, LocalDateTime.now(), "RR", endereco[1]);
             System.out.println(a);
         }
-        logfile.updateLogFileSP(LocalDateTime.now(), "SP", address.toString(), "Encerrou sem problemas");
+        logfile.updateLogFileSP(LocalDateTime.now(), "SP", endereco[1], "Encerrou sem problemas");
         socket.close();
     }
 

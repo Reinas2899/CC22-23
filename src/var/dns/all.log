@@ -474,3 +474,22 @@ mx2.example.com A 193.136.130.201 86400;                                        
 17:11:2022.17:05:47:426 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
 
 17:11:2022.17:05:47:455 RP localhost/127.0.0.1 3874,R+A,0,2,3,5example.com.,MX;
+17:11:2022.17:09:45:278 EV log-file-created /var/dns/all.log
+17:11:2022.17:09:45:290 EV conf-file-read SP.conf
+17:11:2022.17:09:45:290 EV db-file-read var//dns//example-com.db
+17:11:2022.17:09:50:200 ST /127.0.0.1 4445 2000 debug
+17:11:2022.17:09:50:200 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.17:09:50:233 RP 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+17:11:2022.17:14:48:162 EV log-file-created /var/dns/all.log
+17:11:2022.17:14:48:180 EV conf-file-read SP.conf
+17:11:2022.17:14:48:181 EV db-file-read var//dns//example-com.db
+17:11:2022.17:14:53:622 RR /192.168.56.1 Aceito
+17:11:2022.17:14:53:639 ZT  SP 17 976
+17:11:2022.17:26:09:127 EV log-file-created /var/dns/all.log
+17:11:2022.17:26:09:140 EV conf-file-read SP.conf
+17:11:2022.17:26:09:141 EV db-file-read var//dns//example-com.db
+17:11:2022.17:26:29:703 ST 127.0.0.1 4445 2000 debug
+17:11:2022.17:26:29:704 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.17:26:29:733 RP 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;

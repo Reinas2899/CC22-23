@@ -52,7 +52,7 @@ public class SS {
         int tamanho = 0;
 
         while(running) {
-            logfile.updateLogFileST(4444, "debug", 5000, LocalDateTime.now(), "ST",  host.toString());
+            logfile.updateLogFileST(4444, "debug", 5000, LocalDateTime.now(), "ST",  "127.0.0.1");
             while(connection) {
                 try {
                     socket = new Socket(host.getHostName(), 4444);
@@ -60,7 +60,7 @@ public class SS {
                     connection=false;
                 } catch (ConnectException e) {
                     System.out.println("Conexão com SP não foi estabelecida. Nova tentativa dentro de 5 segundos.");
-                    logfile.updateLogFileTO("conexão-SP",5000, LocalDateTime.now(), "TO", host.toString());
+                    logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", "127.0.0.1");
                     
                 }
                 Thread.sleep(5000);
