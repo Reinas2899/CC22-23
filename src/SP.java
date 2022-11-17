@@ -110,7 +110,7 @@ public class SP {
                     String resposta = new String(fragment,0,fragment.length);
                     String [] componente = resposta.split(";");
 
-                    logfile.updateLogFileRP_RR(componente[0]+componente[1]+";", sentNow, "RP", address2.toString());
+                    logfile.updateLogFileRP_RR(componente[0]+";"+componente[1]+";", sentNow, "RP", address2.toString());
                 }
                                              
             }
