@@ -18,6 +18,7 @@ public class Client {
 
         DNSMsg msg = readquery("3874,Q+R,0,0,0,0;example.com.,MX;");
         buf = msg.getBytes(msg);
+        logfile.updateLogFileST(4445, "debug", 5000, LocalDateTime.now(), "ST",  address.toString());
         DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
         logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", address.toString());
         socket.send(packet); //envia datagrama pelo socket
