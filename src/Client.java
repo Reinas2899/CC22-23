@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.time.LocalDateTime;
 
 
 public class Client {
@@ -12,10 +13,13 @@ public class Client {
         InetAddress address= InetAddress.getByName("localhost");
         byte[] buf = new byte[1024];
         int connectionFailed=0;
+        Logfile logfile = new Logfile("/var/dns/Client.log");
+        logfile.updateLogFileEV("log-file-created", LocalDateTime.now(), "EV", "/var/dns/Client.log");
 
         DNSMsg msg = readquery("3874,Q+R,0,0,0,0;example.com.,MX;");
         buf = msg.getBytes(msg);
         DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
+        logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", address.toString());
         socket.send(packet); //envia datagrama pelo socket
         DatagramPacket packet2= new DatagramPacket(buf,buf.length);
         StringBuilder stringBuilder = new StringBuilder();
@@ -51,6 +55,8 @@ public class Client {
             System.out.println(stringBuilder.toString());
         } catch (SocketTimeoutException e) {
             System.out.println("Servidor SP Inativo");
+            logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", address.toString());
+            
             connectionFailed=1;
         }
         if(connectionFailed==1){
@@ -58,13 +64,17 @@ public class Client {
             buffer=msg.getBytes(msg);
             DatagramPacket packetSS= new DatagramPacket(buffer,buffer.length,address,4444);
             socket.send(packetSS);
+            logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", address.toString());
             DatagramPacket packet2SS = new DatagramPacket(buffer,buffer.length,address,4444);
             socket.receive(packet2SS);
+            
             byte[] dados = new byte[1024];
             dados=packet2SS.getData();
             String a = new String(dados,0,packet2SS.getLength());
+            logfile.updateLogFileRP_RR(a, LocalDateTime.now(), "RR", address.toString());
             System.out.println(a);
         }
+        logfile.updateLogFileSP(LocalDateTime.now(), "SP", address.toString(), "Encerrou sem problemas");
         socket.close();
     }
 

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.lang.*;
 import java.util.Arrays;
@@ -49,16 +50,20 @@ public class SP {
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         String logFilename= parserConfig.getLogfilename(); 
         Logfile logfile = new Logfile(logFilename);
+        logfile.updateLogFileEV("log-file-created", runningNow, "EV", logFilename);
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", "SP.conf");
+        logfile.updateLogFileEV("db-file-read", LocalDateTime.now(), "EV", parserConfig.getDbfile());
         
         
         while (running) {
-
+            
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
             packetAdress = packet.getAddress().toString();
+            logfile.updateLogFileST(porta, modo, timeout, LocalDateTime.now(), "ST", packetAdress);
 
             LocalDateTime receivedNow = LocalDateTime.now();
-            logfile.updateLogFileQR_QE("dados a inserir", receivedNow, "QR", packetAdress);
+            
 
             address = packet.getAddress();
             int port = packet.getPort();
@@ -69,11 +74,13 @@ public class SP {
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
+            
             if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
                 LocalDateTime errorconvertNow = LocalDateTime.now();
-                //updateLogFile(porta,modo,timeout,errorconvertNow,"ER","",parserConfig.logFilename());
+                logfile.updateLogFileER("Menssagem vazia", timeout, errorconvertNow, "ER", address.toString());
                 
             }else {
+                logfile.updateLogFileQR_QE(m.toString(), receivedNow, "QR", packetAdress);
                 //System.out.println(m);
                 parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
@@ -99,16 +106,16 @@ public class SP {
                     DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address2, port);
                     socket.send(packet3);
                     v++;
+                    LocalDateTime sentNow = LocalDateTime.now();
+                    logfile.updateLogFileRP_RR(new String(fragment,0,fragment.length), sentNow, "RP", address2.toString());
                 }
-                LocalDateTime sentNow = LocalDateTime.now();
-                String finalAdress[]=address2.toString().split("/");
-                logfile.updateLogFileRP_RR("dados", sentNow, "RP", finalAdress[1]);
+                                             
             }
 
         }
         socket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
-        logfile.updateLogFileSP(shutdownNow, "SP", packetAdress, "razao qualquer");
+        logfile.updateLogFileSP(shutdownNow, "SP", packetAdress, "Servidor Encerrou");
 
     }
     public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {
@@ -120,10 +127,15 @@ public class SP {
         int soaretryTime = parserDB.getSOARETRY();
         int soarexpireTime = parserDB.getSOAEXPIRE();
         String domain = parserConfig.getWorkingDomain();
+        String logFilename= parserConfig.getLogfilename(); 
+        Logfile logfile = new Logfile(logFilename);
+
         
         int i = 1;
         int n;
 	int flag=0;
+    int tamanho = 0;
+    LocalDateTime timeRR = LocalDateTime.now() ;
         while (running) {
             System.out.println("here we go again");
             Socket socketSS = server.accept();
@@ -134,14 +146,16 @@ public class SP {
                 oos.writeObject(parserDB.getNumberofLines());//envia para o SS o numero de linhas a enviar
                 ois = new ObjectInputStream(socketSS.getInputStream());
                 receivedMessage = (String) ois.readObject();
-                LocalDateTime timeRR = LocalDateTime.now();
-                //updateLogFileRP_RR(receivedMessage, timeRR, "RR", socketSS.getInetAddress().toString());
+                timeRR = LocalDateTime.now();
+                logfile.updateLogFileRP_RR(receivedMessage, timeRR, "RR", socketSS.getInetAddress().toString());
                 if (receivedMessage.equals("Aceito")) {
                     oos = new ObjectOutputStream(socketSS.getOutputStream());
                     oos.writeObject(soaretryTime);
                     oos.flush();
                     oos = new ObjectOutputStream(socketSS.getOutputStream());
                     oos.writeObject(soarexpireTime);
+                    
+
                     oos.flush();
                     final SocketConnected socketConnected = new SocketConnected();
 		    Thread thread = new Thread(){
@@ -166,6 +180,7 @@ public class SP {
 			    }
                             oos = new ObjectOutputStream(socketSS.getOutputStream());
 			    oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
+                tamanho += oos.toString().getBytes().length;
 			    oos.flush();
                             //if(n==4) Thread.sleep(8000);
                         }
@@ -182,6 +197,10 @@ public class SP {
             }
         	if(flag!=2) running=false;
 	}
+        LocalDateTime finalZT = LocalDateTime.now();
+        Duration duracao = Duration.between(timeRR, finalZT);
+
+        logfile.updateLogFileZT("SP", "", duracao.toMillis(), tamanho, finalZT, "ZT");
         System.out.println("Acabou o processo de zona de transferência.");
     }
 }

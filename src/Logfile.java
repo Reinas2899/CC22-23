@@ -22,34 +22,20 @@ public class Logfile {
     }
 
     public Logfile(String logFilename) throws FileNotFoundException {
-        boolean result= false;
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         this.logFilename = logFilename;
         try {
 
             String [] dirs = logFilename.split("/");
             String pathaux = dirs[1]+"//"+dirs[2];
             String pathFinal = pathaux+"//" + dirs[3] ;
-            result = true;
+           
 
             Path path = Paths.get(pathaux);
             if(Files.notExists(path)){
                 Files.createDirectories(path);
                 File file = new File(pathaux+"//" + dirs[3]);
-                result = file.createNewFile();
                 pathFinal = file.getAbsolutePath();
                 System.out.println(pathFinal);
-            }
-
-            if(result){
-                LocalDateTime createdNow = LocalDateTime.now();
-                String datacriacao = dtf.format(createdNow);
-
-                FileWriter myWriter = new FileWriter(pathFinal,true);
-                myWriter.write(datacriacao + " " + "EV" + " " +  "log-file-created" + " " + logFilename+"\n");
-                myWriter.close();
-
-
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -66,6 +52,24 @@ public class Logfile {
 
         FileWriter myWriter = new FileWriter(pathFinal,true);
         myWriter.write(data + " " + type + " " + endereço + " " + porta + " " + timeout + " " + modo+"\n");
+        myWriter.close();
+                   
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateLogFileEV(String razao,LocalDateTime date,String type, String path){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
+        String data = dtf.format(date);
+        String [] dirs = logFilename.split("/");
+        String pathaux = dirs[1]+"//"+dirs[2];
+        String pathFinal = pathaux+"//" + dirs[3] ;
+        try {
+
+        FileWriter myWriter = new FileWriter(pathFinal,true);
+        myWriter.write(data + " " + type + " " + razao + " " + path+"\n");
         myWriter.close();
                    
             
@@ -165,25 +169,7 @@ public class Logfile {
         }
     }
 
-    public void updateLogFileEV(String info,int timeout,LocalDateTime date,String type, String endereço){
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
-        String data = dtf.format(date);
-        String [] dirs = logFilename.split("/");
-        String pathaux = dirs[1]+"//"+dirs[2];
-        String pathFinal = pathaux+"//" + dirs[3] ;
-        try {
-
-        FileWriter myWriter = new FileWriter(pathFinal,true);
-        myWriter.write(data + " " + type + " " + endereço + " " + info+"\n");
-        myWriter.close();
-                   
-            
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void updateLogFileZT(String papel,String endereçoOutraPonta,String duraçao, String tamanho,LocalDateTime date,String type){
+    public void updateLogFileZT(String papel,String endereçoOutraPonta,long duraçao, int tamanho,LocalDateTime date,String type){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy.HH:mm:ss:SSS");
         String data = dtf.format(date);
         String [] dirs = logFilename.split("/");

@@ -1,5 +1,7 @@
 import java.io.*;
 import java.net.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,14 +45,23 @@ public class SS {
         //System.out.println(parserConfig.getWorkingDomain());
         boolean running=true;
         boolean connection=true;
-        while(running) {
+        Logfile logfile = new Logfile("/var/dns/SS.log");
+        logfile.updateLogFileEV("log-file-created", LocalDateTime.now(), "EV", "/var/dns/SS.log");
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", "SS.conf");
+        LocalDateTime timeRR = LocalDateTime.now();
+        int tamanho = 0;
 
+        while(running) {
+            logfile.updateLogFileST(4444, "debug", 5000, LocalDateTime.now(), "ST",  host.toString());
             while(connection) {
                 try {
                     socket = new Socket(host.getHostName(), 4444);
+                    
                     connection=false;
                 } catch (ConnectException e) {
                     System.out.println("Conexão com SP não foi estabelecida. Nova tentativa dentro de 5 segundos.");
+                    logfile.updateLogFileTO("conexão-SP",5000, LocalDateTime.now(), "TO", host.toString());
+                    
                 }
                 Thread.sleep(5000);
             }
@@ -67,10 +78,13 @@ public class SS {
             if (i < 65535) {
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject("Aceito");//SS aceita receber o n de linhas
+                timeRR = LocalDateTime.now();
                 ois = new ObjectInputStream(socket.getInputStream());
                 soaretry = (Integer) ois.readObject();
+                tamanho += ois.toString().getBytes().length;
                 ois = new ObjectInputStream(socket.getInputStream());
                 soarexpire = (Integer) ois.readObject();
+                tamanho += ois.toString().getBytes().length;
                 socket.setSoTimeout(soarexpire);
                 try {
                     while (n < i) {
@@ -91,6 +105,7 @@ public class SS {
                 }
             } else {
                 System.out.println("Não aceito receber essa quantidade de entradas.");
+                logfile.updateLogFileSP(LocalDateTime.now(), "SP", socket.getInetAddress().toString(), "Numero de entradas demasiado grande");
                 socket.close();
             }
             oos.flush();
@@ -106,6 +121,9 @@ public class SS {
                 running=false;
             }
         }
+        LocalDateTime timeZT = LocalDateTime.now();
+        Duration duracao = Duration.between(timeRR, timeZT); 
+        logfile.updateLogFileZT("SS", "", duracao.toMillis(), tamanho, timeZT, "ZT");
         socket.close();
     }
 
@@ -115,6 +133,7 @@ public class SS {
         DatagramSocket socket = new DatagramSocket(porta);
         byte[] buf = new byte[1024];
         boolean running = true;
+        Logfile logfile = new Logfile("/var/dns/SS.log");
         while (running){
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
@@ -127,13 +146,16 @@ public class SS {
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
             System.out.println(m.toString());
+            logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QR", address.toString());
             if(allReceived){
                 byte[] dados = "sortudo, eu tenho copia".getBytes();
                 DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address, port);
+                logfile.updateLogFileRP_RR(new String(dados,0,dados.length), LocalDateTime.now(), "RP", address.toString());
                 socket.send(packet2);
             }else{
                 byte[] dados = "pouca sorte, nao tenho copia".getBytes();
                 DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address, port);
+                logfile.updateLogFileRP_RR(new String(dados,0,dados.length), LocalDateTime.now(), "RP", address.toString());
                 socket.send(packet2);
             }
             //running=false;

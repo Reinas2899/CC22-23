@@ -1,0 +1,42 @@
+17:11:2022.15:55:46:912 EV log-file-created /var/dns/Client.log
+17:11:2022.15:55:46:990 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.15:56:35:853 EV log-file-created /var/dns/Client.log
+17:11:2022.15:56:35:914 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.15:58:07:967 EV log-file-created /var/dns/Client.log
+17:11:2022.15:58:08:028 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.15:58:18:096 TO localhost/127.0.0.1 5000 conexão-SP
+17:11:2022.15:58:18:098 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.15:59:22:912 EV log-file-created /var/dns/Client.log
+17:11:2022.15:59:22:973 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.15:59:33:033 TO localhost/127.0.0.1 5000 conexao-SP
+17:11:2022.15:59:51:921 EV log-file-created /var/dns/Client.log
+17:11:2022.15:59:51:985 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:00:02:047 TO localhost/127.0.0.1 5000 conexao-SP
+17:11:2022.16:00:02:049 SP localhost/127.0.0.1 Timeout
+17:11:2022.16:00:02:052 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:02:20:885 EV log-file-created /var/dns/Client.log
+17:11:2022.16:02:20:945 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:02:31:000 TO localhost/127.0.0.1 5000 conexao-SP
+17:11:2022.16:02:31:002 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:02:31:080 RR localhost/127.0.0.1 pouca sorte, nao tenho copia
+17:11:2022.16:02:56:838 EV log-file-created /var/dns/Client.log
+17:11:2022.16:02:56:912 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:03:06:967 TO localhost/127.0.0.1 5000 conexao-SP
+17:11:2022.16:03:06:971 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:03:06:977 RR localhost/127.0.0.1 pouca sorte, nao tenho copia
+17:11:2022.16:03:06:979 SP localhost/127.0.0.1 Encerrou sem problemas
+17:11:2022.16:03:58:783 EV log-file-created /var/dns/Client.log
+17:11:2022.16:03:58:847 QE localhost/127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.16:04:03:893 SP /127.0.0.1 Encerrou sem problemas
