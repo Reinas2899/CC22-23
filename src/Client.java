@@ -1,3 +1,4 @@
+import java.io.*;
 import java.net.*;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -6,10 +7,11 @@ import java.net.InetAddress;
 
 
 public class Client {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException,InterruptedException {
         DatagramSocket socket= new DatagramSocket();
         InetAddress address= InetAddress.getByName("localhost");
         byte[] buf = new byte[1024];
+        int connectionFailed=0;
 
         DNSMsg msg = readquery("3874,Q+R,0,0,0,0;example.com.,MX;");
         buf = msg.getBytes(msg);
@@ -17,6 +19,16 @@ public class Client {
         socket.send(packet); //envia datagrama pelo socket
         DatagramPacket packet2= new DatagramPacket(buf,buf.length);
         StringBuilder stringBuilder = new StringBuilder();
+	Thread.sleep(1000);
+        System.out.print("A estabelecer conexão com SP");
+	Thread.sleep(1000);
+	System.out.print(".");
+	Thread.sleep(1000);
+        System.out.print(".");
+        Thread.sleep(1000);
+        System.out.print(".");
+	Thread.sleep(1000);
+	System.out.print("\n");
         socket.setSoTimeout(5000);
 
 
@@ -38,11 +50,22 @@ public class Client {
             }
             System.out.println(stringBuilder.toString());
         } catch (SocketTimeoutException e) {
-            System.out.println("Servidor Inativo");
-            socket.close();
+            System.out.println("Servidor SP Inativo");
+            connectionFailed=1;
+        }
+        if(connectionFailed==1){
+            byte[] buffer = new byte[1024];
+            buffer=msg.getBytes(msg);
+            DatagramPacket packetSS= new DatagramPacket(buffer,buffer.length,address,4444);
+            socket.send(packetSS);
+            DatagramPacket packet2SS = new DatagramPacket(buffer,buffer.length,address,4444);
+            socket.receive(packet2SS);
+            byte[] dados = new byte[1024];
+            dados=packet2SS.getData();
+            String a = new String(dados,0,packet2SS.getLength());
+            System.out.println(a);
         }
         socket.close();
-
     }
 
     public static DNSMsg readquery(String query){

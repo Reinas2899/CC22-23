@@ -208,6 +208,14 @@ public class ParserDB {
         return listofAuthorities;
     }
 
+    public List<String> getListofExtra(){
+        List<String> listofExtra=new ArrayList<>();
+        for(String domain : getDomains()){
+            listofExtra.add(domain+" "+ParameterDB.Tipo.A+" "+getIPDomain(domain)+ " "+ttlValue());
+        }
+        return listofExtra;
+    }
+
     public List<String> cnameRecords(){
         List<String> list = new ArrayList<>();
         String soasp="";
@@ -222,16 +230,7 @@ public class ParserDB {
         return list;
     }
 
-
-    public List<String> getListofExtra(){
-        List<String> listofExtra=new ArrayList<>();
-        for(String domain : getDomains()){
-            listofExtra.add(domain+" "+ParameterDB.Tipo.A+" "+getIPDomain(domain)+ " "+ttlValue());
-        }
-        return listofExtra;
-    }
-
-     public int checkQuery(DNSMsg query,String domain){
+    public int checkQuery(DNSMsg query,String domain){
         int r=0;
         ExceptionHandler exceptionHandler = new ExceptionHandler();
         if(!exceptionHandler.isNumeric(query.getHeader().getMessageID()) || !exceptionHandler.isNumeric(query.getHeader().getResponse_code())
@@ -259,6 +258,48 @@ public class ParserDB {
             }
             return msg;
         //}else return null;
+    }
+
+    public List<ParameterDB> ParserDB(List<String> linhas) throws SintaxeIncorretaException {
+        String[] componente;
+        List<ParameterDB> list = new ArrayList<>();
+        String parameter="";
+        String defaultname="";
+        String defaultdomain="";
+        String ttldefault="";
+        String defaultprior="";
+        String subdomain = "";
+        String domaintipo="";
+        String fulldomain="";
+        for (String linha : linhas) {
+            //System.out.println(linha);
+            componente = linha.split(" ");
+            if(componente[0].equals("@") && componente[1].equals("DEFAULT")) {
+                parameter=componente[0];
+                defaultname=componente[1];
+                defaultdomain=componente[2];
+            }
+            else if(componente[0].equals("TTL")){
+                ttldefault=componente[0]+componente[1];
+                defaultprior=componente[2];
+            }
+            else if(componente[0].equals("Smaller.@")){
+                subdomain=componente[0];
+                domaintipo = componente[1];
+                fulldomain = componente[2];
+            }
+            else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==4) {
+                list.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], null));
+            }
+            else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==5){
+                list.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], componente[4]));
+            }
+            else if(componente[0].charAt(0) != '#' && componente.length>5) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
+
+        }
+        list.add(new ParameterDB(parameter, defaultname, defaultdomain, ttldefault, defaultprior));
+        list.add(new ParameterDB(subdomain,domaintipo,fulldomain,null,null));
+        return list;
     }
 }
 

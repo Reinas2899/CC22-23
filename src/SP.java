@@ -125,7 +125,7 @@ public class SP {
         int n;
 	int flag=0;
         while (running) {
-            //System.out.println("here we go again");
+            System.out.println("here we go again");
             Socket socketSS = server.accept();
             ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
             String receivedMessage = (String) ois.readObject();
