@@ -87,7 +87,7 @@ public class SP {
                 //System.out.println(m);
                 parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
-                if(mensagem.getHeader().getFlags().equals("Q+R")) mensagem.getHeader().setFlags("R+A");
+                //if(mensagem.getHeader().getFlags().equals("Q+R")) mensagem.getHeader().setFlags("R+A");
                 //System.out.println(mensagem);
                 //buf = mensagem.getBytes(mensagem);
 

@@ -57,11 +57,12 @@ public class Client {
             }
             System.out.println(stringBuilder.toString());
         } catch (SocketTimeoutException e) {
-            System.out.println("Servidor SP Inativo");
+            System.out.println("Conexão com SP falhou.");
             logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", endereco[1]);
             
             connectionFailed=1;
         }
+        try{
         if(connectionFailed==1){
             byte[] buffer = new byte[1024];
             buffer=msg.getBytes(msg);
@@ -77,7 +78,11 @@ public class Client {
             logfile.updateLogFileRP_RR(a, LocalDateTime.now(), "RR", endereco[1]);
             System.out.println(a);
         }
-        logfile.updateLogFileSP(LocalDateTime.now(), "SP", endereco[1], "Encerrou sem problemas");
+        }catch (SocketTimeoutException e) {
+            System.out.println("Conexão com SS falhou.");
+            System.out.println("Tente mais tarde novamente.");
+        }
+        //logfile.updateLogFileSP(LocalDateTime.now(), "SP", endereco[1], "Encerrou sem problemas");
         socket.close();
     }
 

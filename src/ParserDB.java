@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ParserDB {
     private List<ParameterDB> linesParametersDB = new ArrayList<>();
@@ -249,6 +250,7 @@ public class ParserDB {
             msg.getHeader().setN_extravalues(String.valueOf(countExtra(msg.getData().getQinfo().getType_value(), msg.getData().getQinfo().getName())));
             msg.getHeader().setN_values(String.valueOf(countValues(msg.getData().getQinfo().getType_value())));
             msg.getHeader().setN_authorities(String.valueOf(countAuthorities(msg.getData().getQinfo().getName())));
+            if(msg.getHeader().getFlags().equals("Q+R")) msg.getHeader().setFlags("R+A");
             if(msg.getData().getQinfo().getType_value().equals("MX")) {
                 msg.getData().setResp_values(getListofValues(msg.getData().getQinfo().getType_value()));
                 msg.getData().setAuthorties_values(getListofAuthorities(msg.getData().getQinfo().getName()));
@@ -260,7 +262,13 @@ public class ParserDB {
         //}else return null;
     }
 
-    public List<ParameterDB> ParserDB(List<String> linhas) throws SintaxeIncorretaException {
+    public ParserDB(){this.linesParametersDB=new ArrayList<>();}
+    public ParserDB(List<ParameterDB> l){
+        this.linesParametersDB=new ArrayList<>(l);
+    }
+
+
+    public List<ParameterDB> getDBLines(List<String> linhas){
         String[] componente;
         List<ParameterDB> list = new ArrayList<>();
         String parameter="";
@@ -272,7 +280,6 @@ public class ParserDB {
         String domaintipo="";
         String fulldomain="";
         for (String linha : linhas) {
-            //System.out.println(linha);
             componente = linha.split(" ");
             if(componente[0].equals("@") && componente[1].equals("DEFAULT")) {
                 parameter=componente[0];
@@ -294,8 +301,6 @@ public class ParserDB {
             else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==5){
                 list.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], componente[4]));
             }
-            else if(componente[0].charAt(0) != '#' && componente.length>5) throw new SintaxeIncorretaException("Sintaxe do ficheiro está incorreta.");
-
         }
         list.add(new ParameterDB(parameter, defaultname, defaultdomain, ttldefault, defaultprior));
         list.add(new ParameterDB(subdomain,domaintipo,fulldomain,null,null));

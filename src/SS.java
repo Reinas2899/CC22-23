@@ -1,12 +1,16 @@
 import java.io.*;
 import java.net.*;
+import java.util.ArrayList;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class SS {
     static Map<Integer, String> entradas = new HashMap<>();
+    static List<ParameterDB> dbCopiedLines = new ArrayList<>();
     static boolean allReceived=false;
 
     public static void main(String[] args){
@@ -109,16 +113,19 @@ public class SS {
                 socket.close();
             }
             oos.flush();
-            System.out.println("Vou esperar soaretry time");
+            System.out.println("Espera soaretry time");
             //long start = System.currentTimeMillis();
             //while(System.currentTimeMillis()-soaretry!=start){;}
             Thread.sleep(soaretry);
             if(flag==1){
                 allReceived=true;
-                System.out.println("Recebi todas-server");
+                System.out.println("Todas as entradas foram recebidas com sucesso.");
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject("FIN");
                 running=false;
+                ParserDB parser = new ParserDB();
+                List<ParameterDB> l =parser.getDBLines(entradas.values().stream().collect(Collectors.toList()));
+                l.forEach(x-> dbCopiedLines.add(x));
             }
         }
         LocalDateTime timeZT = LocalDateTime.now();
@@ -145,15 +152,20 @@ public class SS {
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
-            System.out.println(m.toString());
             logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QR", address.toString());
             if(allReceived){
-                byte[] dados = "sortudo, eu tenho copia".getBytes();
+                ParserDB parserDB = new ParserDB(dbCopiedLines);
+
+                DNSMsg dnsMsg =  parserDB.respondeQuery(m);
+                String dnsMsgString = dnsMsg.toString();
+                System.out.println(dnsMsgString);
+
+                byte[] dados = dnsMsgString.getBytes();
                 DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address, port);
-                logfile.updateLogFileRP_RR(new String(dados,0,dados.length), LocalDateTime.now(), "RP", address.toString());
                 socket.send(packet2);
+                logfile.updateLogFileRP_RR(new String(dados,0,dados.length), LocalDateTime.now(), "RP", address.toString());
             }else{
-                byte[] dados = "pouca sorte, nao tenho copia".getBytes();
+                byte[] dados = "De momento não é possível responder à query.Tente mais tarde".getBytes();
                 DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address, port);
                 logfile.updateLogFileRP_RR(new String(dados,0,dados.length), LocalDateTime.now(), "RP", address.toString());
                 socket.send(packet2);

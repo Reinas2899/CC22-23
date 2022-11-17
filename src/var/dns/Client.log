@@ -60,3 +60,427 @@
 17:11:2022.17:26:29:703 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
 
 17:11:2022.17:26:34:738 SP 127.0.0.1 Encerrou sem problemas
+17:11:2022.18:21:34:011 EV log-file-created /var/dns/Client.log
+17:11:2022.18:21:34:091 ST 127.0.0.1 4445 5000 debug
+17:11:2022.18:21:34:117 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.18:21:44:131 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.18:21:44:155 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.18:22:40:293 EV log-file-created /var/dns/Client.log
+17:11:2022.18:22:40:390 ST 127.0.0.1 4445 5000 debug
+17:11:2022.18:22:40:416 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.18:22:56:462 EV log-file-created /var/dns/Client.log
+17:11:2022.18:22:56:574 ST 127.0.0.1 4445 5000 debug
+17:11:2022.18:22:56:624 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.18:23:06:640 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.18:23:06:683 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.18:23:06:791 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.19:55:36:100 EV log-file-created /var/dns/Client.log
+17:11:2022.19:55:36:217 ST 127.0.0.1 4445 5000 debug
+17:11:2022.19:55:36:271 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.19:55:46:287 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.19:55:46:316 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.19:55:46:417 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null null,
+example.com. MX mx2.example.com null null;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201
+17:11:2022.19:56:45:543 EV log-file-created /var/dns/Client.log
+17:11:2022.19:56:45:675 ST 127.0.0.1 4445 5000 debug
+17:11:2022.19:56:45:727 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:01:36:461 EV log-file-created /var/dns/Client.log
+17:11:2022.20:01:36:581 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:01:36:627 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:01:46:641 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:01:46:677 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:01:46:791 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.20:06:30:111 EV log-file-created /var/dns/Client.log
+17:11:2022.20:06:30:234 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:06:30:293 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:06:40:310 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:06:40:337 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:06:40:451 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.20:09:45:484 EV log-file-created /var/dns/Client.log
+17:11:2022.20:09:45:621 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:09:45:683 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:09:55:698 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:09:55:743 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:09:55:852 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.20:11:56:165 EV log-file-created /var/dns/Client.log
+17:11:2022.20:11:56:282 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:11:56:342 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:39:25:432 EV log-file-created /var/dns/Client.log
+17:11:2022.20:39:25:553 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:39:25:625 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:39:35:640 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:39:35:683 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:39:35:822 RR 127.0.0.1 3874,R+A,0,2,0,2;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+mx1.example.com A  null,
+mx2.example.com A  null;
+17:11:2022.20:47:08:790 EV log-file-created /var/dns/Client.log
+17:11:2022.20:47:08:911 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:47:08:971 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:47:18:985 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:47:19:019 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:47:19:114 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.20:49:17:749 EV log-file-created /var/dns/Client.log
+17:11:2022.20:49:17:871 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:49:17:945 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:49:27:964 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:49:27:997 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:49:28:110 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.20:55:40:543 EV log-file-created /var/dns/Client.log
+17:11:2022.20:55:40:662 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:55:40:714 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:56:17:894 EV log-file-created /var/dns/Client.log
+17:11:2022.20:56:18:003 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:56:18:061 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:56:28:077 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.20:56:28:095 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:56:28:253 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.20:59:49:895 EV log-file-created /var/dns/Client.log
+17:11:2022.20:59:50:007 ST 127.0.0.1 4445 5000 debug
+17:11:2022.20:59:50:063 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:00:00:078 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:00:00:131 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:00:00:257 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.21:06:43:361 EV log-file-created /var/dns/Client.log
+17:11:2022.21:06:43:478 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:06:43:548 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:06:53:567 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:06:53:590 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:06:53:732 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.21:08:22:081 EV log-file-created /var/dns/Client.log
+17:11:2022.21:08:22:218 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:08:22:266 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:08:32:282 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:08:32:317 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:08:32:422 RR 127.0.0.1 3874,R+A,2,0,0,0;example.com.,MX;
+
+17:11:2022.21:09:14:981 EV log-file-created /var/dns/Client.log
+17:11:2022.21:09:15:099 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:09:15:153 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:09:25:169 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:09:25:198 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:09:25:318 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com null 10,
+example.com. MX mx2.example.com null 20;
+example.com. NS ns1.example.com. null,
+example.com. NS ns2.example.com. null,
+example.com. NS ns3.example.com. null;
+ns1.example.com. A 193.136.130.250 null,
+ns2.example.com. A 193.137.100.250 null,
+ns3.example.com. A 193.136.130.251 null,
+mx1.example.com A 193.136.130.200 null,
+mx2.example.com A 193.136.130.201 nul
+17:11:2022.21:12:07:557 EV log-file-created /var/dns/Client.log
+17:11:2022.21:12:07:690 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:12:07:758 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:12:17:777 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:12:17:807 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:12:17:951 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:14:33:229 EV log-file-created /var/dns/Client.log
+17:11:2022.21:14:33:349 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:14:33:411 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:18:30:017 EV log-file-created /var/dns/Client.log
+17:11:2022.21:18:30:135 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:18:30:210 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:18:41:410 EV log-file-created /var/dns/Client.log
+17:11:2022.21:18:41:537 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:18:41:602 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:18:51:619 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:18:51:648 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:18:51:662 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:25:42:540 EV log-file-created /var/dns/Client.log
+17:11:2022.21:25:42:657 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:25:42:722 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:25:52:739 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:25:52:762 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:26:22:619 EV log-file-created /var/dns/Client.log
+17:11:2022.21:26:22:743 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:26:22:806 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:26:43:090 EV log-file-created /var/dns/Client.log
+17:11:2022.21:26:43:208 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:26:43:258 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:26:53:272 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:26:53:293 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:26:53:443 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:30:31:901 EV log-file-created /var/dns/Client.log
+17:11:2022.21:30:32:024 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:30:32:086 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:30:42:106 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:30:42:158 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:30:42:255 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:33:43:574 EV log-file-created /var/dns/Client.log
+17:11:2022.21:33:43:696 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:33:43:760 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,CNAME;
+
+17:11:2022.21:33:53:776 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:33:53:809 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,CNAME;
+
+17:11:2022.21:33:53:821 RR 127.0.0.1 3874,R+A,0,5,3,8;example.com.,CNAME;
+primary name server = ns1.example.com.,
+responsible mail addr = dns\.admin.example.com.,
+serial = 0117102022,
+refresh = 14400,
+expire = 6800,
+default TTL = 86400;
+
+17:11:2022.21:34:50:664 EV log-file-created /var/dns/Client.log
+17:11:2022.21:34:50:776 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:34:50:827 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:35:00:843 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:35:00:890 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:35:00:892 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:36:49:139 EV log-file-created /var/dns/Client.log
+17:11:2022.21:36:49:260 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:36:49:317 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:36:59:332 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:36:59:360 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:36:59:458 RR 127.0.0.1 3874,Q+R,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:39:37:353 EV log-file-created /var/dns/Client.log
+17:11:2022.21:39:37:468 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:39:37:527 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:39:47:545 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:39:47:613 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:39:47:707 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:48:31:535 EV log-file-created /var/dns/Client.log
+17:11:2022.21:48:31:648 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:48:31:710 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:48:41:726 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.21:48:41:774 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:48:41:876 RR 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.13
+17:11:2022.21:49:38:507 EV log-file-created /var/dns/Client.log
+17:11:2022.21:49:38:639 ST 127.0.0.1 4445 5000 debug
+17:11:2022.21:49:38:684 QE 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+

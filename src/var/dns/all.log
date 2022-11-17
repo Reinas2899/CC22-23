@@ -1,413 +1,3 @@
-26:10:2022.21:23:06:829 EV log-file-created /var/dns/all.log
-26:10:2022.21:40:25:725 EV log-file-created /var/dns/all.log
-26:10:2022.23:05:16:168 EV log-file-created /var/dns/all.log
-26:10:2022.23:06:47:507 EV log-file-created /var/dns/all.log
-26:10:2022.23:45:42:786 EV log-file-created /var/dns/all.log
-26:10:2022.23:54:19:344 EV log-file-created /var/dns/all.log
-26:10:2022.23:59:49:115 EV log-file-created /var/dns/all.log
-27:10:2022.00:18:39:650 EV log-file-created /var/dns/all.log
-27:10:2022.00:21:04:634 EV log-file-created /var/dns/all.log
-27:10:2022.00:22:00:387 EV log-file-created /var/dns/all.log
-27:10:2022.00:23:58:613 EV log-file-created /var/dns/all.log
-27:10:2022.00:31:31:990 EV log-file-created /var/dns/all.log
-27:10:2022.00:39:09:795 EV log-file-created /var/dns/all.log
-27:10:2022.00:43:03:484 EV log-file-created /var/dns/all.log
-27:10:2022.00:46:33:126 EV log-file-created /var/dns/all.log
-27:10:2022.00:46:36:212 QR 4445 2000 debug
-27:10:2022.00:53:40:831 EV log-file-created /var/dns/all.log
-27:10:2022.00:53:45:501 QR 4445 2000 debug
-27:10:2022.00:58:26:508 EV log-file-created /var/dns/all.log
-27:10:2022.00:58:31:678 QR 4445 2000 debug
-30:10:2022.15:26:39:315 EV log-file-created /var/dns/all.log
-30:10:2022.15:26:50:841 QR 4445 2000 debug
-30:10:2022.15:35:53:836 EV log-file-created /var/dns/all.log
-30:10:2022.15:35:58:078 EV log-file-created /var/dns/all.log
-30:10:2022.15:36:07:864 EV log-file-created /var/dns/all.log
-30:10:2022.15:36:13:636 EV log-file-created /var/dns/all.log
-30:10:2022.15:36:17:747 EV log-file-created /var/dns/all.log
-30:10:2022.15:36:24:260 EV log-file-created /var/dns/all.log
-30:10:2022.15:36:43:931 EV log-file-created /var/dns/all.log
-30:10:2022.15:36:48:714 QR 4445 2000 debug
-30:10:2022.15:39:21:854 EV log-file-created /var/dns/all.log
-30:10:2022.15:39:27:754 QR 4445 2000 debug
-30:10:2022.15:42:50:227 EV log-file-created /var/dns/all.log
-30:10:2022.15:42:54:517 QR 4445 2000 debug
-30:10:2022.15:44:00:248 EV log-file-created /var/dns/all.log
-30:10:2022.15:44:03:767 QR 4445 2000 debug
-30:10:2022.18:23:38:760 EV log-file-created /var/dns/all.log
-30:10:2022.18:23:52:552 QR 4445 2000 debug
-30:10:2022.18:32:41:540 EV log-file-created /var/dns/all.log
-30:10:2022.18:33:01:890 EV log-file-created /var/dns/all.log
-30:10:2022.18:33:12:241 QR 4445 2000 debug
-30:10:2022.18:38:00:380 EV log-file-created /var/dns/all.log
-30:10:2022.18:39:38:959 EV log-file-created /var/dns/all.log
-30:10:2022.18:41:10:398 EV log-file-created /var/dns/all.log
-30:10:2022.18:41:14:037 QR 4445 2000 debug
-30:10:2022.18:41:14:064 QR 4445 2000 debug
-30:10:2022.18:42:22:561 EV log-file-created /var/dns/all.log
-30:10:2022.18:42:30:192 QR 4445 2000 debug
-30:10:2022.18:52:24:818 EV log-file-created /var/dns/all.log
-30:10:2022.18:52:31:881 QR 4445 2000 debug
-30:10:2022.18:54:16:820 EV log-file-created /var/dns/all.log
-30:10:2022.18:54:20:699 QR 4445 2000 debug
-30:10:2022.22:16:50:807 EV log-file-created /var/dns/all.log
-30:10:2022.22:17:15:442 EV log-file-created /var/dns/all.log
-30:10:2022.22:23:27:828 EV log-file-created /var/dns/all.log
-30:10:2022.23:43:13:630 EV log-file-created /var/dns/all.log
-30:10:2022.23:51:17:942 EV log-file-created /var/dns/all.log
-31:10:2022.00:05:28:882 EV log-file-created /var/dns/all.log
-31:10:2022.00:06:26:014 EV log-file-created /var/dns/all.log
-31:10:2022.00:09:29:618 EV log-file-created /var/dns/all.log
-31:10:2022.15:43:22:996 EV log-file-created /var/dns/all.log
-31:10:2022.15:43:34:174 QR 4445 2000 debug
-31:10:2022.15:47:32:065 EV log-file-created /var/dns/all.log
-31:10:2022.15:47:41:120 QR 4445 2000 debug
-31:10:2022.15:51:19:486 EV log-file-created /var/dns/all.log
-31:10:2022.15:51:29:502 QR 4445 2000 debug
-31:10:2022.15:52:58:656 EV log-file-created /var/dns/all.log
-31:10:2022.15:53:03:581 QR 4445 2000 debug
-31:10:2022.15:58:30:238 EV log-file-created /var/dns/all.log
-31:10:2022.15:58:38:415 QR 4445 2000 debug
-31:10:2022.15:59:50:152 EV log-file-created /var/dns/all.log
-31:10:2022.15:59:52:679 QR 4445 2000 debug
-02:11:2022.08:58:47:974 EV log-file-created /var/dns/all.log
-02:11:2022.08:58:54:219 QR 4445 2000 debug
-02:11:2022.09:09:49:521 EV log-file-created /var/dns/all.log
-02:11:2022.09:09:51:400 QR 4445 2000 debug
-02:11:2022.09:13:40:948 EV log-file-created /var/dns/all.log
-02:11:2022.09:13:54:512 QR 4445 2000 debug
-02:11:2022.09:16:05:462 EV log-file-created /var/dns/all.log
-02:11:2022.09:16:08:606 QR 4445 2000 debug
-02:11:2022.09:34:52:652 EV log-file-created /var/dns/all.log
-02:11:2022.09:40:19:546 EV log-file-created /var/dns/all.log
-02:11:2022.09:43:36:337 EV log-file-created /var/dns/all.log
-02:11:2022.09:43:40:131 QR 4445 2000 debug
-02:11:2022.09:50:57:443 EV log-file-created /var/dns/all.log
-02:11:2022.09:51:00:000 QR 4445 2000 debug
-02:11:2022.09:55:31:662 EV log-file-created /var/dns/all.log
-02:11:2022.09:55:34:612 QR 4445 2000 debug
-02:11:2022.09:58:38:779 EV log-file-created /var/dns/all.log
-02:11:2022.09:58:40:649 QR 4445 2000 debug
-02:11:2022.09:59:39:313 EV log-file-created /var/dns/all.log
-02:11:2022.09:59:42:342 QR 4445 2000 debug
-02:11:2022.10:02:09:311 EV log-file-created /var/dns/all.log
-02:11:2022.10:04:10:514 EV log-file-created /var/dns/all.log
-02:11:2022.10:08:08:814 EV log-file-created /var/dns/all.log
-02:11:2022.10:08:13:914 QR 4445 2000 debug
-02:11:2022.10:14:29:191 EV log-file-created /var/dns/all.log
-02:11:2022.10:14:31:594 QR 4445 2000 debug
-02:11:2022.10:20:37:306 EV log-file-created /var/dns/all.log
-02:11:2022.10:20:40:879 QR 4445 2000 debug
-02:11:2022.10:25:23:886 EV log-file-created /var/dns/all.log
-02:11:2022.10:25:26:774 QR 4445 2000 debug
-02:11:2022.10:26:41:420 EV log-file-created /var/dns/all.log
-02:11:2022.10:26:44:679 QR 4445 2000 debug
-02:11:2022.10:29:23:267 EV log-file-created /var/dns/all.log
-02:11:2022.10:29:26:730 QR 4445 2000 debug
-02:11:2022.10:31:35:661 EV log-file-created /var/dns/all.log
-02:11:2022.10:31:37:165 QR 4445 2000 debug
-02:11:2022.10:39:18:949 EV log-file-created /var/dns/all.log
-02:11:2022.10:39:21:537 QR 4445 2000 debug
-02:11:2022.10:42:05:808 EV log-file-created /var/dns/all.log
-02:11:2022.10:42:08:693 QR 4445 2000 debug
-02:11:2022.11:24:22:124 EV log-file-created /var/dns/all.log
-02:11:2022.11:24:25:276 QR 4445 2000 debug
-02:11:2022.11:25:55:337 EV log-file-created /var/dns/all.log
-02:11:2022.11:25:58:250 QR 4445 2000 debug
-02:11:2022.11:29:59:064 EV log-file-created /var/dns/all.log
-02:11:2022.11:30:01:593 QR 4445 2000 debug
-02:11:2022.12:07:35:151 EV log-file-created /var/dns/all.log
-02:11:2022.12:07:40:100 QR 4445 2000 debug
-02:11:2022.12:14:48:073 EV log-file-created /var/dns/all.log
-02:11:2022.12:14:50:218 QR 4445 2000 debug
-02:11:2022.12:18:04:541 EV log-file-created /var/dns/all.log
-02:11:2022.12:18:06:941 QR 4445 2000 debug
-02:11:2022.12:19:07:729 EV log-file-created /var/dns/all.log
-02:11:2022.12:19:09:331 QR 4445 2000 debug
-02:11:2022.12:25:03:768 EV log-file-created /var/dns/all.log
-02:11:2022.12:25:05:096 QR 4445 2000 debug
-02:11:2022.12:25:53:083 EV log-file-created /var/dns/all.log
-02:11:2022.12:25:54:995 QR 4445 2000 debug
-02:11:2022.12:27:51:429 EV log-file-created /var/dns/all.log
-02:11:2022.12:27:53:974 QR 4445 2000 debug
-02:11:2022.12:38:17:464 EV log-file-created /var/dns/all.log
-02:11:2022.12:38:19:997 QR 4445 2000 debug
-02:11:2022.12:46:33:934 EV log-file-created /var/dns/all.log
-02:11:2022.12:46:36:658 QR 4445 2000 debug
-02:11:2022.12:55:09:100 EV log-file-created /var/dns/all.log
-02:11:2022.12:55:12:846 QR 4445 2000 debug
-02:11:2022.12:58:08:270 EV log-file-created /var/dns/all.log
-02:11:2022.12:58:10:309 QR 4445 2000 debug
-02:11:2022.13:02:03:881 EV log-file-created /var/dns/all.log
-02:11:2022.13:02:06:138 QR 4445 2000 debug
-02:11:2022.13:05:57:477 EV log-file-created /var/dns/all.log
-02:11:2022.13:06:00:124 QR 4445 2000 debug
-02:11:2022.13:09:21:888 EV log-file-created /var/dns/all.log
-02:11:2022.13:10:08:252 EV log-file-created /var/dns/all.log
-02:11:2022.13:11:09:091 EV log-file-created /var/dns/all.log
-02:11:2022.13:11:10:494 QR 4445 2000 debug
-02:11:2022.13:14:48:666 EV log-file-created /var/dns/all.log
-02:11:2022.13:15:09:654 QR 4445 2000 debug
-02:11:2022.13:17:38:275 EV log-file-created /var/dns/all.log
-02:11:2022.13:17:40:897 QR 4445 2000 debug
-02:11:2022.13:23:47:051 EV log-file-created /var/dns/all.log
-02:11:2022.13:23:51:586 QR 4445 2000 debug
-02:11:2022.15:10:18:981 EV log-file-created /var/dns/all.log
-02:11:2022.15:10:25:590 QR 4445 2000 debug
-02:11:2022.15:14:56:585 EV log-file-created /var/dns/all.log
-02:11:2022.15:15:00:093 QR 4445 2000 debug
-02:11:2022.15:24:53:667 EV log-file-created /var/dns/all.log
-02:11:2022.15:27:19:251 EV log-file-created /var/dns/all.log
-02:11:2022.15:27:25:507 QR 4445 2000 debug
-02:11:2022.15:58:06:218 EV log-file-created /var/dns/all.log
-02:11:2022.15:58:08:862 QR 4445 2000 debug
-02:11:2022.16:10:55:859 EV log-file-created /var/dns/all.log
-02:11:2022.16:10:59:000 QR 4445 2000 debug
-02:11:2022.16:13:56:083 EV log-file-created /var/dns/all.log
-02:11:2022.16:13:58:754 QR 4445 2000 debug
-02:11:2022.16:16:06:603 EV log-file-created /var/dns/all.log
-02:11:2022.16:16:09:454 QR 4445 2000 debug
-02:11:2022.16:21:04:615 EV log-file-created /var/dns/all.log
-02:11:2022.16:21:08:344 QR 4445 2000 debug
-02:11:2022.21:00:42:201 EV log-file-created /var/dns/all.log
-02:11:2022.21:00:48:010 QR 4445 2000 debug
-02:11:2022.21:06:40:656 EV log-file-created /var/dns/all.log
-02:11:2022.21:06:43:237 QR 4445 2000 debug
-02:11:2022.21:57:23:102 EV log-file-created /var/dns/all.log
-02:11:2022.21:57:35:767 QR 4445 2000 debug
-02:11:2022.22:27:11:386 EV log-file-created /var/dns/all.log
-02:11:2022.23:00:21:772 EV log-file-created /var/dns/all.log
-02:11:2022.23:00:31:606 QR 4445 2000 debug
-02:11:2022.23:01:44:066 EV log-file-created /var/dns/all.log
-02:11:2022.23:03:57:709 EV log-file-created /var/dns/all.log
-02:11:2022.23:06:47:268 EV log-file-created /var/dns/all.log
-02:11:2022.23:07:33:095 EV log-file-created /var/dns/all.log
-02:11:2022.23:07:51:606 QR 4445 2000 debug
-02:11:2022.23:10:20:021 EV log-file-created /var/dns/all.log
-02:11:2022.23:10:25:428 QR 4445 2000 debug
-09:11:2022.12:07:23:863 EV log-file-created /var/dns/all.log
-09:11:2022.12:09:05:248 EV log-file-created /var/dns/all.log
-09:11:2022.12:09:07:953 QR localhost dados a inserir 
-09:11:2022.12:23:50:693 EV log-file-created /var/dns/all.log
-09:11:2022.12:27:51:536 EV log-file-created /var/dns/all.log
-09:11:2022.12:31:16:484 EV log-file-created /var/dns/all.log
-09:11:2022.12:32:01:316 EV log-file-created /var/dns/all.log
-09:11:2022.12:43:05:462 EV log-file-created /var/dns/all.log
-09:11:2022.12:49:26:774 EV log-file-created /var/dns/all.log
-09:11:2022.12:51:38:114 EV log-file-created /var/dns/all.log
-09:11:2022.13:00:46:320 EV log-file-created /var/dns/all.log
-09:11:2022.13:01:35:762 EV log-file-created /var/dns/all.log
-09:11:2022.13:02:28:672 QR localhost dados a inserir 
-09:11:2022.14:29:25:346 EV log-file-created /var/dns/all.log
-09:11:2022.15:04:58:595 EV log-file-created /var/dns/all.log
-09:11:2022.15:06:19:241 EV log-file-created /var/dns/all.log
-09:11:2022.15:25:09:405 EV log-file-created /var/dns/all.log
-09:11:2022.15:32:22:501 EV log-file-created /var/dns/all.log
-09:11:2022.15:34:02:978 EV log-file-created /var/dns/all.log
-09:11:2022.15:36:50:098 EV log-file-created /var/dns/all.log
-09:11:2022.15:43:35:115 QR localhost dados a inserir 
-13:11:2022.22:15:03:380 EV log-file-created /var/dns/all.log
-13:11:2022.22:15:39:044 QR /127.0.0.1 dados a inserir
-13:11:2022.22:15:39:202 RP 127.0.0.1 dados
-13:11:2022.22:18:59:500 EV log-file-created /var/dns/all.log
-14:11:2022.13:06:51:767 EV log-file-created /var/dns/all.log
-14:11:2022.13:07:03:487 QR /127.0.0.1 dados a inserir
-14:11:2022.13:11:40:873 EV log-file-created /var/dns/all.log
-14:11:2022.13:11:43:651 QR /127.0.0.1 dados a inserir
-14:11:2022.13:13:04:088 EV log-file-created /var/dns/all.log
-14:11:2022.13:13:06:175 QR /127.0.0.1 dados a inserir
-14:11:2022.13:13:06:266 RP 127.0.0.1 dados
-14:11:2022.13:20:58:830 EV log-file-created /var/dns/all.log
-14:11:2022.13:21:00:338 QR /127.0.0.1 dados a inserir
-14:11:2022.13:21:00:478 RP 127.0.0.1 dados
-14:11:2022.13:36:35:098 EV log-file-created /var/dns/all.log
-14:11:2022.13:36:38:742 QR /127.0.0.1 dados a inserir
-14:11:2022.13:36:38:869 RP 127.0.0.1 dados
-14:11:2022.13:39:48:166 EV log-file-created /var/dns/all.log
-14:11:2022.13:39:50:900 QR /127.0.0.1 dados a inserir
-14:11:2022.13:39:51:043 RP 127.0.0.1 dados
-14:11:2022.13:40:47:867 EV log-file-created /var/dns/all.log
-14:11:2022.13:40:50:620 QR /127.0.0.1 dados a inserir
-14:11:2022.13:40:50:865 RP 127.0.0.1 dados
-14:11:2022.13:44:13:561 EV log-file-created /var/dns/all.log
-14:11:2022.13:44:16:273 QR /127.0.0.1 dados a inserir
-14:11:2022.13:44:16:476 RP 127.0.0.1 dados
-14:11:2022.15:01:15:841 EV log-file-created /var/dns/all.log
-14:11:2022.15:01:33:996 QR /127.0.0.1 dados a inserir
-14:11:2022.15:01:34:187 RP 127.0.0.1 dados
-14:11:2022.15:33:40:323 EV log-file-created /var/dns/all.log
-14:11:2022.15:33:48:054 QR /127.0.0.1 dados a inserir
-14:11:2022.15:33:48:199 RP 127.0.0.1 dados
-14:11:2022.15:34:53:925 EV log-file-created /var/dns/all.log
-14:11:2022.15:34:56:215 QR /127.0.0.1 dados a inserir
-14:11:2022.15:39:39:649 EV log-file-created /var/dns/all.log
-14:11:2022.15:39:42:379 QR /127.0.0.1 dados a inserir
-14:11:2022.15:39:42:556 RP 127.0.0.1 dados
-14:11:2022.15:41:09:011 QR /127.0.0.1 dados a inserir
-14:11:2022.15:41:09:031 RP 127.0.0.1 dados
-14:11:2022.15:49:45:529 EV log-file-created /var/dns/all.log
-14:11:2022.15:50:36:353 EV log-file-created /var/dns/all.log
-14:11:2022.15:55:47:139 EV log-file-created /var/dns/all.log
-14:11:2022.15:59:50:497 EV log-file-created /var/dns/all.log
-15:11:2022.14:02:50:813 EV log-file-created /var/dns/all.log
-15:11:2022.14:04:48:873 EV log-file-created /var/dns/all.log
-15:11:2022.14:06:34:651 EV log-file-created /var/dns/all.log
-15:11:2022.14:07:24:740 EV log-file-created /var/dns/all.log
-15:11:2022.14:07:45:558 EV log-file-created /var/dns/all.log
-15:11:2022.14:10:01:558 EV log-file-created /var/dns/all.log
-15:11:2022.14:11:27:658 EV log-file-created /var/dns/all.log
-15:11:2022.14:13:21:489 EV log-file-created /var/dns/all.log
-15:11:2022.14:15:35:022 EV log-file-created /var/dns/all.log
-15:11:2022.14:23:22:433 EV log-file-created /var/dns/all.log
-15:11:2022.14:24:22:653 EV log-file-created /var/dns/all.log
-15:11:2022.14:38:55:276 EV log-file-created /var/dns/all.log
-15:11:2022.14:40:29:653 EV log-file-created /var/dns/all.log
-15:11:2022.14:42:17:087 EV log-file-created /var/dns/all.log
-15:11:2022.14:44:55:850 EV log-file-created /var/dns/all.log
-15:11:2022.14:52:43:639 EV log-file-created /var/dns/all.log
-15:11:2022.14:53:42:580 EV log-file-created /var/dns/all.log
-15:11:2022.14:55:10:135 EV log-file-created /var/dns/all.log
-15:11:2022.14:58:35:845 EV log-file-created /var/dns/all.log
-15:11:2022.15:06:38:915 EV log-file-created /var/dns/all.log
-15:11:2022.15:07:57:466 EV log-file-created /var/dns/all.log
-15:11:2022.15:12:28:385 EV log-file-created /var/dns/all.log
-15:11:2022.15:16:49:849 EV log-file-created /var/dns/all.log
-15:11:2022.15:17:46:020 EV log-file-created /var/dns/all.log
-15:11:2022.15:19:12:002 EV log-file-created /var/dns/all.log
-15:11:2022.15:19:52:534 EV log-file-created /var/dns/all.log
-15:11:2022.15:20:59:453 EV log-file-created /var/dns/all.log
-15:11:2022.15:23:08:612 EV log-file-created /var/dns/all.log
-15:11:2022.15:25:08:636 EV log-file-created /var/dns/all.log
-15:11:2022.15:25:26:962 QR /127.0.0.1 dados a inserir
-15:11:2022.15:25:27:174 RP 127.0.0.1 dados
-15:11:2022.15:26:06:802 QR /127.0.0.1 dados a inserir
-15:11:2022.15:26:06:806 RP 127.0.0.1 dados
-15:11:2022.15:29:25:254 EV log-file-created /var/dns/all.log
-15:11:2022.15:29:39:244 QR /127.0.0.1 dados a inserir
-15:11:2022.15:29:39:457 RP 127.0.0.1 dados
-15:11:2022.15:30:11:728 QR /127.0.0.1 dados a inserir
-15:11:2022.15:30:11:731 RP 127.0.0.1 dados
-15:11:2022.15:30:27:296 QR /127.0.0.1 dados a inserir
-15:11:2022.15:30:27:326 RP 127.0.0.1 dados
-15:11:2022.15:33:24:041 EV log-file-created /var/dns/all.log
-15:11:2022.15:33:30:098 QR /127.0.0.1 dados a inserir
-15:11:2022.15:33:30:294 RP 127.0.0.1 dados
-15:11:2022.15:36:10:276 EV log-file-created /var/dns/all.log
-15:11:2022.15:36:18:149 QR /127.0.0.1 dados a inserir
-15:11:2022.15:36:18:337 RP 127.0.0.1 dados
-15:11:2022.15:37:37:005 EV log-file-created /var/dns/all.log
-15:11:2022.15:37:48:388 QR /127.0.0.1 dados a inserir
-15:11:2022.15:37:48:568 RP 127.0.0.1 dados
-15:11:2022.15:40:34:235 EV log-file-created /var/dns/all.log
-15:11:2022.15:40:37:099 QR /127.0.0.1 dados a inserir
-15:11:2022.15:40:37:242 RP 127.0.0.1 dados
-15:11:2022.15:40:45:476 QR /127.0.0.1 dados a inserir
-15:11:2022.15:40:45:479 RP 127.0.0.1 dados
-15:11:2022.15:40:51:497 QR /127.0.0.1 dados a inserir
-15:11:2022.15:40:51:499 RP 127.0.0.1 dados
-15:11:2022.15:40:54:951 QR /127.0.0.1 dados a inserir
-15:11:2022.15:40:54:953 RP 127.0.0.1 dados
-15:11:2022.15:40:58:416 QR /127.0.0.1 dados a inserir
-15:11:2022.15:40:58:419 RP 127.0.0.1 dados
-15:11:2022.15:50:56:905 EV log-file-created /var/dns/all.log
-15:11:2022.15:58:34:362 EV log-file-created /var/dns/all.log
-15:11:2022.15:59:42:842 EV log-file-created /var/dns/all.log
-16:11:2022.00:35:06:017 EV log-file-created /var/dns/all.log
-16:11:2022.10:24:45:960 EV log-file-created /var/dns/all.log
-16:11:2022.10:24:51:821 QR /127.0.0.1 dados a inserir
-16:11:2022.10:25:58:490 EV log-file-created /var/dns/all.log
-16:11:2022.10:26:02:411 QR /127.0.0.1 dados a inserir
-16:11:2022.10:47:55:497 EV log-file-created /var/dns/all.log
-16:11:2022.10:48:04:841 EV log-file-created /var/dns/all.log
-16:11:2022.10:48:08:426 QR /127.0.0.1 dados a inserir
-16:11:2022.10:49:14:777 EV log-file-created /var/dns/all.log
-16:11:2022.10:49:17:715 QR /127.0.0.1 dados a inserir
-16:11:2022.10:51:13:483 EV log-file-created /var/dns/all.log
-16:11:2022.10:51:16:070 QR /127.0.0.1 dados a inserir
-16:11:2022.10:52:16:885 EV log-file-created /var/dns/all.log
-16:11:2022.10:52:24:401 QR /127.0.0.1 dados a inserir
-16:11:2022.10:55:16:556 EV log-file-created /var/dns/all.log
-16:11:2022.10:55:18:388 QR /127.0.0.1 dados a inserir
-16:11:2022.10:55:18:572 RP 127.0.0.1 dados
-16:11:2022.10:56:07:480 QR /127.0.0.1 dados a inserir
-16:11:2022.10:56:07:512 RP 127.0.0.1 dados
-16:11:2022.11:11:25:730 EV log-file-created /var/dns/all.log
-16:11:2022.11:11:30:611 QR /127.0.0.1 dados a inserir
-16:11:2022.11:11:30:701 RP 127.0.0.1 dados
-16:11:2022.11:15:19:688 EV log-file-created /var/dns/all.log
-16:11:2022.11:15:23:133 QR /127.0.0.1 dados a inserir
-16:11:2022.11:15:23:226 RP 127.0.0.1 dados
-16:11:2022.11:17:10:186 EV log-file-created /var/dns/all.log
-16:11:2022.11:17:13:487 QR /127.0.0.1 dados a inserir
-16:11:2022.11:17:13:600 RP 127.0.0.1 dados
-16:11:2022.11:53:01:838 EV log-file-created /var/dns/all.log
-16:11:2022.11:53:05:278 QR /127.0.0.1 dados a inserir
-16:11:2022.11:53:05:415 RP 127.0.0.1 dados
-16:11:2022.11:59:43:370 EV log-file-created /var/dns/all.log
-16:11:2022.11:59:46:400 QR /127.0.0.1 dados a inserir
-16:11:2022.11:59:46:515 RP 127.0.0.1 dados
-16:11:2022.12:04:00:491 EV log-file-created /var/dns/all.log
-16:11:2022.12:04:03:622 QR /127.0.0.1 dados a inserir
-16:11:2022.12:04:03:758 RP 127.0.0.1 dados
-16:11:2022.12:05:10:079 EV log-file-created /var/dns/all.log
-16:11:2022.12:05:13:592 QR /127.0.0.1 dados a inserir
-16:11:2022.12:05:13:706 RP 127.0.0.1 dados
-16:11:2022.12:10:15:968 EV log-file-created /var/dns/all.log
-16:11:2022.12:10:18:223 QR /127.0.0.1 dados a inserir
-16:11:2022.12:10:18:343 RP 127.0.0.1 dados
-16:11:2022.12:13:38:819 EV log-file-created /var/dns/all.log
-16:11:2022.12:13:41:148 QR /127.0.0.1 dados a inserir
-16:11:2022.12:13:41:270 RP 127.0.0.1 dados
-16:11:2022.12:14:35:597 EV log-file-created /var/dns/all.log
-16:11:2022.12:14:40:330 QR /127.0.0.1 dados a inserir
-16:11:2022.12:14:40:425 RP 127.0.0.1 dados
-16:11:2022.12:21:59:002 EV log-file-created /var/dns/all.log
-16:11:2022.12:22:08:514 QR /127.0.0.1 dados a inserir
-16:11:2022.12:22:08:633 RP 127.0.0.1 dados
-16:11:2022.12:24:18:562 EV log-file-created /var/dns/all.log
-16:11:2022.12:24:21:370 QR /127.0.0.1 dados a inserir
-16:11:2022.12:24:21:527 RP 127.0.0.1 dados
-16:11:2022.12:32:46:874 EV log-file-created /var/dns/all.log
-16:11:2022.12:32:52:118 QR /127.0.0.1 dados a inserir
-16:11:2022.12:32:52:205 RP 127.0.0.1 dados
-16:11:2022.12:38:53:927 EV log-file-created /var/dns/all.log
-16:11:2022.12:38:56:221 QR /127.0.0.1 dados a inserir
-16:11:2022.12:38:56:357 RP 127.0.0.1 dados
-16:11:2022.12:42:16:757 EV log-file-created /var/dns/all.log
-16:11:2022.12:42:22:168 QR /127.0.0.1 dados a inserir
-16:11:2022.12:42:22:299 RP 127.0.0.1 dados
-16:11:2022.13:02:39:449 EV log-file-created /var/dns/all.log
-16:11:2022.13:02:42:608 QR /127.0.0.1 dados a inserir
-16:11:2022.13:02:42:853 RP 127.0.0.1 dados
-16:11:2022.13:10:29:815 EV log-file-created /var/dns/all.log
-16:11:2022.13:10:33:036 QR /127.0.0.1 dados a inserir
-16:11:2022.13:10:33:229 RP 127.0.0.1 dados
-16:11:2022.13:10:39:782 QR /127.0.0.1 dados a inserir
-16:11:2022.13:10:39:787 RP 127.0.0.1 dados
-16:11:2022.13:11:05:334 QR /127.0.0.1 dados a inserir
-16:11:2022.13:11:05:339 RP 127.0.0.1 dados
-16:11:2022.13:12:42:205 EV log-file-created /var/dns/all.log
-16:11:2022.13:12:58:258 QR /127.0.0.1 dados a inserir
-16:11:2022.13:12:58:365 RP 127.0.0.1 dados
-16:11:2022.13:13:22:327 QR /127.0.0.1 dados a inserir
-16:11:2022.13:13:22:368 RP 127.0.0.1 dados
-17:11:2022.09:45:12:816 EV log-file-created /var/dns/all.log
-17:11:2022.09:45:28:663 QR /127.0.0.1 dados a inserir
-17:11:2022.09:45:28:808 RP 127.0.0.1 dados
-17:11:2022.09:46:04:387 EV log-file-created /var/dns/all.log
-17:11:2022.09:46:13:582 QR /127.0.0.1 dados a inserir
-17:11:2022.09:46:13:691 RP 127.0.0.1 dados
-17:11:2022.09:46:25:835 EV log-file-created /var/dns/all.log
-17:11:2022.10:18:09:617 EV log-file-created /var/dns/all.log
-17:11:2022.10:26:14:661 EV log-file-created /var/dns/all.log
-17:11:2022.10:29:25:239 EV log-file-created /var/dns/all.log
-17:11:2022.11:07:51:839 EV log-file-created /var/dns/all.log
-17:11:2022.11:11:59:224 EV log-file-created /var/dns/all.log
-17:11:2022.11:16:42:877 EV log-file-created /var/dns/all.log
-17:11:2022.11:21:22:008 EV log-file-created /var/dns/all.log
-17:11:2022.11:22:30:732 EV log-file-created /var/dns/all.log
-17:11:2022.11:25:36:074 EV log-file-created /var/dns/all.log
-17:11:2022.12:06:25:424 EV log-file-created /var/dns/all.log
 17:11:2022.12:06:37:948 QR /127.0.0.1 dados a inserir
 17:11:2022.12:06:38:091 RP 127.0.0.1 dados
 17:11:2022.12:14:39:928 EV log-file-created /var/dns/all.log
@@ -430,7 +20,7 @@ ns1.example.com. A 193.136.130.250 86400,
 ns2.example.com. A 193.137.100.250 86400,
 ns3.example.com. A 193.136.130.251 86400,
 mx1.example.com A 193.136.130.200 86400,
-mx2.example.com A 193.136.130.201 86400;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+mx2.example.com A 193.136.130.201 86400;\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00
 16:11:2022.15:11:27:172 RR /192.168.56.1 Aceito
 16:11:2022.15:31:56:893 EV logfile-created /var/dns/all.log
 16:11:2022.15:32:03:646 RR /192.168.56.1 Aceito
@@ -459,7 +49,7 @@ ns1.example.com. A 193.136.130.250 86400,
 ns2.example.com. A 193.137.100.250 86400,
 ns3.example.com. A 193.136.130.251 86400,
 mx1.example.com A 193.136.130.200 86400,
-mx2.example.com A 193.136.130.201 86400;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
+mx2.example.com A 193.136.130.201 86400;\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00\00
 17:11:2022.17:04:19:199 EV log-file-created /var/dns/all.log
 17:11:2022.17:04:19:212 EV conf-file-read SP.conf
 17:11:2022.17:04:19:212 EV db-file-read var//dns//example-com.db
@@ -493,3 +83,176 @@ mx2.example.com A 193.136.130.201 86400;                                        
 17:11:2022.17:26:29:704 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
 
 17:11:2022.17:26:29:733 RP 127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+17:11:2022.18:22:17:758 EV log-file-created /var/dns/all.log
+17:11:2022.18:22:17:832 EV conf-file-read SP.conf
+17:11:2022.18:22:17:833 EV db-file-read var//dns//example-com.db
+17:11:2022.18:22:26:436 RR /127.0.0.1 Aceito
+17:11:2022.18:22:26:463 ZT  SP 27 979
+17:11:2022.18:22:40:418 ST 127.0.0.1 4445 2000 debug
+17:11:2022.18:22:40:427 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.18:22:40:489 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.18:26:11:003 EV log-file-created /var/dns/all.log
+17:11:2022.18:26:11:059 EV conf-file-read SP.conf
+17:11:2022.18:26:11:059 EV db-file-read var//dns//example-com.db
+17:11:2022.18:26:19:299 RR /127.0.0.1 Aceito
+17:11:2022.18:26:19:327 ZT  SP 27 979
+17:11:2022.18:32:40:396 EV log-file-created /var/dns/all.log
+17:11:2022.18:32:40:444 EV conf-file-read SP.conf
+17:11:2022.18:32:40:445 EV db-file-read var//dns//example-com.db
+17:11:2022.18:32:49:944 RR /127.0.0.1 Aceito
+17:11:2022.18:32:49:975 ZT  SP 30 976
+17:11:2022.19:54:40:639 EV log-file-created /var/dns/all.log
+17:11:2022.19:54:40:703 EV conf-file-read SP.conf
+17:11:2022.19:54:40:704 EV db-file-read var//dns//example-com.db
+17:11:2022.19:54:46:852 RR /127.0.0.1 Aceito
+17:11:2022.19:54:46:883 ZT  SP 30 978
+17:11:2022.19:54:59:590 EV log-file-created /var/dns/all.log
+17:11:2022.19:54:59:693 EV conf-file-read SP.conf
+17:11:2022.19:54:59:693 EV db-file-read var//dns//example-com.db
+17:11:2022.19:56:41:762 EV log-file-created /var/dns/all.log
+17:11:2022.19:56:41:821 EV conf-file-read SP.conf
+17:11:2022.19:56:41:822 EV db-file-read var//dns//example-com.db
+17:11:2022.19:56:45:731 ST 127.0.0.1 4445 2000 debug
+17:11:2022.19:56:45:755 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.19:56:45:890 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.20:00:59:963 EV log-file-created /var/dns/all.log
+17:11:2022.20:01:00:017 EV conf-file-read SP.conf
+17:11:2022.20:01:00:018 EV db-file-read var//dns//example-com.db
+17:11:2022.20:01:08:229 RR /127.0.0.1 Aceito
+17:11:2022.20:01:08:262 ZT  SP 32 979
+17:11:2022.20:01:23:227 EV log-file-created /var/dns/all.log
+17:11:2022.20:01:23:326 EV conf-file-read SP.conf
+17:11:2022.20:01:23:327 EV db-file-read var//dns//example-com.db
+17:11:2022.20:06:03:602 EV log-file-created /var/dns/all.log
+17:11:2022.20:06:03:761 EV conf-file-read SP.conf
+17:11:2022.20:06:03:761 EV db-file-read var//dns//example-com.db
+17:11:2022.20:06:11:884 RR /127.0.0.1 Aceito
+17:11:2022.20:06:11:928 ZT  SP 43 976
+17:11:2022.20:09:31:459 EV log-file-created /var/dns/all.log
+17:11:2022.20:09:31:524 EV conf-file-read SP.conf
+17:11:2022.20:09:31:525 EV db-file-read var//dns//example-com.db
+17:11:2022.20:09:38:482 RR /127.0.0.1 Aceito
+17:11:2022.20:09:38:511 ZT  SP 29 979
+17:11:2022.20:11:53:685 EV log-file-created /var/dns/all.log
+17:11:2022.20:11:53:785 EV conf-file-read SP.conf
+17:11:2022.20:11:53:786 EV db-file-read var//dns//example-com.db
+17:11:2022.20:11:56:348 ST 127.0.0.1 4445 2000 debug
+17:11:2022.20:11:56:395 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:11:56:602 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.20:35:50:112 EV log-file-created /var/dns/all.log
+17:11:2022.20:35:50:192 EV conf-file-read SP.conf
+17:11:2022.20:35:50:192 EV db-file-read var//dns//example-com.db
+17:11:2022.20:35:56:834 RR /127.0.0.1 Aceito
+17:11:2022.20:35:56:868 ZT  SP 33 977
+17:11:2022.20:39:12:118 EV log-file-created /var/dns/all.log
+17:11:2022.20:39:12:203 EV conf-file-read SP.conf
+17:11:2022.20:39:12:204 EV db-file-read var//dns//example-com.db
+17:11:2022.20:39:18:951 RR /127.0.0.1 Aceito
+17:11:2022.20:39:18:977 ZT  SP 26 977
+17:11:2022.20:40:54:988 EV log-file-created /var/dns/all.log
+17:11:2022.20:40:55:090 EV conf-file-read SP.conf
+17:11:2022.20:40:55:091 EV db-file-read var//dns//example-com.db
+17:11:2022.20:41:02:598 RR /127.0.0.1 Aceito
+17:11:2022.20:41:02:625 ZT  SP 26 980
+17:11:2022.20:42:43:031 EV log-file-created /var/dns/all.log
+17:11:2022.20:42:43:120 EV conf-file-read SP.conf
+17:11:2022.20:42:43:120 EV db-file-read var//dns//example-com.db
+17:11:2022.20:43:03:517 EV log-file-created /var/dns/all.log
+17:11:2022.20:43:03:577 EV conf-file-read SP.conf
+17:11:2022.20:43:03:577 EV db-file-read var//dns//example-com.db
+17:11:2022.20:43:15:750 RR /127.0.0.1 Aceito
+17:11:2022.20:43:15:780 ZT  SP 29 978
+17:11:2022.20:45:55:690 EV log-file-created /var/dns/all.log
+17:11:2022.20:45:55:768 EV conf-file-read SP.conf
+17:11:2022.20:45:55:768 EV db-file-read var//dns//example-com.db
+17:11:2022.20:46:04:682 RR /127.0.0.1 Aceito
+17:11:2022.20:46:04:711 ZT  SP 28 977
+17:11:2022.20:48:46:797 EV log-file-created /var/dns/all.log
+17:11:2022.20:48:46:858 EV conf-file-read SP.conf
+17:11:2022.20:48:46:858 EV db-file-read var//dns//example-com.db
+17:11:2022.20:49:09:063 RR /127.0.0.1 Aceito
+17:11:2022.20:49:09:097 ZT  SP 33 975
+17:11:2022.20:55:07:636 EV log-file-created /var/dns/all.log
+17:11:2022.20:55:07:691 EV conf-file-read SP.conf
+17:11:2022.20:55:07:692 EV db-file-read var//dns//example-com.db
+17:11:2022.20:55:14:386 RR /127.0.0.1 Aceito
+17:11:2022.20:55:14:411 ZT  SP 25 978
+17:11:2022.20:55:40:718 ST 127.0.0.1 4445 2000 debug
+17:11:2022.20:55:40:744 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.20:55:40:861 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.20:59:32:049 EV log-file-created /var/dns/all.log
+17:11:2022.20:59:32:145 EV conf-file-read SP.conf
+17:11:2022.20:59:32:145 EV db-file-read var//dns//example-com.db
+17:11:2022.20:59:39:371 RR /127.0.0.1 Aceito
+17:11:2022.20:59:39:396 ZT  SP 25 979
+17:11:2022.21:06:20:158 EV log-file-created /var/dns/all.log
+17:11:2022.21:06:20:217 EV conf-file-read SP.conf
+17:11:2022.21:06:20:218 EV db-file-read var//dns//example-com.db
+17:11:2022.21:06:28:002 RR /127.0.0.1 Aceito
+17:11:2022.21:06:28:043 ZT  SP 41 978
+17:11:2022.21:08:02:398 EV log-file-created /var/dns/all.log
+17:11:2022.21:08:02:463 EV conf-file-read SP.conf
+17:11:2022.21:08:02:464 EV db-file-read var//dns//example-com.db
+17:11:2022.21:08:10:070 RR /127.0.0.1 Aceito
+17:11:2022.21:08:10:108 ZT  SP 37 977
+17:11:2022.21:08:48:518 EV log-file-created /var/dns/all.log
+17:11:2022.21:08:48:669 EV conf-file-read SP.conf
+17:11:2022.21:08:48:673 EV db-file-read var//dns//example-com.db
+17:11:2022.21:08:55:214 RR /127.0.0.1 Aceito
+17:11:2022.21:08:55:240 ZT  SP 26 976
+17:11:2022.21:11:43:663 EV log-file-created /var/dns/all.log
+17:11:2022.21:11:43:785 EV conf-file-read SP.conf
+17:11:2022.21:11:43:785 EV db-file-read var//dns//example-com.db
+17:11:2022.21:11:52:466 RR /127.0.0.1 Aceito
+17:11:2022.21:11:52:518 ZT  SP 52 980
+17:11:2022.21:14:29:855 EV log-file-created /var/dns/all.log
+17:11:2022.21:14:29:913 EV conf-file-read SP.conf
+17:11:2022.21:14:29:914 EV db-file-read var//dns//example-com.db
+17:11:2022.21:14:33:416 ST 127.0.0.1 4445 2000 debug
+17:11:2022.21:14:33:459 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:14:33:650 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.21:18:30:215 ST 127.0.0.1 4445 2000 debug
+17:11:2022.21:18:30:215 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:18:30:221 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.21:25:59:591 EV log-file-created /var/dns/all.log
+17:11:2022.21:25:59:665 EV conf-file-read SP.conf
+17:11:2022.21:25:59:666 EV db-file-read var//dns//example-com.db
+17:11:2022.21:26:10:418 RR /127.0.0.1 Aceito
+17:11:2022.21:26:10:448 ZT  SP 29 978
+17:11:2022.21:26:22:811 ST 127.0.0.1 4445 2000 debug
+17:11:2022.21:26:22:836 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:26:22:940 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;
+17:11:2022.21:30:07:396 EV log-file-created /var/dns/all.log
+17:11:2022.21:30:07:475 EV conf-file-read SP.conf
+17:11:2022.21:30:07:477 EV db-file-read var//dns//example-com.db
+17:11:2022.21:30:14:430 RR /127.0.0.1 Aceito
+17:11:2022.21:30:14:456 ZT  SP 25 975
+17:11:2022.21:36:27:026 EV log-file-created /var/dns/all.log
+17:11:2022.21:36:27:103 EV conf-file-read SP.conf
+17:11:2022.21:36:27:104 EV db-file-read var//dns//example-com.db
+17:11:2022.21:36:34:106 RR /127.0.0.1 Aceito
+17:11:2022.21:36:34:135 ZT  SP 29 979
+17:11:2022.21:39:05:815 EV log-file-created /var/dns/all.log
+17:11:2022.21:39:06:015 EV conf-file-read SP.conf
+17:11:2022.21:39:06:019 EV db-file-read var//dns//example-com.db
+17:11:2022.21:39:17:198 RR /127.0.0.1 Aceito
+17:11:2022.21:39:17:233 ZT  SP 35 977
+17:11:2022.21:48:09:461 EV log-file-created /var/dns/all.log
+17:11:2022.21:48:09:566 EV conf-file-read SP.conf
+17:11:2022.21:48:09:567 EV db-file-read var//dns//example-com.db
+17:11:2022.21:48:17:207 RR /127.0.0.1 Aceito
+17:11:2022.21:48:17:233 ZT  SP 26 975
+17:11:2022.21:49:35:241 EV log-file-created /var/dns/all.log
+17:11:2022.21:49:35:300 EV conf-file-read SP.conf
+17:11:2022.21:49:35:300 EV db-file-read var//dns//example-com.db
+17:11:2022.21:49:38:690 ST 127.0.0.1 4445 2000 debug
+17:11:2022.21:49:38:730 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.21:49:38:876 RP 127.0.0.1 3874,R+A,3,2,3,5;example.com.,MX;

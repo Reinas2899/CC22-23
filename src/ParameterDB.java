@@ -14,6 +14,14 @@ public class ParameterDB {
         this.ttl = ttl;
         this.prioridade = prioridade;
     }
+
+    public ParameterDB(ParameterDB pdb){
+        this.parametro = pdb.getParametro();
+        this.tipo = pdb.getTipo();
+        this.valor = pdb.getValor();
+        this.ttl = pdb.getValor();
+        this.prioridade = pdb.getPrioridade();
+    }
     public ParameterDB(){}
 
     public String getParametro() {
@@ -96,7 +104,7 @@ public class ParameterDB {
                 break;
             case ("NS"):
                 t=Tipo.NS;
-                break; 
+                break;
             case ("A"):
                 t=Tipo.A;
                 break;
@@ -108,7 +116,7 @@ public class ParameterDB {
                 break;
             case ("PTR"):
                 t=Tipo.PTR;
-                break;       
+                break;
 
         }
         return t;
