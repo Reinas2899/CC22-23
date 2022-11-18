@@ -7,7 +7,6 @@ import java.util.Arrays;
 
 
 public class SP {
-
     
     public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
         new Thread(()-> {
@@ -18,6 +17,8 @@ public class SP {
             } catch (SintaxeIncorretaException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }).start();
@@ -36,7 +37,7 @@ public class SP {
         }).start();
 
     }
-    public static void DatagramSocket() throws IOException, SintaxeIncorretaException, ClassNotFoundException {
+    public static void DatagramSocket() throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
         InetAddress address;
         int porta = 4445;
         DatagramSocket socket = new DatagramSocket(porta);
@@ -95,8 +96,10 @@ public class SP {
 		String servidormensagem=mensagem.toString();
                 byte[] dados = servidormensagem.getBytes();
                 
-                Fragmentation fragmentation = new Fragmentation(dados.length,1024);
+                Fragmentation fragmentation = new Fragmentation(dados.length,432);
                 int numpacotes = fragmentation.numberofFragments();
+                Thread.sleep(4000);
+                System.out.println("A enviar "+numpacotes+" pacotes por fragmentação para o cliente...");
                 String nPackets = String.valueOf(numpacotes);
                 byte[] n = nPackets.getBytes();
                 InetAddress address2 = InetAddress.getByName("localhost");
@@ -105,7 +108,7 @@ public class SP {
                 int v =0;
                 while(v<numpacotes){
                     byte[] fragment = new byte[1024];
-                    fragment = Arrays.copyOfRange(dados,1024*v,1024*(v+1));
+                    fragment = Arrays.copyOfRange(dados,432*v,432*(v+1));
                     DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address2, port);
                     socket.send(packet3);
                     v++;
@@ -144,7 +147,7 @@ public class SP {
     int tamanho = 0;
     LocalDateTime timeRR = LocalDateTime.now() ;
         while (running) {
-            System.out.println("here we go again");
+            //System.out.println("here we go again");
             Socket socketSS = server.accept();
             ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
             String receivedMessage = (String) ois.readObject();

@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.io.*;
 import java.net.*;
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ public class SS {
                         if(entradas.containsKey(Integer.parseInt(aux[0]))) {
                             entradas.replace(Integer.parseInt(aux[0]), aux[1]);
                         }else entradas.put(Integer.parseInt(aux[0]),aux[1]);
-                        System.out.println(m);
+                        //System.out.println(m);
                         n++;
                     }
                     if(n==i) flag=1;
@@ -113,7 +114,7 @@ public class SS {
                 socket.close();
             }
             oos.flush();
-            System.out.println("Espera soaretry time");
+            System.out.println("À espera "+soaretry+"ms...");
             //long start = System.currentTimeMillis();
             //while(System.currentTimeMillis()-soaretry!=start){;}
             Thread.sleep(soaretry);
@@ -124,8 +125,9 @@ public class SS {
                 oos.writeObject("FIN");
                 running=false;
                 ParserDB parser = new ParserDB();
-                List<ParameterDB> l =parser.getDBLines(entradas.values().stream().collect(Collectors.toList()));
-                l.forEach(x-> dbCopiedLines.add(x));
+                List<ParameterDB> l =parser.getDBLines(new ArrayList<>(entradas.values()));
+                dbCopiedLines.addAll(l);
+
             }
         }
         LocalDateTime timeZT = LocalDateTime.now();
@@ -158,12 +160,24 @@ public class SS {
 
                 DNSMsg dnsMsg =  parserDB.respondeQuery(m);
                 String dnsMsgString = dnsMsg.toString();
-                System.out.println(dnsMsgString);
+                //System.out.println(dnsMsgString);
 
-                byte[] dados = dnsMsgString.getBytes();
-                DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address, port);
-                socket.send(packet2);
-                logfile.updateLogFileRP_RR(new String(dados,0,dados.length), LocalDateTime.now(), "RP", address.toString());
+		 byte[] dados = dnsMsgString.getBytes();
+		 byte[] cipher = null;
+                int pac;
+                Fragmentation fragmentation = new Fragmentation(dados.length,432);
+                int numpacotes = fragmentation.numberofFragments();
+                String nPackets = String.valueOf(numpacotes);
+                System.out.println("A enviar "+nPackets+" pacotes por fragmentação para o cliente...");
+                byte[] n = nPackets.getBytes();
+                InetAddress end = InetAddress.getByName("localhost");
+                DatagramPacket pacote = new DatagramPacket(n, n.length, end, port);
+                socket.send(pacote);
+                for(pac=0;pac<numpacotes;pac++){
+		        cipher = Arrays.copyOfRange(dados,pac*432,432*(pac+1));
+		        DatagramPacket packet2 = new DatagramPacket(cipher, cipher.length, address, port);
+		        socket.send(packet2);
+                }
             }else{
                 byte[] dados = "De momento não é possível responder à query.Tente mais tarde".getBytes();
                 DatagramPacket packet2 = new DatagramPacket(dados, dados.length, address, port);

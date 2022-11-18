@@ -382,3 +382,200 @@ ns2.example.com. A 193.137.100.250 86400,
 ns3.example.com. A 193.136.130.251 86400,
 mx1.example.com A 193.136.130.200 86400,
 mx2.example.com A 193.136.130.201 86400;
+17:11:2022.22:02:57:285 EV log-file-created /var/dns/SS.log
+17:11:2022.22:02:57:333 EV conf-file-read SS.conf
+17:11:2022.22:02:57:335 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:03:06:189 ZT  SS 3727 68
+17:11:2022.22:03:36:809 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:04:39:278 EV log-file-created /var/dns/SS.log
+17:11:2022.22:04:39:322 EV conf-file-read SS.conf
+17:11:2022.22:04:39:323 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:04:48:164 ZT  SS 3725 68
+17:11:2022.22:05:05:223 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:05:05:242 RP /127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.130.201 86400;
+17:11:2022.22:08:35:680 EV log-file-created /var/dns/SS.log
+17:11:2022.22:08:35:743 EV conf-file-read SS.conf
+17:11:2022.22:08:35:744 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:08:44:629 ZT  SS 3745 67
+17:11:2022.22:09:00:791 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:09:00:811 RP /127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.130.201 86400;
+17:11:2022.22:11:24:844 EV log-file-created /var/dns/SS.log
+17:11:2022.22:11:24:922 EV conf-file-read SS.conf
+17:11:2022.22:11:24:922 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:11:24:964 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.22:22:04:229 EV log-file-created /var/dns/SS.log
+17:11:2022.22:22:04:282 EV conf-file-read SS.conf
+17:11:2022.22:22:04:283 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:22:13:086 ZT  SS 3712 67
+17:11:2022.22:22:30:457 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:22:30:473 RP /127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.130.201 86400;
+17:11:2022.22:26:09:783 EV log-file-created /var/dns/SS.log
+17:11:2022.22:26:09:827 EV conf-file-read SS.conf
+17:11:2022.22:26:09:827 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:26:18:680 ZT  SS 3734 66
+17:11:2022.22:26:34:916 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:26:34:941 RP /127.0.0.1 3874,R+A,0,2,3,5;example.com.,MX;
+example.com. MX mx1.example.com 86400 10,
+example.com. MX mx2.example.com 86400 20;
+example.com. NS ns1.example.com. 86400,
+example.com. NS ns2.example.com. 86400,
+example.com. NS ns3.example.com. 86400;
+ns1.example.com. A 193.136.130.250 86400,
+ns2.example.com. A 193.137.100.250 86400,
+ns3.example.com. A 193.136.130.251 86400,
+mx1.example.com A 193.136.130.200 86400,
+mx2.example.com A 193.136.130.201 86400;
+17:11:2022.22:28:13:960 EV log-file-created /var/dns/SS.log
+17:11:2022.22:28:14:014 EV conf-file-read SS.conf
+17:11:2022.22:28:14:014 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:28:22:893 ZT  SS 3736 66
+17:11:2022.22:28:37:818 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:28:37:839 RP /127.0.0.1 ola meus grandes amigos
+17:11:2022.22:29:43:526 EV log-file-created /var/dns/SS.log
+17:11:2022.22:29:43:571 EV conf-file-read SS.conf
+17:11:2022.22:29:43:571 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:29:43:622 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.22:29:48:645 TO 127.0.0.1 5000 conexao-SP
+17:11:2022.22:30:02:460 ZT  SS 3747 68
+17:11:2022.22:30:17:558 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:30:17:580 RP /127.0.0.1 ola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigosola meus grandes amigos
+17:11:2022.22:59:18:991 EV log-file-created /var/dns/SS.log
+17:11:2022.22:59:19:075 EV conf-file-read SS.conf
+17:11:2022.22:59:19:076 ST 127.0.0.1 4444 5000 debug
+17:11:2022.22:59:27:925 ZT  SS 3716 68
+17:11:2022.22:59:41:823 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.22:59:41:879 RP /127.0.0.1 Este ano, no meu aniversário, estou a pedir donativos para Associação Midas. Decidi escolher esta organização sem fins lucrativos porque a sua missão é muito importante para mim e espero que consideres contribuir como forma de celebrar comigo. Qualquer donativo, por mais pequeno que seja, vai ajudar-me a alcançar o objetivo. Incluí abaixo informações sobre Associação Midas.Acolhemos, tratamos e colocamos cerca de 300 animais por ano para adoção.O Facebook trata do processamento do donativo sem qualquer taxa.I have tried receiving the datagram packet with the fixed buffer size and then would like to adjust it according to receive packet. I can get the actual buffer size of received packet but when i write it into the another buffer with the adjusted size it changes or grow its size again. How could it be even possible. I expect it to throw array out of bound exception.
+17:11:2022.23:16:28:561 EV log-file-created /var/dns/SS.log
+17:11:2022.23:16:28:626 EV conf-file-read SS.conf
+17:11:2022.23:16:28:627 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:16:37:500 ZT  SS 3726 68
+17:11:2022.23:17:00:762 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:17:00:784 RP /127.0.0.1 Este ano, no meu aniversário, estou a pedir donativos para Associação Midas. Decidi escolher esta organização sem fins lucrativos porque a sua missão é muito importante para mim e espero que consideres contribuir como forma de celebrar comigo. Qualquer donativo, por mais pequeno que seja, vai ajudar-me a alcançar o objetivo. Incluí abaixo informações sobre Associação Midas.Acolhemos, tratamos e colocamos cerca de 300 animais por ano para adoção.O Facebook trata do processamento do donativo sem qualquer taxa.I have tried receiving the datagram packet with the fixed buffer size and then would like to adjust it according to receive packet. I can get the actual buffer size of received packet but when i write it into the another buffer with the adjusted size it changes or grow its size again. How could it be even possible.
+17:11:2022.23:28:10:754 EV log-file-created /var/dns/SS.log
+17:11:2022.23:28:10:823 EV conf-file-read SS.conf
+17:11:2022.23:28:10:824 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:28:19:708 ZT  SS 3759 68
+17:11:2022.23:28:36:459 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:30:27:954 EV log-file-created /var/dns/SS.log
+17:11:2022.23:30:27:997 EV conf-file-read SS.conf
+17:11:2022.23:30:27:998 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:30:36:857 ZT  SS 3728 68
+17:11:2022.23:30:57:742 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:31:31:936 EV log-file-created /var/dns/SS.log
+17:11:2022.23:31:31:994 EV conf-file-read SS.conf
+17:11:2022.23:31:31:995 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:31:40:855 ZT  SS 3734 67
+17:11:2022.23:32:01:024 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:49:03:002 EV log-file-created /var/dns/SS.log
+17:11:2022.23:49:03:037 EV conf-file-read SS.conf
+17:11:2022.23:49:03:038 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:49:11:889 ZT  SS 3732 66
+17:11:2022.23:49:27:777 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:51:51:466 EV log-file-created /var/dns/SS.log
+17:11:2022.23:51:51:497 EV conf-file-read SS.conf
+17:11:2022.23:51:51:497 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:52:00:345 ZT  SS 3729 68
+17:11:2022.23:52:19:188 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:53:44:831 EV log-file-created /var/dns/SS.log
+17:11:2022.23:53:44:889 EV conf-file-read SS.conf
+17:11:2022.23:53:44:889 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:53:53:732 ZT  SS 3736 66
+17:11:2022.23:54:11:452 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+17:11:2022.23:55:49:855 EV log-file-created /var/dns/SS.log
+17:11:2022.23:55:49:884 EV conf-file-read SS.conf
+17:11:2022.23:55:49:884 ST 127.0.0.1 4444 5000 debug
+17:11:2022.23:55:58:723 ZT  SS 3722 68
+17:11:2022.23:56:22:171 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.00:09:38:123 EV log-file-created /var/dns/SS.log
+18:11:2022.00:09:38:181 EV conf-file-read SS.conf
+18:11:2022.00:09:38:182 ST 127.0.0.1 4444 5000 debug
+18:11:2022.00:09:47:033 ZT  SS 3742 68
+18:11:2022.00:10:03:222 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.00:17:39:390 EV log-file-created /var/dns/SS.log
+18:11:2022.00:17:39:446 EV conf-file-read SS.conf
+18:11:2022.00:17:39:446 ST 127.0.0.1 4444 5000 debug
+18:11:2022.00:17:48:247 ZT  SS 3718 67
+18:11:2022.00:18:09:314 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.00:23:59:334 EV log-file-created /var/dns/SS.log
+18:11:2022.00:23:59:392 EV conf-file-read SS.conf
+18:11:2022.00:23:59:393 ST 127.0.0.1 4444 5000 debug
+18:11:2022.00:24:08:194 ZT  SS 3722 68
+18:11:2022.00:24:46:757 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.00:34:01:510 EV log-file-created /var/dns/SS.log
+18:11:2022.00:34:01:568 EV conf-file-read SS.conf
+18:11:2022.00:34:01:568 ST 127.0.0.1 4444 5000 debug
+18:11:2022.00:34:10:370 ZT  SS 3704 68
+18:11:2022.00:34:28:714 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.00:56:48:915 EV log-file-created /var/dns/SS.log
+18:11:2022.00:56:48:936 EV conf-file-read SS.conf
+18:11:2022.00:56:48:936 ST 127.0.0.1 4444 5000 debug
+18:11:2022.00:56:57:753 ZT  SS 3734 68
+18:11:2022.00:57:18:318 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.01:12:48:146 EV log-file-created /var/dns/SS.log
+18:11:2022.01:12:48:185 EV conf-file-read SS.conf
+18:11:2022.01:12:48:185 ST 127.0.0.1 4444 5000 debug
+18:11:2022.01:12:57:031 ZT  SS 3717 68
+18:11:2022.01:19:45:976 EV log-file-created /var/dns/SS.log
+18:11:2022.01:19:46:045 EV conf-file-read SS.conf
+18:11:2022.01:19:46:046 ST 127.0.0.1 4444 5000 debug
+18:11:2022.01:19:54:855 ZT  SS 3727 68
+18:11:2022.01:20:16:185 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
+
+18:11:2022.01:20:52:740 EV log-file-created /var/dns/SS.log
+18:11:2022.01:20:52:783 EV conf-file-read SS.conf
+18:11:2022.01:20:52:783 ST 127.0.0.1 4444 5000 debug
+18:11:2022.01:20:52:831 TO 127.0.0.1 5000 conexao-SP
+18:11:2022.01:20:57:843 TO 127.0.0.1 5000 conexao-SP
+18:11:2022.01:21:02:846 TO 127.0.0.1 5000 conexao-SP
+18:11:2022.01:21:16:621 ZT  SS 3718 68
