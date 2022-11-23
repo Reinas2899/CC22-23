@@ -12,7 +12,7 @@ public class SP {
         new Thread(()-> {
             try {
 
-                DatagramSocket(args[0],args[1]);
+                DatagramSocket(args[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SintaxeIncorretaException e) {
@@ -25,7 +25,7 @@ public class SP {
         }).start();
         new Thread(()-> {
             try {
-                ServerSocket(args[0],args[1]);
+                ServerSocket(args[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -38,7 +38,7 @@ public class SP {
         }).start();
 
     }
-    public static void DatagramSocket(String filename, String serverName) throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
+    public static void DatagramSocket(String filename) throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
         InetAddress address;
         int porta = 4445;
         DatagramSocket socket = new DatagramSocket(porta);
@@ -49,7 +49,7 @@ public class SP {
         int timeout = 2000;
         String packetAdress = "";
         String [] endereco = packetAdress.split("/");
-        ParserConfig parserConfig = new ParserConfig(filename,serverName);// filename: tokyo.conf   serverNAme:tokyo
+        ParserConfig parserConfig = new ParserConfig(filename);// filename: tokyo.conf 
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         String logFilename= parserConfig.getLogfilename(); 
         Logfile logfile = new Logfile(logFilename);
@@ -129,11 +129,11 @@ public class SP {
         logfile.updateLogFileSP(shutdownNow, "SP", endereco[1], "Servidor Encerrou");
 
     }
-    public static void ServerSocket(String filename, String serverName) throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {
+    public static void ServerSocket(String filename) throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {
         int portaSS = 4444;
         ServerSocket server = new ServerSocket(portaSS);
         boolean running = true;
-        ParserConfig parserConfig = new ParserConfig(filename,serverName);//parse do conf file
+        ParserConfig parserConfig = new ParserConfig(filename);//parse do conf file
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         int soaretryTime = parserDB.getSOARETRY();
         int soarexpireTime = parserDB.getSOAEXPIRE();

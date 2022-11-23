@@ -88,8 +88,11 @@ public class Client {
             int nporta = numPacket.getPort();
             byte [] numData = numPacket.getData();
             String numPacotes = new String(numData,0,numPacket.getLength());
+            try{
             int num = Integer.parseInt(numPacotes);
-            
+            }catch(NumberFormatException num){
+            	num.printStackTrace();
+            }
             
             int cic=0;
             StringBuilder sb = new StringBuilder();

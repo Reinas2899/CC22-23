@@ -17,7 +17,7 @@ public class SS {
     public static void main(String[] args){
         Thread thread1 = new Thread(() -> {
             try {
-                ServerSocket(args[0],args[1]);
+                ServerSocket(args[0]);
             } catch (IOException | ClassNotFoundException | SintaxeIncorretaException | InterruptedException e){
                 //System.out.println(e.getMessage());
                 e.printStackTrace();
@@ -41,12 +41,12 @@ public class SS {
 
     }
 
-    public static void ServerSocket(String filename, String servername) throws IOException, SintaxeIncorretaException, ClassNotFoundException, InterruptedException {
+    public static void ServerSocket(String filename) throws IOException, SintaxeIncorretaException, ClassNotFoundException, InterruptedException {
         InetAddress host = InetAddress.getLocalHost();
         Socket socket = null;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
-        ParserConfig parserConfig = new ParserConfig(filename,servername);
+        ParserConfig parserConfig = new ParserConfig(filename);
         logFileName = parserConfig.getLogfilename();
         //System.out.println(parserConfig.getWorkingDomain());
 

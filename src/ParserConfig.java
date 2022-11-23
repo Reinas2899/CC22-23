@@ -12,13 +12,11 @@ public class ParserConfig {
     private String logfilename;
     private String dbfile;
     private String workingDomain;
-    String serverName;
 
-    public  ParserConfig(String filename, String serverName) throws FileNotFoundException, SintaxeIncorretaException {
+    public  ParserConfig(String filename) throws FileNotFoundException, SintaxeIncorretaException {
         String[] componente;
         List<String> linhas = lerFicheiro(filename);
         int line = 0;
-        this.serverName = serverName;
         for (String linha : linhas) {
             componente = linha.split(" ");
             if (!linha.isEmpty() && componente[0].charAt(0) != '#' && componente.length==3) {
@@ -54,7 +52,7 @@ public class ParserConfig {
     public void logFilename(){
         String filename = "";
         for(LineParameter lp : lineParameters){
-            if(lp.getTipo().equals(LineParameter.Tipo.LG) && lp.getParametro().equals(serverName)) filename = lp.getValor();
+            if(lp.getTipo().equals(LineParameter.Tipo.LG) && !lp.getParametro().equals("all")) filename = lp.getValor();
         }
         this.setLogfilename(filename);
     }
