@@ -40,11 +40,12 @@ public class ParserDB {
                 defaultprior=componente[2];
                 line++;
             }
-            else if(componente[0].equals("Smaller.@")){
+            else if(componente[0].equals("Osaka.@") || componente[0].equals("Nagoya.@") ){
                 subdomain=componente[0];
                 domaintipo = componente[1];
                 fulldomain = componente[2];
                 line++;
+                linesParametersDB.add(new ParameterDB(subdomain, domaintipo, fulldomain,null,null));
             }
             else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==4) {
                 linesParametersDB.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], null));
@@ -58,7 +59,6 @@ public class ParserDB {
 
         }
         linesParametersDB.add(new ParameterDB(parameter, defaultname, defaultdomain, ttldefault, defaultprior));
-        linesParametersDB.add(new ParameterDB(subdomain,domaintipo,fulldomain,null,null));
         setNumberofLines(line);
     }
 
@@ -203,10 +203,20 @@ public class ParserDB {
         for(ParameterDB db : this.linesParametersDB){
             if(db.getParametro().equals("@") && db.getTipo().equals(ParameterDB.Tipo.NS) && db.getValor().contains(domain)) listofAuthorities.add(serverDomain()+" "+db.getTipo()+" "+db.getValor()+" "+ttlValue());
         }
-        /*int lastIndex = listofAuthorities.size()-1;
-        String lastValue= listofAuthorities.get(lastIndex).substring(0,lastIndex);
-        listofAuthorities.set(lastIndex,lastValue);*/
         return listofAuthorities;
+    }
+
+	
+    public boolean isAutoritiveDomain(String domain) {
+        List<String> listofAuthorities=new ArrayList<>();
+        for (ParameterDB db : this.linesParametersDB) {
+            if(db.getParametro().equals("@") && db.getTipo().equals(ParameterDB.Tipo.NS)) listofAuthorities.add(db.getValor());
+        }
+        boolean found = false;
+        for (String line : listofAuthorities){
+            if(line.contains(domain)) found=true;
+        }
+        return found;
     }
 
     public List<String> getListofExtra(){
@@ -290,10 +300,11 @@ public class ParserDB {
                 ttldefault=componente[0]+componente[1];
                 defaultprior=componente[2];
             }
-            else if(componente[0].equals("Smaller.@")){
+            else if(componente[0].equals("Osaka.@") || componente[0].equals("Nagoya.@") ){
                 subdomain=componente[0];
                 domaintipo = componente[1];
                 fulldomain = componente[2];
+                list.add(new ParameterDB(subdomain,domaintipo,fulldomain,null,null));
             }
             else if(!linha.isEmpty() && componente[0].charAt(0)!='#' && componente.length==4) {
                 list.add(new ParameterDB(componente[0], componente[1], componente[2], componente[3], null));
@@ -303,7 +314,6 @@ public class ParserDB {
             }
         }
         list.add(new ParameterDB(parameter, defaultname, defaultdomain, ttldefault, defaultprior));
-        list.add(new ParameterDB(subdomain,domaintipo,fulldomain,null,null));
         return list;
     }
 }

@@ -9,7 +9,6 @@ import java.util.Arrays;
 public class SP {
     
     public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
-        System.out.println(args[0] + " " + args[1]);
         new Thread(()-> {
             try {
 
@@ -141,8 +140,6 @@ public class SP {
         String domain = parserConfig.getWorkingDomain();
         String logFilename= parserConfig.getLogfilename(); 
         Logfile logfile = new Logfile(logFilename);
-
-        
 	int i = 1;
 	int n;
 	int flag=0;
@@ -153,7 +150,7 @@ public class SP {
             Socket socketSS = server.accept();
             ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
             String receivedMessage = (String) ois.readObject();
-            if (receivedMessage.equals(domain)) { // O SP e o SS trabalham no mesmo dominio
+            if (parserDB.isAutoritiveDomain(receivedMessage)) { // O SS é autoritativo do domínio
                 ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
                 oos.writeObject(parserDB.getNumberofLines());//envia para o SS o numero de linhas a enviar
                 ois = new ObjectInputStream(socketSS.getInputStream());

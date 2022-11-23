@@ -15,7 +15,7 @@ public class Client {
         int connectionFailed=0;
 
 
-	String query="3874,Q+R,0,0,0,0;example.com.,MX;";
+	String query="3874,Q+R,0,0,0,0;tokyo.,MX;";
 	DNSMsg msg=null;
 	try{
 		msg = readquery(query);

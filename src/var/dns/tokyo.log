@@ -30,3 +30,52 @@
 23:11:2022.15:44:35:626 EV db-file-read var//dns//tokyo.db
 23:11:2022.15:44:52:591 RR /192.168.56.1 Aceito
 23:11:2022.15:44:52:598 ZT 4444 SP 7 979
+23:11:2022.20:40:06:074 EV log-file-read /var/dns/tokyo.log
+23:11:2022.20:40:06:124 EV conf-file-read SP.conf
+23:11:2022.20:40:06:125 EV db-file-read var//dns//tokyo.db
+23:11:2022.20:40:17:267 ST 127.0.0.1 4445 2000 debug
+23:11:2022.20:40:17:285 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX; 
+23:11:2022.20:40:25:426 RP 127.0.0.1 3874,R+A,2,2,0,2;
+23:11:2022.20:54:47:813 EV log-file-read /var/dns/tokyo.log
+23:11:2022.20:54:47:839 EV conf-file-read SP.conf
+23:11:2022.20:54:47:840 EV db-file-read var//dns//tokyo.db
+23:11:2022.20:57:37:417 EV log-file-read /var/dns/tokyo.log
+23:11:2022.20:57:37:437 EV conf-file-read SP.conf
+23:11:2022.20:57:37:438 EV db-file-read var//dns//tokyo.db
+23:11:2022.20:57:40:925 ST 127.0.0.1 4445 2000 debug
+23:11:2022.20:57:40:938 QR 127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX; 
+23:11:2022.20:57:49:049 RP 127.0.0.1 3874,R+A,2,2,0,2;
+23:11:2022.21:01:13:755 EV log-file-read /var/dns/tokyo.log
+23:11:2022.21:01:13:780 EV conf-file-read SP.conf
+23:11:2022.21:01:13:781 EV db-file-read var//dns//tokyo.db
+23:11:2022.21:01:18:525 ST 127.0.0.1 4445 2000 debug
+23:11:2022.21:01:18:568 QR 127.0.0.1 3874,Q+R,0,0,0,0;tokyo.,MX; 
+23:11:2022.21:01:26:667 RP 127.0.0.1 3874,R+A,0,2,3,5;
+23:11:2022.21:03:10:448 EV log-file-read /var/dns/tokyo.log
+23:11:2022.21:03:10:485 EV conf-file-read SP.conf
+23:11:2022.21:03:10:486 EV db-file-read var//dns//tokyo.db
+23:11:2022.21:03:16:300 RR /127.0.0.1 Aceito
+23:11:2022.21:03:16:331 ZT 4444 SP 30 977
+23:11:2022.21:05:14:353 EV log-file-read /var/dns/tokyo.log
+23:11:2022.21:05:14:395 EV conf-file-read SP.conf
+23:11:2022.21:05:14:399 EV db-file-read var//dns//tokyo.db
+23:11:2022.21:05:22:393 RR /127.0.0.1 Aceito
+23:11:2022.21:05:22:420 ZT 4444 SP 27 976
+23:11:2022.21:05:38:205 ST 127.0.0.1 4445 2000 debug
+23:11:2022.21:05:38:215 QR 127.0.0.1 3874,Q+R,0,0,0,0;tokyo.,MX; 
+23:11:2022.21:05:46:334 RP 127.0.0.1 3874,R+A,0,2,3,5;
+23:11:2022.21:06:30:542 EV log-file-read /var/dns/tokyo.log
+23:11:2022.21:06:30:578 EV conf-file-read SP.conf
+23:11:2022.21:06:30:579 EV db-file-read var//dns//tokyo.db
+23:11:2022.21:06:40:152 RR /127.0.0.1 Aceito
+23:11:2022.21:06:40:188 ZT 4444 SP 35 975
+23:11:2022.21:08:26:990 EV log-file-read /var/dns/tokyo.log
+23:11:2022.21:08:27:027 EV conf-file-read SP.conf
+23:11:2022.21:08:27:028 EV db-file-read var//dns//tokyo.db
+23:11:2022.21:08:37:680 RR /127.0.0.1 Aceito
+23:11:2022.21:08:37:711 ZT 4444 SP 31 975
+23:11:2022.21:10:39:357 EV log-file-read /var/dns/tokyo.log
+23:11:2022.21:10:39:399 EV conf-file-read SP.conf
+23:11:2022.21:10:39:399 EV db-file-read var//dns//tokyo.db
+23:11:2022.21:10:51:744 RR /127.0.0.1 Aceito
+23:11:2022.21:10:51:784 ZT 4444 SP 39 978

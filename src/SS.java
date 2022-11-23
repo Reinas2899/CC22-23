@@ -101,7 +101,7 @@ public class SS {
                         if(entradas.containsKey(Integer.parseInt(aux[0]))) {
                             entradas.replace(Integer.parseInt(aux[0]), aux[1]);
                         }else entradas.put(Integer.parseInt(aux[0]),aux[1]);
-                        //System.out.println(m);
+                        System.out.println(m);
                         n++;
                     }
                     if(n==i) flag=1;
