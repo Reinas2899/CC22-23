@@ -7,17 +7,17 @@ import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class SS {
     static Map<Integer, String> entradas = new HashMap<>();
     static List<ParameterDB> dbCopiedLines = new ArrayList<>();
     static boolean allReceived=false;
+    static String logFileName;
 
     public static void main(String[] args){
         Thread thread1 = new Thread(() -> {
             try {
-                ServerSocket();
+                ServerSocket(args[0],args[1]);
             } catch (IOException | ClassNotFoundException | SintaxeIncorretaException | InterruptedException e){
                 //System.out.println(e.getMessage());
                 e.printStackTrace();
@@ -41,18 +41,20 @@ public class SS {
 
     }
 
-    public static void ServerSocket() throws IOException, SintaxeIncorretaException, ClassNotFoundException, InterruptedException {
+    public static void ServerSocket(String filename, String servername) throws IOException, SintaxeIncorretaException, ClassNotFoundException, InterruptedException {
         InetAddress host = InetAddress.getLocalHost();
         Socket socket = null;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
-        ParserConfig parserConfig = new ParserConfig("SS.conf");
+        ParserConfig parserConfig = new ParserConfig(filename,servername);
+        logFileName = parserConfig.getLogfilename();
         //System.out.println(parserConfig.getWorkingDomain());
+
         boolean running=true;
         boolean connection=true;
-        Logfile logfile = new Logfile("/var/dns/SS.log");
-        logfile.updateLogFileEV("log-file-created", LocalDateTime.now(), "EV", "/var/dns/SS.log");
-        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", "SS.conf");
+        Logfile logfile = new Logfile(logFileName);
+        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", "/var/dns/tokyoSS.log");
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", "tokyoSS.conf");
         LocalDateTime timeRR = LocalDateTime.now();
         int tamanho = 0;
 
@@ -132,7 +134,7 @@ public class SS {
         }
         LocalDateTime timeZT = LocalDateTime.now();
         Duration duracao = Duration.between(timeRR, timeZT); 
-        logfile.updateLogFileZT("SS", "", duracao.toMillis(), tamanho, timeZT, "ZT");
+        logfile.updateLogFileZT("SS", "4444", duracao.toMillis(), tamanho, timeZT, "ZT");
         socket.close();
     }
 
@@ -142,7 +144,7 @@ public class SS {
         DatagramSocket socket = new DatagramSocket(porta);
         byte[] buf = new byte[1024];
         boolean running = true;
-        Logfile logfile = new Logfile("/var/dns/SS.log");
+        Logfile logfile = new Logfile("/var/dns/tokyoSS.log");
         while (running){
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber
@@ -154,7 +156,7 @@ public class SS {
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
-            logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QR", address.toString());
+            logfile.updateLogFileQR_QE(m.toString().replace("\n",""), LocalDateTime.now(), "QR", address.toString());
             if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
                 throw new SintaxeIncorretaException("Nao foi possivel descodificar -Sintaxe Incorreta da query.");
             }else if(!verificaSintaxe(m)) {

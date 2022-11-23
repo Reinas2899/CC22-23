@@ -9,9 +9,11 @@ import java.util.Arrays;
 public class SP {
     
     public static void main(String[] args) throws IOException, SintaxeIncorretaException, ClassNotFoundException {
+        System.out.println(args[0] + " " + args[1]);
         new Thread(()-> {
             try {
-                DatagramSocket();
+
+                DatagramSocket(args[0],args[1]);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SintaxeIncorretaException e) {
@@ -24,7 +26,7 @@ public class SP {
         }).start();
         new Thread(()-> {
             try {
-                ServerSocket();
+                ServerSocket(args[0],args[1]);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -37,7 +39,7 @@ public class SP {
         }).start();
 
     }
-    public static void DatagramSocket() throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
+    public static void DatagramSocket(String filename, String serverName) throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
         InetAddress address;
         int porta = 4445;
         DatagramSocket socket = new DatagramSocket(porta);
@@ -48,11 +50,11 @@ public class SP {
         int timeout = 2000;
         String packetAdress = "";
         String [] endereco = packetAdress.split("/");
-        ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
+        ParserConfig parserConfig = new ParserConfig(filename,serverName);// filename: tokyo.conf   serverNAme:tokyo
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         String logFilename= parserConfig.getLogfilename(); 
         Logfile logfile = new Logfile(logFilename);
-        logfile.updateLogFileEV("log-file-created", runningNow, "EV", logFilename);
+        logfile.updateLogFileEV("log-file-read", runningNow, "EV", logFilename);
         logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", "SP.conf");
         logfile.updateLogFileEV("db-file-read", LocalDateTime.now(), "EV", parserConfig.getDbfile());
         
@@ -86,7 +88,7 @@ public class SP {
             }else if(!verificaSintaxe(m)) {
                 throw new SintaxeIncorretaException("Sintaxe Incorreta da query.");
             }else {
-                logfile.updateLogFileQR_QE(m.toString(), receivedNow, "QR", endereco[1]);
+                logfile.updateLogFileQR_QE(m.toString().replace("\n"," "), receivedNow, "QR", endereco[1]);
                 //System.out.println(m);
                 parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
@@ -117,7 +119,7 @@ public class SP {
                     String [] componente = resposta.split(";");
                     endereco = address2.toString().split("/");
 
-                    logfile.updateLogFileRP_RR(componente[0]+";"+componente[1]+";", sentNow, "RP", endereco[1]);
+                    logfile.updateLogFileRP_RR(componente[0]+";", sentNow, "RP", endereco[1]);
                 }
                                              
             }
@@ -128,11 +130,11 @@ public class SP {
         logfile.updateLogFileSP(shutdownNow, "SP", endereco[1], "Servidor Encerrou");
 
     }
-    public static void ServerSocket() throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {
+    public static void ServerSocket(String filename, String serverName) throws IOException, ClassNotFoundException, SintaxeIncorretaException, InterruptedException,EOFException {
         int portaSS = 4444;
         ServerSocket server = new ServerSocket(portaSS);
         boolean running = true;
-        ParserConfig parserConfig = new ParserConfig("SP.conf");//parse do conf file
+        ParserConfig parserConfig = new ParserConfig(filename,serverName);//parse do conf file
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         int soaretryTime = parserDB.getSOARETRY();
         int soarexpireTime = parserDB.getSOAEXPIRE();
@@ -210,7 +212,7 @@ public class SP {
         LocalDateTime finalZT = LocalDateTime.now();
         Duration duracao = Duration.between(timeRR, finalZT);
 
-        logfile.updateLogFileZT("SP", "", duracao.toMillis(), tamanho, finalZT, "ZT");
+        logfile.updateLogFileZT("SP", "4444", duracao.toMillis(), tamanho, finalZT, "ZT");
         System.out.println("Acabou o processo de zona de transferência.");
     }
     

@@ -13,8 +13,7 @@ public class Client {
         InetAddress address= InetAddress.getByName("localhost");
         byte[] buf = new byte[1024];
         int connectionFailed=0;
-        Logfile logfile = new Logfile("/var/dns/Client.log");
-        logfile.updateLogFileEV("log-file-created", LocalDateTime.now(), "EV", "/var/dns/Client.log");
+
 
 	String query="3874,Q+R,0,0,0,0;example.com.,MX;";
 	DNSMsg msg=null;
@@ -29,9 +28,9 @@ public class Client {
 		return;
 	}
 	String [] endereco = address.toString().split("/");
-	logfile.updateLogFileST(4445, "debug", 5000, LocalDateTime.now(), "ST",  endereco[1]);
+	
 	DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
-	logfile.updateLogFileQR_QE(query, LocalDateTime.now(), "QE", endereco[1]);
+
 	socket.send(packet); //envia datagrama pelo socket
 	DatagramPacket packet2= new DatagramPacket(buf,buf.length);
 	StringBuilder stringBuilder = new StringBuilder();
@@ -68,8 +67,7 @@ public class Client {
             System.out.println(stringBuilder.toString());
         } catch (SocketTimeoutException e) {
             System.out.println("Conexão com SP falhou.");
-            logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", endereco[1]);
-            
+          
             connectionFailed=1;
         }
         try{
@@ -93,7 +91,6 @@ public class Client {
             int num = Integer.parseInt(numPacotes);
             
             
-            logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", endereco[1]);
             int cic=0;
             StringBuilder sb = new StringBuilder();
             while(cic<num){
@@ -112,7 +109,6 @@ public class Client {
             System.out.println("Tente mais tarde novamente.");
         }
         socket.close();
-        //logfile.updateLogFileSP(LocalDateTime.now(), "SP", endereco[1], "Encerrou sem problemas");
     }
 
     public static DNSMsg readquery(String query) throws SintaxeIncorretaException{

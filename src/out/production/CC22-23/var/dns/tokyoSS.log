@@ -36,3 +36,15 @@
 23:11:2022.12:25:22:391 ZT  SS 3724 67
 23:11:2022.12:25:55:727 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,as;
 
+23:11:2022.15:42:30:881 EV log-file-read /var/dns/tokyoSS.log
+23:11:2022.15:42:30:892 EV conf-file-read tokyoSS.conf
+23:11:2022.15:42:30:892 ST 127.0.0.1 4444 5000 debug
+23:11:2022.15:42:39:545 ZT  SS 3620 68
+23:11:2022.15:44:02:827 EV log-file-read /var/dns/tokyoSS.log
+23:11:2022.15:44:02:837 EV conf-file-read tokyoSS.conf
+23:11:2022.15:44:02:837 ST 127.0.0.1 4444 5000 debug
+23:11:2022.15:44:47:547 EV log-file-read /var/dns/tokyoSS.log
+23:11:2022.15:44:47:561 EV conf-file-read tokyoSS.conf
+23:11:2022.15:44:47:561 ST 127.0.0.1 4444 5000 debug
+23:11:2022.15:44:56:207 ZT  SS 3615 68
+23:11:2022.15:45:47:164 QR /127.0.0.1 3874,Q+R,0,0,0,0;example.com.,MX;
