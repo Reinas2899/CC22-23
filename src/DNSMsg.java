@@ -32,7 +32,6 @@ public class DNSMsg implements Serializable {
         return header + ";" + data;
     }
 
-
     public byte[] getBytes(Object object) throws IOException {
         try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {

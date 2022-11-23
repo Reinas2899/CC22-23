@@ -236,7 +236,7 @@ public class ParserDB {
         ExceptionHandler exceptionHandler = new ExceptionHandler();
         if(!exceptionHandler.isNumeric(query.getHeader().getMessageID()) || !exceptionHandler.isNumeric(query.getHeader().getResponse_code())
                 || !exceptionHandler.isNumeric(query.getHeader().getN_values()) || !exceptionHandler.isNumeric(query.getHeader().getN_authorities())
-                || !exceptionHandler.isNumeric(query.getHeader().getN_extravalues()) || !exceptionHandler.checksFlags(query.getHeader().getFlags())) r=3;
+                || !exceptionHandler.isNumeric(query.getHeader().getN_extravalues())) r=3;
         if(!exceptionHandler.typeExists(query.getData().getQinfo().getType_value())) r=1;
         if(!query.getData().getQinfo().getName().equals(domain)) r=2;
         return r;

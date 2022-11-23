@@ -15,7 +15,7 @@ public class SP {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SintaxeIncorretaException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }catch (InterruptedException e) {
@@ -30,7 +30,7 @@ public class SP {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             } catch (SintaxeIncorretaException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             }catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -78,19 +78,19 @@ public class SP {
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
-            
-            if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
+            Thread.sleep(4000);
+	    if(m==null){
                 LocalDateTime errorconvertNow = LocalDateTime.now();
-                logfile.updateLogFileER("Menssagem vazia", timeout, errorconvertNow, "ER", endereco[1]);
-                
+                logfile.updateLogFileER("Não foi possível a descodificação da query.-Sintaxe Incorreta da query", timeout, errorconvertNow, "ER", endereco[1]);
+                throw new SintaxeIncorretaException("Sintaxe Incorreta da query.");
+            }else if(!verificaSintaxe(m)) {
+                throw new SintaxeIncorretaException("Sintaxe Incorreta da query.");
             }else {
                 logfile.updateLogFileQR_QE(m.toString(), receivedNow, "QR", endereco[1]);
                 //System.out.println(m);
                 parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
-                //if(mensagem.getHeader().getFlags().equals("Q+R")) mensagem.getHeader().setFlags("R+A");
-                //System.out.println(mensagem);
-                //buf = mensagem.getBytes(mensagem);
+
 
 
 		String servidormensagem=mensagem.toString();
@@ -141,11 +141,11 @@ public class SP {
         Logfile logfile = new Logfile(logFilename);
 
         
-        int i = 1;
-        int n;
+	int i = 1;
+	int n;
 	int flag=0;
-    int tamanho = 0;
-    LocalDateTime timeRR = LocalDateTime.now() ;
+    	int tamanho = 0;
+    	LocalDateTime timeRR = LocalDateTime.now() ;
         while (running) {
             //System.out.println("here we go again");
             Socket socketSS = server.accept();
@@ -188,9 +188,9 @@ public class SP {
 				    flag=2;
 				    break;
 			    }
-                            oos = new ObjectOutputStream(socketSS.getOutputStream());
+                           oos = new ObjectOutputStream(socketSS.getOutputStream());
 			    oos.writeObject(n+1 + " " + parserDB.getFileLines().get(n));
-                tamanho += oos.toString().getBytes().length;
+	                   tamanho += oos.toString().getBytes().length;
 			    oos.flush();
                             //if(n==4) Thread.sleep(8000);
                         }
@@ -212,5 +212,16 @@ public class SP {
 
         logfile.updateLogFileZT("SP", "", duracao.toMillis(), tamanho, finalZT, "ZT");
         System.out.println("Acabou o processo de zona de transferência.");
+    }
+    
+    public static boolean verificaSintaxe(DNSMsg dnsMsg){
+        boolean r=true;
+        ExceptionHandler exceptionHandler=new ExceptionHandler();
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getMessageID())) r= false;
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getN_authorities())) r= false;
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getN_extravalues())) r= false;
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getN_values())) r= false;
+        if(!exceptionHandler.typeExists(dnsMsg.getData().getQinfo().getType_value())) r= false;
+        return r;
     }
 }

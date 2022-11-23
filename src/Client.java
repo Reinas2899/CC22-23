@@ -16,12 +16,22 @@ public class Client {
         Logfile logfile = new Logfile("/var/dns/Client.log");
         logfile.updateLogFileEV("log-file-created", LocalDateTime.now(), "EV", "/var/dns/Client.log");
 
-	DNSMsg msg = readquery("3874,Q+R,0,0,0,0;example.com.,MX;");
-	buf = msg.getBytes(msg);
+	String query="3874,Q+R,0,0,0,0;example.com.,MX;";
+	DNSMsg msg=null;
+	try{
+		msg = readquery(query);
+	}catch(SintaxeIncorretaException s){
+		System.out.println(s.getMessage());
+	}
+	try{
+		buf = msg.getBytes(msg);
+	}catch(NullPointerException n){
+		return;
+	}
 	String [] endereco = address.toString().split("/");
 	logfile.updateLogFileST(4445, "debug", 5000, LocalDateTime.now(), "ST",  endereco[1]);
 	DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 4445); // controi datagrama
-	logfile.updateLogFileQR_QE(msg.toString(), LocalDateTime.now(), "QE", endereco[1]);
+	logfile.updateLogFileQR_QE(query, LocalDateTime.now(), "QE", endereco[1]);
 	socket.send(packet); //envia datagrama pelo socket
 	DatagramPacket packet2= new DatagramPacket(buf,buf.length);
 	StringBuilder stringBuilder = new StringBuilder();
@@ -65,7 +75,12 @@ public class Client {
         try{
         if(connectionFailed==1){
             byte[] buffer = new byte[1024];
-            buffer=msg.getBytes(msg);
+            
+	    try{
+		buffer = msg.getBytes(msg);
+            }catch(NullPointerException n){
+			return;
+            }
             DatagramPacket packetSS= new DatagramPacket(buffer,buffer.length,address,4444);
             socket.send(packetSS);
             
@@ -100,15 +115,17 @@ public class Client {
         //logfile.updateLogFileSP(LocalDateTime.now(), "SP", endereco[1], "Encerrou sem problemas");
     }
 
-    public static DNSMsg readquery(String query){
+    public static DNSMsg readquery(String query) throws SintaxeIncorretaException{
         String[] componente=new String[7];
         String [] componente2=new String[2];
         componente = query.split(",");
         componente2 = componente[5].split(";");
+        if(componente.length!=7 || componente2.length!=2) throw new SintaxeIncorretaException("Campos a mais na query.-Sintaxe Incorreta.");
         Header header = new Header(componente[0],componente[1]);
         String tipo = componente[6].substring(0,componente[6].length()-1);
         Qinfo qinfo = new Qinfo(componente2[1],tipo);
         Data data = new Data(qinfo);
         return new DNSMsg(header,data);
     }
+
 }

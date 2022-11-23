@@ -155,6 +155,11 @@ public class SS {
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
             logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QR", address.toString());
+            if(m==null){ //perguntar se esta é a linha anterior correspondente à descodificacao
+                throw new SintaxeIncorretaException("Nao foi possivel descodificar -Sintaxe Incorreta da query.");
+            }else if(!verificaSintaxe(m)) {
+                throw new SintaxeIncorretaException("Query desconhecida -Sintaxe Incorreta da query.");
+            }
             if(allReceived){
                 ParserDB parserDB = new ParserDB(dbCopiedLines);
 
@@ -187,8 +192,16 @@ public class SS {
             //running=false;
 
         }
-
-
-
+    }
+    
+    public static boolean verificaSintaxe(DNSMsg dnsMsg){
+        boolean r=true;
+        ExceptionHandler exceptionHandler=new ExceptionHandler();
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getMessageID())) r= false;
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getN_authorities())) r= false;
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getN_extravalues())) r= false;
+        if(!exceptionHandler.isNumeric(dnsMsg.getHeader().getN_values())) r= false;
+        if(!exceptionHandler.typeExists(dnsMsg.getData().getQinfo().getType_value())) r= false;
+        return r;
     }
 }
