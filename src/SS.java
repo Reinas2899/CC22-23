@@ -131,6 +131,7 @@ public class SS {
                 dbCopiedLines.addAll(l);
 
             }
+            else connection=true;
         }
         LocalDateTime timeZT = LocalDateTime.now();
         Duration duracao = Duration.between(timeRR, timeZT); 
