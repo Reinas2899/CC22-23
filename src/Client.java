@@ -12,20 +12,20 @@ public class Client {
     public static void main(String[] args) throws IOException,InterruptedException {
 
 
-        while(true) {
+        while (true) {
             System.out.print("\033[32mCliente> ");
             Scanner scanner = new Scanner(System.in);
 
             String type = scanner.nextLine();
-            if(type.equals("")) continue;
+            if (type.equals("")) continue;
             String argumentos[] = type.split(" ");
-            if(argumentos.length != 4) continue;
-            DatagramSocket socket= new DatagramSocket();
-            InetAddress address= InetAddress.getByName("localhost");//argumento[0]
+            if (argumentos.length != 4) continue;
+            DatagramSocket socket = new DatagramSocket();
+            InetAddress address = InetAddress.getByName("localhost");//argumento[0]
             byte[] buf = new byte[1024];
-            int connectionFailed=0;
+            int connectionFailed = 0;
             int messageID = 1;
-            String query = messageID +"," + argumentos[3] + ",0,0,0,0;" + argumentos[1] + "," + argumentos[2] + ";";
+            String query = messageID + "," + argumentos[3] + ",0,0,0,0;" + argumentos[1] + "," + argumentos[2] + ";";
             messageID++;
             System.out.println(query);
 
@@ -128,59 +128,8 @@ public class Client {
             }
             socket.close();
         }
-        try{
-        if(connectionFailed==1){
-        	System.out.print("A estabelecer conexão com SS");
-		Thread.sleep(1000);
-		System.out.print(".");
-		Thread.sleep(1000);
-		System.out.print(".");
-		Thread.sleep(1000);
-		System.out.print(".");
-		Thread.sleep(1000);
-		System.out.print("\n");
-            byte[] buffer = new byte[1024];
-            
-	    try{
-		buffer = msg.getBytes(msg);
-            }catch(NullPointerException n){
-			return;
-            }
-            DatagramPacket packetSS= new DatagramPacket(buffer,buffer.length,address,4444);
-            socket.send(packetSS);
-            
-            DatagramPacket numPacket= new DatagramPacket(buffer,buffer.length);
-            socket.receive(numPacket);
-            InetAddress end = numPacket.getAddress();
-            int nporta = numPacket.getPort();
-            byte [] numData = numPacket.getData();
-            String numPacotes = new String(numData,0,numPacket.getLength());
-            int num=0;
-	    try{
-               num = Integer.parseInt(numPacotes);
-            }catch(NumberFormatException n){
-            	n.printStackTrace();
-            }
-            
-            int cic=0;
-            StringBuilder sb = new StringBuilder();
-            while(cic<num){
-		    DatagramPacket packet2SS = new DatagramPacket(buffer,buffer.length,end,nporta);
-		    socket.receive(packet2SS);
-		    byte[] dados = new byte[1024];
-		    dados=packet2SS.getData();
-		    String a = new String(dados,0,packet2SS.getLength());
-		    sb.append(a);
-		    cic++;
-            }
-            System.out.println(sb.toString());
-        }
-        }catch (SocketTimeoutException e) {
-            System.out.println("Conexão com SS falhou.");
-            System.out.println("Tente mais tarde novamente.");
-        }
-        socket.close();
     }
+
 
     public static DNSMsg readquery(String query) throws SintaxeIncorretaException{
         String[] componente=new String[7];
