@@ -10,12 +10,12 @@ import java.time.LocalDateTime;
 public class Client {
     public static void main(String[] args) throws IOException,InterruptedException {
         DatagramSocket socket= new DatagramSocket();
-        InetAddress address= InetAddress.getByName("localhost");
+        InetAddress address= InetAddress.getByName("10.4.0.12");
         byte[] buf = new byte[1024];
         int connectionFailed=0;
 
 
-	String query="3874,Q+R,0,0,0,0;tokyo.,MX;";
+	String query="3874,Q+R,0,0,0,0;tokyo.,www;";
 	DNSMsg msg=null;
 	try{
 		msg = readquery(query);
@@ -72,6 +72,15 @@ public class Client {
         }
         try{
         if(connectionFailed==1){
+        	System.out.print("A estabelecer conexão com SS");
+		Thread.sleep(1000);
+		System.out.print(".");
+		Thread.sleep(1000);
+		System.out.print(".");
+		Thread.sleep(1000);
+		System.out.print(".");
+		Thread.sleep(1000);
+		System.out.print("\n");
             byte[] buffer = new byte[1024];
             
 	    try{
