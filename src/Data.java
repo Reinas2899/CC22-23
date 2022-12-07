@@ -11,6 +11,7 @@ public class Data implements Serializable {
 
 
     public Data(Qinfo qinfo){
+
         this.qinfo = qinfo;
     }
 
