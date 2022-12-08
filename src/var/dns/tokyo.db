@@ -18,8 +18,8 @@ TTL DEFAULT 86400
 
 Osaka.@ NS osakaSP.osaka.tokyo.
 
-@ MX mx1.tokyo TTL 10
-@ MX mx2.tokyo TTL 20
+@ MX mx1.tokyo. TTL 10
+@ MX mx2.tokyo. TTL 20
 
 tokyoSP A 10.0.4.12 TTL
 tokyoSS1 A 10.0.4.11 TTL

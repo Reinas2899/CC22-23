@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) throws IOException,InterruptedException {
 
-
+	int messageID = 1;
         while (true) {
             System.out.print("\033[32mCliente> ");
             Scanner scanner = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Client {
             InetAddress address = InetAddress.getByName("localhost");//argumento[0]
             byte[] buf = new byte[1024];
             int connectionFailed = 0;
-            int messageID = 1;
+
             String query = messageID + "," + argumentos[3] + ",0,0,0,0;" + argumentos[1] + "," + argumentos[2] + ";";
             messageID++;
             System.out.println(query);
@@ -86,8 +86,16 @@ public class Client {
             }
             try {
                 if (connectionFailed == 1) {
+	            System.out.print("A estabelecer conexão com SS");
+            	    Thread.sleep(1000);
+            	    System.out.print(".");
+            	    Thread.sleep(1000);
+            	    System.out.print(".");
+           	    Thread.sleep(1000);
+            	    System.out.print(".");
+            	    Thread.sleep(1000);
+	            System.out.print("\n");
                     byte[] buffer = new byte[1024];
-
                     try {
                         buffer = msg.getBytes(msg);
                     } catch (NullPointerException n) {

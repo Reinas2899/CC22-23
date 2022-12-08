@@ -89,7 +89,7 @@ public class SP {
             }else {
                 logfile.updateLogFileQR_QE(m.toString().replace("\n"," "), receivedNow, "QR", endereco[1]);
                 //System.out.println(m);
-                parserDB.respondeQuery(m);
+                //parserDB.respondeQuery(m);
                 DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
 
 

@@ -194,7 +194,40 @@ public class ParserDB {
         }
         return list;
     }
-    
+        
+    public String procuraIPdominio(String domain,ParameterDB.Tipo type){
+        String ip="";
+        //System.out.println("dominio:"+domain+" tipo:"+type);
+        for(ParameterDB db : this.linesParametersDB) {
+            //System.out.println(db);
+            if (db.getTtl()!=null && domain.contains(db.getParametro()) && db.getTipo().equals(type)){
+                //System.out.println("MATCH");
+                ip=db.getValor();
+            }
+        }
+        return ip;
+    }
+
+    public List<String> procuraValues(String domain,ParameterDB.Tipo type){
+        List<String> l = new ArrayList<>() ;
+        //System.out.println("dominio:"+domain+" tipo:"+type);
+        for(ParameterDB db : this.linesParametersDB) {
+            if (db.getValor().contains(domain) && db.getTipo().equals(type)) l.add(serverDomain()+" "+db.getTipo()+" "+db.getValor()+" "+ttlValue());
+        }
+        return l;
+    }
+
+    public List<String> procuraExtra(List<String> dominios,ParameterDB.Tipo type){
+        List<String> l = new ArrayList<>() ;
+        for(String dominio:dominios) {
+            for (ParameterDB db : this.linesParametersDB) {
+                if (dominio.contains(db.getParametro()) && db.getTipo().equals(type))
+                    l.add(dominio + " " + db.getTipo() + " " + db.getValor() + " " + ttlValue());
+            }
+        }
+        return l;
+    }
+
     
     public int contaAutoritativos(String name){
         int c=0;
@@ -270,51 +303,62 @@ public class ParserDB {
         return r;
     }
 
-
-        public DNSMsg respondeQuery(DNSMsg msg){
+    public DNSMsg respondeQuery(DNSMsg msg){
         //if(msg.getData().getQinfo().getName().equals(serverDomain())){
             int code = checkQuery(msg,serverDomain());
             msg.getHeader().setResponse_code(String.valueOf(code));
+            String dominio = msg.getData().getQinfo().getName();
             if(msg.getHeader().getFlags().equals("Q+R")) msg.getHeader().setFlags("R+A");
-            if(msg.getData().getQinfo().getType_value().equals("MX")) {
-                msg.getHeader().setN_extravalues(String.valueOf(countExtra(msg.getData().getQinfo().getType_value(), msg.getData().getQinfo().getName())));
-                msg.getHeader().setN_values(String.valueOf(countValues(msg.getData().getQinfo().getType_value())));
-                msg.getHeader().setN_authorities(String.valueOf(countAuthorities(msg.getData().getQinfo().getName())));
-                msg.getData().setResp_values(getListofValues(msg.getData().getQinfo().getType_value()));
-                msg.getData().setAuthorties_values(getListofAuthorities(msg.getData().getQinfo().getName()));
-                msg.getData().setExt_values(getListofExtra());
-            }if(msg.getData().getQinfo().getType_value().equals("CNAME")){
+            int N = countAuthorities(msg.getData().getQinfo().getName());
+            msg.getHeader().setN_authorities(String.valueOf(N));
+            if(msg.getData().getQinfo().getType_value().equalsIgnoreCase("A")){
+                //System.out.println("ENTROU");
+                String ip = procuraIPdominio(msg.getData().getQinfo().getName(),ParameterDB.Tipo.A);
+                //System.out.println(ip);
+                List<String> l = new ArrayList<>();
+                l.add(ip);
+                int s = l.size();
+                int v = N+s;
+                msg.getData().setResp_values(l);
+                msg.getHeader().setN_values(String.valueOf(s));
+                msg.getHeader().setN_extravalues(String.valueOf(v));
+            }else if(msg.getData().getQinfo().getType_value().equalsIgnoreCase("NS")){
+                List<String> l1 = procuraValues(msg.getData().getQinfo().getName(),ParameterDB.Tipo.NS);
+                List<String> dominios = new ArrayList<>();
+                l1.forEach(x->dominios.add(x.split(" ")[2]));
+                List<String> l2 = procuraExtra(dominios,ParameterDB.Tipo.A);
+                msg.getData().setResp_values(l1);
+                msg.getData().setExt_values(l2);
+                msg.getHeader().setN_values(String.valueOf(countValues(String.valueOf(l1.size()))));
+                msg.getHeader().setN_extravalues(String.valueOf(l2.size()));
+            }
+            else if(msg.getData().getQinfo().getType_value().equals("MX")) {
+                List<String> l1 = procuraValues(msg.getData().getQinfo().getName(),ParameterDB.Tipo.MX);
+                List<String> dominios = new ArrayList<>();
+                l1.forEach(x->dominios.add(x.split(" ")[2]));
+                List<String> l2 = procuraExtra(dominios,ParameterDB.Tipo.A);
+                //System.out.println(l1);
+                msg.getData().setResp_values(l1);
+                msg.getData().setExt_values(l2);
+                //System.out.println(l2);
+                msg.getHeader().setN_values(String.valueOf(countValues(String.valueOf(l1.size()))));
+                msg.getHeader().setN_extravalues(String.valueOf(l2.size()));
+           }else if(msg.getData().getQinfo().getType_value().equals("CNAME")){
                  msg.getData().setResp_values(cnameRecords());
                  msg.getHeader().setN_values(String.valueOf((cnameRecords().size())));
             }if(msg.getData().getQinfo().getType_value().equals("www")) {
-                msg.getData().setResp_values(procuraEntradas("www"));//Autoritativos
+                msg.getData().setResp_values(procuraEntradas("www"));//contaAutoritativos
                 msg.getHeader().setN_values(String.valueOf((procuraEntradas("www").size())));
-                msg.getHeader().setN_authorities(String.valueOf(contaAutoritativos("www")));
             }if(msg.getData().getQinfo().getType_value().equals("ftp")) {
                 msg.getData().setResp_values(procuraEntradas("ftp"));
                 msg.getHeader().setN_values(String.valueOf((procuraEntradas("ftp").size())));
-                msg.getHeader().setN_authorities(String.valueOf(contaAutoritativos("ftp")));
-        }if(msg.getData().getQinfo().getType_value().equals("ns1")) {
-                msg.getData().setResp_values(procuraEntradas("ns1"));
-                msg.getHeader().setN_values(String.valueOf((procuraEntradas("ns1").size())));
-            }if(msg.getData().getQinfo().getType_value().equals("ns2")) {
-                    msg.getData().setResp_values(procuraEntradas("ns2"));
-                msg.getHeader().setN_values(String.valueOf((procuraEntradas("ns2").size())));
-            }if(msg.getData().getQinfo().getType_value().equals("ns3")) {
-                    msg.getData().setResp_values(procuraEntradas("ns3"));
-                msg.getHeader().setN_values(String.valueOf((procuraEntradas("ns3").size())));
-            }if(msg.getData().getQinfo().getType_value().equals("mx1")) {
-                    msg.getData().setResp_values(procuraEntradas("mx1"));
-                msg.getHeader().setN_values(String.valueOf((procuraEntradas("mx1").size())));
-            }if(msg.getData().getQinfo().getType_value().equals("mx2")) {
-                    msg.getData().setResp_values(procuraEntradas("mx2"));
-                msg.getHeader().setN_values(String.valueOf((procuraEntradas("mx2").size())));
-
             }
             return msg;
         //}else return null;
     }
 
+
+    
     public ParserDB(){this.linesParametersDB=new ArrayList<>();}
     public ParserDB(List<ParameterDB> l){
         this.linesParametersDB=new ArrayList<>(l);
