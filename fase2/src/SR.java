@@ -145,7 +145,7 @@ public class SR {
         DatagramSocket socket = new DatagramSocket(porta);
         byte[] buf = new byte[1024];
         boolean running = true;
-        Logfile logfile = new Logfile("/var/dns/tokyoSS.log");
+        Logfile logfile = new Logfile("/var/dns/tokyoSR.log");
         while (running){
             DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
             socket.receive(packet); //fica à espera de receber

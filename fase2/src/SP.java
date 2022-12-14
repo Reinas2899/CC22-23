@@ -12,7 +12,7 @@ public class SP {
         new Thread(()-> {
             try {
 
-                DatagramSocket(args[0]);
+                SocketSR(args[0]);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (SintaxeIncorretaException e) {
@@ -38,11 +38,11 @@ public class SP {
         }).start();
 
     }
-    public static void DatagramSocket(String filename) throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
+    public static void SocketSR(String filename) throws IOException, SintaxeIncorretaException, ClassNotFoundException,InterruptedException {
         InetAddress address;
 // = InetAddress.getByName("10.0.5.20");
         int porta = 4445;
-        DatagramSocket socket = new DatagramSocket(porta);
+        ServerSocket serverSocket = new ServerSocket(porta);
         byte[] buf = new byte[1024];
         boolean running = true;
         LocalDateTime runningNow = LocalDateTime.now();
@@ -60,73 +60,22 @@ public class SP {
         
         
         while (running) {
+
+            Socket socket = serverSocket.accept();
+            ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            DNSMsg receivedMessage = (DNSMsg) ois.readObject();
+            parserDB.respondeQuery(receivedMessage);
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(receivedMessage);
+
             
-            DatagramPacket packet = new DatagramPacket(buf, buf.length);//prepara o datagrama
-            socket.receive(packet); //fica à espera de receber
-            packetAdress = packet.getAddress().toString(); //->ENDERECO DO CL/SR
-	    System.out.println(packetAdress);
-            endereco = packetAdress.split("/");
-            logfile.updateLogFileST(porta, modo, timeout, LocalDateTime.now(), "ST", endereco[1]);
-
-            LocalDateTime receivedNow = LocalDateTime.now();
-            
-
-            address = packet.getAddress();
-            int port = packet.getPort();
-            packet = new DatagramPacket(buf, buf.length, address, port);
-            endereco = address.toString().split("/");
-
-
-            byte [] data = packet.getData();
-            ByteArrayInputStream in = new ByteArrayInputStream(data);
-            ObjectInputStream is = new ObjectInputStream(in);
-            DNSMsg m = (DNSMsg) is.readObject();
-            Thread.sleep(4000);
-	    if(m==null){
-                LocalDateTime errorconvertNow = LocalDateTime.now();
-                logfile.updateLogFileER("Não foi possível a descodificação da query.-Sintaxe Incorreta da query", timeout, errorconvertNow, "ER", endereco[1]);
-                throw new SintaxeIncorretaException("Sintaxe Incorreta da query.");
-            }else if(!verificaSintaxe(m)) {
-                throw new SintaxeIncorretaException("Sintaxe Incorreta da query.");
-            }else {
-                logfile.updateLogFileQR_QE(m.toString().replace("\n"," "), receivedNow, "QR", endereco[1]);
-                //System.out.println(m);
-                //parserDB.respondeQuery(m);
-                DNSMsg mensagem = parserDB.respondeQuery(m);//chamar a funcao
-
-
-
-		String servidormensagem=mensagem.toString();
-                byte[] dados = servidormensagem.getBytes();
-                
-                Fragmentation fragmentation = new Fragmentation(dados.length,432);
-                int numpacotes = fragmentation.numberofFragments();
-                Thread.sleep(4000);
-                System.out.println("A enviar "+numpacotes+" pacotes por fragmentação para o cliente...");
-                String nPackets = String.valueOf(numpacotes);
-                byte[] n = nPackets.getBytes();
-                InetAddress address2 = InetAddress.getByName(address.toString().split("/")[1]); // "/10.0.5.20"
-                DatagramPacket packet2 = new DatagramPacket(n, n.length, address2, port);
-                socket.send(packet2);
-                int v =0;
-                while(v<numpacotes){
-                    byte[] fragment = new byte[1024];
-                    fragment = Arrays.copyOfRange(dados,432*v,432*(v+1));
-                    DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address2, port);
-                    socket.send(packet3);
-                    v++;
-                    LocalDateTime sentNow = LocalDateTime.now();
-                    String resposta = new String(fragment,0,fragment.length);
-                    String [] componente = resposta.split(";");
-                    endereco = address2.toString().split("/");
-
-                    logfile.updateLogFileRP_RR(componente[0]+";", sentNow, "RP", endereco[1]);
-                }
-                                             
-            }
 
         }
-        socket.close();
+                                             
+
+
+
+        serverSocket.close();
         LocalDateTime shutdownNow = LocalDateTime.now();
         logfile.updateLogFileSP(shutdownNow, "SP", endereco[1], "Servidor Encerrou");
 
