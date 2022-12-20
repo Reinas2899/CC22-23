@@ -1,6 +1,8 @@
 import java.io.*;
 import java.net.*;
 import java.lang.*;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 
 public class SP {
@@ -38,6 +40,11 @@ public class SP {
         String ipport = parserConfig.getIPPortSP();
         System.out.println(ipport);
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
+        String logFilename= parserConfig.getLogfilename();
+        Logfile logfile = new Logfile(logFilename);
+        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", logFilename);
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", filename);
+        logfile.updateLogFileEV("db-file-read", LocalDateTime.now(), "EV", parserConfig.getDbfile());
         int port = Integer.parseInt(ipport.split(":")[1]);
         String address = ipport.split(":")[0];
         ServerSocket serverSocket = new ServerSocket(port);
@@ -48,17 +55,21 @@ public class SP {
             System.out.println("nova iteracao");
             Socket socket = serverSocket.accept();
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+            logfile.updateLogFileST(Integer.parseInt(ipport), "debug", 4000, LocalDateTime.now(), "ST", serverSocket.getInetAddress().toString());
             DNSMsg receivedMessage = (DNSMsg) ois.readObject();
+            logfile.updateLogFileQR_QE(receivedMessage.toString(), LocalDateTime.now(), "QR", address);
             System.out.println("recebi isto:"+receivedMessage);
             DNSMsg m = parserDB.respondeQuery(receivedMessage);
             System.out.println("Eis a resposta:");
             System.out.println(m.toString());
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(m);
+            logfile.updateLogFileRP_RR(m.toString(),LocalDateTime.now(),"RP",address);
             if(m.getHeader().getResponse_code().equals(String.valueOf(1))) {
                     String ip="";
                     if(m.getData().getQinfo().getName().contains("osaka")) ip=parserDB.getIPSPsub();
                     System.out.println("IP a enviar "+ip);
+                    logfile.updateLogFileQR_QE(ip, LocalDateTime.now(), "QE", address);
                     oos.writeObject(ip);
             }
         }
@@ -75,28 +86,34 @@ public class SP {
         String domain = parserConfig.getWorkingDomain();
         String logFilename= parserConfig.getLogfilename();
         Logfile logfile = new Logfile(logFilename);
+        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", logFilename);
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", filename);
+        logfile.updateLogFileEV("db-file-read", LocalDateTime.now(), "EV", parserConfig.getDbfile());
         int i = 1;
         int n;
         int flag=0;
         int tamanho = 0;
+        LocalDateTime inicio =LocalDateTime.now();
         while (running) {
             //System.out.println("here we go again");
             Socket socketSS = server.accept();
             ObjectInputStream ois = new ObjectInputStream(socketSS.getInputStream());
             String receivedMessage = (String) ois.readObject();
+            logfile.updateLogFileQR_QE(receivedMessage, LocalDateTime.now(), "QR", String.valueOf(socketSS.getInetAddress()));
             if (parserDB.isAutoritiveDomain(receivedMessage)) { // O SS é autoritativo do domínio
                 ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
                 oos.writeObject(parserDB.getNumberofLines());//envia para o SS o numero de linhas a enviar
+                logfile.updateLogFileRP_RR(String.valueOf(parserDB.getNumberofLines()),LocalDateTime.now(),"RP",String.valueOf(socketSS.getInetAddress()));
                 ois = new ObjectInputStream(socketSS.getInputStream());
                 receivedMessage = (String) ois.readObject();
+                logfile.updateLogFileRP_RR(String.valueOf(socketSS.getInputStream()),LocalDateTime.now(),"RR",String.valueOf(socketSS.getInetAddress()));
                 if (receivedMessage.equals("Aceito")) {
                     oos = new ObjectOutputStream(socketSS.getOutputStream());
                     oos.writeObject(soaretryTime);
                     oos.flush();
+                    logfile.updateLogFileQR_QE(String.valueOf(soaretryTime), LocalDateTime.now(), "QE", String.valueOf(socketSS.getInetAddress()));
                     oos = new ObjectOutputStream(socketSS.getOutputStream());
                     oos.writeObject(soarexpireTime);
-
-
                     oos.flush();
                     final SocketConnected socketConnected = new SocketConnected();
                     Thread thread = new Thread(){
@@ -104,6 +121,7 @@ public class SP {
                             try {
                                 ObjectInputStream objectInputStream = new ObjectInputStream(socketSS.getInputStream());
                                 String mensagem = (String) objectInputStream.readObject();
+                                logfile.updateLogFileRP_RR(mensagem,LocalDateTime.now(),"RR",String.valueOf(socketSS.getInetAddress()));
                                 if (mensagem.equals("FIN")) socketConnected.setIsClosed(true);
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -137,7 +155,11 @@ public class SP {
                 oos.writeObject("Não te aceito.");
             }
             if(flag!=2) running=false;
+            LocalDateTime fim = LocalDateTime.now();
+            Duration duracao = Duration.between(inicio,fim);
+            logfile.updateLogFileZT("SP",socketSS.getInetAddress().toString(), duracao.toMillis(), tamanho,fim,"ZT");
         }
+
         System.out.println("Acabou o processo de zona de transferência.");
     }
 
