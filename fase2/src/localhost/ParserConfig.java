@@ -10,7 +10,17 @@ import java.util.List;
 public class ParserConfig {
     private List<LineParameter> lineParameters = new ArrayList<>();
     private String logfilename;
+    private String allLogfile;
     private String dbfile;
+
+    public String getAllLogfile() {
+        return allLogfile;
+    }
+
+    public void setAllLogfile(String allLogfile) {
+        this.allLogfile = allLogfile;
+    }
+
     private String workingDomain;
 
     public  ParserConfig(String filename) throws FileNotFoundException, SintaxeIncorretaException {
@@ -65,11 +75,27 @@ public class ParserConfig {
         this.setLogfilename(filename);
     }
 
+    public void alllogFilename(){
+        String filename = "";
+        for(LineParameter lp : lineParameters){
+            if(lp.getTipo().equals(LineParameter.Tipo.LG) && lp.getParametro().equals("all")) filename = lp.getValor();
+        }
+        this.setAllLogfile(filename);
+    }
+
 
     public String getIPPortSP(){
         String a="";
         for (LineParameter l:lineParameters){
             if(l.getTipo().equals(LineParameter.Tipo.SP)) a= l.getValor();
+        }
+        return a;
+    }
+
+    public String getroot(){
+        String a="";
+        for (LineParameter l:lineParameters){
+            if(l.getTipo().equals(LineParameter.Tipo.ST)) a= l.getValor();
         }
         return a;
     }

@@ -41,6 +41,9 @@ public class SP {
         System.out.println(ipport);
         ParserDB parserDB = new ParserDB(parserConfig.getDbfile());
         String logFilename= parserConfig.getLogfilename();
+        parserConfig.alllogFilename();
+        String allLog = parserConfig.getAllLogfile();
+        Logfile allLogfile = new Logfile(allLog);
         Logfile logfile = new Logfile(logFilename);
         logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", logFilename);
         logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", filename);
@@ -55,7 +58,8 @@ public class SP {
             System.out.println("nova iteracao");
             Socket socket = serverSocket.accept();
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-            logfile.updateLogFileST(Integer.parseInt(ipport), "debug", 4000, LocalDateTime.now(), "ST", serverSocket.getInetAddress().toString());
+            logfile.updateLogFileST(port, "debug", 4000, LocalDateTime.now(), "ST", serverSocket.getInetAddress().toString());
+            allLogfile.updateLogFileST(port, "debug", 4000, LocalDateTime.now(), "ST", serverSocket.getInetAddress().toString());
             DNSMsg receivedMessage = (DNSMsg) ois.readObject();
             logfile.updateLogFileQR_QE(receivedMessage.toString(), LocalDateTime.now(), "QR", address);
             System.out.println("recebi isto:"+receivedMessage);
@@ -84,6 +88,10 @@ public class SP {
         int soaretryTime = parserDB.getSOARETRY();
         int soarexpireTime = parserDB.getSOAEXPIRE();
         String domain = parserConfig.getWorkingDomain();
+         parserConfig.alllogFilename();
+         String allLog = parserConfig.getAllLogfile();
+        System.out.println(allLog);
+        Logfile allLogfile = new Logfile(allLog);
         String logFilename= parserConfig.getLogfilename();
         Logfile logfile = new Logfile(logFilename);
         logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", logFilename);
@@ -153,11 +161,14 @@ public class SP {
             } else {
                 ObjectOutputStream oos = new ObjectOutputStream(socketSS.getOutputStream());
                 oos.writeObject("Não te aceito.");
+                logfile.updateLogFileEZ(socketSS.getInetAddress().toString(),LocalDateTime.now(),"EZ",String.valueOf(socketSS.getLocalAddress()),"SP");
+                allLogfile.updateLogFileEZ(socketSS.getInetAddress().toString(),LocalDateTime.now(),"EZ",String.valueOf(socketSS.getLocalAddress()),"SP");
             }
             if(flag!=2) running=false;
             LocalDateTime fim = LocalDateTime.now();
             Duration duracao = Duration.between(inicio,fim);
             logfile.updateLogFileZT("SP",socketSS.getInetAddress().toString(), duracao.toMillis(), tamanho,fim,"ZT");
+            allLogfile.updateLogFileZT("SP",socketSS.getInetAddress().toString(), duracao.toMillis(), tamanho,fim,"ZT");
         }
 
         System.out.println("Acabou o processo de zona de transferência.");

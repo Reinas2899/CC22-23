@@ -1,5 +1,6 @@
 import java.io.*;
 import java.net.*;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +12,16 @@ public class SR {
         //verifica na cache
         //caso não tenha vai ao ST
 
-        //String conf = args[0];
+        String conf = args[0];
+        ParserConfig pconf = new ParserConfig(conf);
+        String logFilename = pconf.getLogfilename();
+        String root = pconf.getroot();
+        Logfile logfile = new Logfile(logFilename);
+        pconf.alllogFilename();
+        Logfile allLog = new Logfile(pconf.getAllLogfile());
+        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", logFilename);
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", conf);
+        logfile.updateLogFileEV("root-file-read", LocalDateTime.now(), "EV", root);
 
         InetAddress address;
         int porta = 4445;
@@ -22,12 +32,15 @@ public class SR {
             socket.receive(packet);
             address = packet.getAddress();
             int port = packet.getPort();
+            logfile.updateLogFileST(porta, "debug", 4000, LocalDateTime.now(), "ST", address.toString());
+            allLog.updateLogFileST(porta, "debug", 4000, LocalDateTime.now(), "ST", address.toString());
 
 
             byte [] data = packet.getData();
             ByteArrayInputStream in = new ByteArrayInputStream(data);
             ObjectInputStream is = new ObjectInputStream(in);
             DNSMsg m = (DNSMsg) is.readObject();
+            logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QE", String.valueOf(address));
 
             //verifica se tem resposta à query na cache
             //se nao tiver nada em DD
@@ -36,7 +49,7 @@ public class SR {
 
             System.out.println("A consultar cache...");
             if(!cache.containsKey(header)) {
-                ParserST parserST = new ParserST("allroot");//0:SR.conf 1:allroot
+                ParserST parserST = new ParserST(root);//0:SR.conf 1:allroot
                 InetAddress host = InetAddress.getByName(parserST.getFirsSTAdress().split(":")[0]);
                 System.out.println("A contactar " + host.getHostName());
                 Thread.sleep(2000);
@@ -44,9 +57,11 @@ public class SR {
 
                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(socketST.getOutputStream());
                 objectOutputStream.writeObject(m);
+                logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QE", String.valueOf(address));
 
                 ObjectInputStream objectInputStream = new ObjectInputStream(socketST.getInputStream());
                 String allComponentes = (String) objectInputStream.readObject();
+                logfile.updateLogFileRP_RR(allComponentes,LocalDateTime.now(),"RR", String.valueOf(address));
 
                 String[] components = allComponentes.split(";");
 
@@ -69,8 +84,10 @@ public class SR {
                     if (failed == 0) {
                         oos = new ObjectOutputStream(socketcomp.getOutputStream());
                         oos.writeObject(m);
+                        logfile.updateLogFileQR_QE(m.toString(), LocalDateTime.now(), "QE", String.valueOf(address));
                         ois = new ObjectInputStream(socketcomp.getInputStream());
                         response = (DNSMsg) ois.readObject();
+                        logfile.updateLogFileRP_RR(response.toString(),LocalDateTime.now(),"RR", String.valueOf(address));
                         resp_code = Integer.parseInt(response.getHeader().getResponse_code());
                         if (resp_code == 0 || resp_code == 1) break;
                         i++;
@@ -89,12 +106,14 @@ public class SR {
                     byte[] n = nPackets.getBytes();
                     DatagramPacket packet2 = new DatagramPacket(n, n.length, address, port);
                     socket.send(packet2);
+                    logfile.updateLogFileRP_RR(packet2.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
                     int v = 0;
                     while (v < numpacotes) {
                         byte[] fragment = new byte[1024];
                         fragment = Arrays.copyOfRange(dados, 432 * v, 432 * (v + 1));
                         DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address, port);
                         socket.send(packet3);
+                        logfile.updateLogFileRP_RR(packet3.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
                         v++;
                     }
                 } else if (resp_code == 1) {
@@ -109,9 +128,11 @@ public class SR {
                     objectOutputStream = new ObjectOutputStream(socketSP2.getOutputStream());
                     System.out.println(m);
                     objectOutputStream.writeObject(m);
+                    logfile.updateLogFileRP_RR(m.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
 
                     objectInputStream = new ObjectInputStream(socketSP2.getInputStream()); //get query response
                     response = (DNSMsg) objectInputStream.readObject();
+                    logfile.updateLogFileRP_RR(response.toString(),LocalDateTime.now(),"RR", String.valueOf(address));
                     System.out.println(response);
 
                     byte[] dados = response.toString().getBytes();
@@ -123,11 +144,13 @@ public class SR {
                     byte[] n = nPackets.getBytes();
                     DatagramPacket packet2 = new DatagramPacket(n, n.length, address, port);
                     socket.send(packet2);
+                    logfile.updateLogFileRP_RR(packet2.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
                     int v = 0;
                     while (v < numpacotes) {
                         byte[] fragment = new byte[1024];
                         fragment = Arrays.copyOfRange(dados, 432 * v, 432 * (v + 1));
                         DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address, port);
+                        logfile.updateLogFileRP_RR(packet3.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
                         socket.send(packet3);
                         v++;
                     }
@@ -145,12 +168,14 @@ public class SR {
                 byte[] n = nPackets.getBytes();
                 DatagramPacket packet2 = new DatagramPacket(n, n.length, address, port);
                 socket.send(packet2);
+                logfile.updateLogFileRP_RR(packet2.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
                 int v = 0;
                 while (v < numpacotes) {
                     byte[] fragment = new byte[1024];
                     fragment = Arrays.copyOfRange(dados, 432 * v, 432 * (v + 1));
                     DatagramPacket packet3 = new DatagramPacket(fragment, fragment.length, address, port);
                     socket.send(packet3);
+                    logfile.updateLogFileRP_RR(packet3.toString(),LocalDateTime.now(),"RP", String.valueOf(address));
                     v++;
                 }
             }

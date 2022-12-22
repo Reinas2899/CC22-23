@@ -12,6 +12,7 @@ public class SS {
     static List<ParameterDB> dbCopiedLines = new ArrayList<>();
     static boolean allReceived=false;
     static String logFileName;
+    static  String allLogFileName;
 
     public static void main(String[] args){
         Thread thread1 = new Thread(() -> {
@@ -48,11 +49,14 @@ public class SS {
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
         logFileName = parserConfig.getLogfilename();
+        parserConfig.alllogFilename();
+        allLogFileName = parserConfig.getAllLogfile();
         //System.out.println(parserConfig.getWorkingDomain());
 
         boolean running=true;
         boolean connection=true;
         Logfile logfile = new Logfile(logFileName);
+        Logfile allLog = new Logfile(allLogFileName);
         logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", "/var/dns/"+logFileName);
         logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", filename);
         LocalDateTime timeRR = LocalDateTime.now();
@@ -60,6 +64,7 @@ public class SS {
 
         while(running) {
             logfile.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST",  host.toString());
+            allLog.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST",  host.toString());
             while(connection) {
                 try {
                     socket = new Socket(host.getHostName(), port);
@@ -143,6 +148,7 @@ public class SS {
         LocalDateTime timeZT = LocalDateTime.now();
         Duration duracao = Duration.between(timeRR, timeZT);
         logfile.updateLogFileZT("SS", String.valueOf(port), duracao.toMillis(), tamanho, timeZT, "ZT");
+        allLog.updateLogFileZT("SS", String.valueOf(port), duracao.toMillis(), tamanho, timeZT, "ZT");
         socket.close();
     }
 
@@ -154,12 +160,17 @@ public class SS {
         ServerSocket serverSocket = new ServerSocket(port);
         boolean running = true;
         byte[] buf = new byte[1024];
+        logFileName = parserConfig.getLogfilename();
+        parserConfig.alllogFilename();
+        allLogFileName = parserConfig.getAllLogfile();
+        Logfile allLog = new Logfile(allLogFileName);
         Logfile logfile = new Logfile(logFileName);
         logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", "/var/dns/"+logFileName);
         logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", filename);
 
         while (running) {
             logfile.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST", address);
+            allLog.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST", address);
             System.out.println("nova iteracao");
             Socket socket = serverSocket.accept();
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());

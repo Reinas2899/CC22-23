@@ -231,3 +231,94 @@
 14:12:2022.11:27:55:077 ST 10.0.5.20 4445 2000 debug
 14:12:2022.11:27:55:386 QR 10.0.5.20 3,Q+R,0,0,0,0;tokyo.,MX; 
 14:12:2022.11:28:04:391 RP 10.0.5.20 3,R+A,0,0,3,2;
+20:12:2022.13:40:47:894 EV log-file-read /var/dns/tokyo.log
+20:12:2022.13:40:47:923 EV conf-file-read SP.conf
+20:12:2022.13:40:47:923 EV db-file-read var//dns//tokyo.db
+20:12:2022.13:42:08:768 RR /192.168.1.64 Aceito
+20:12:2022.13:42:08:779 ZT 4444 SP 10 973
+21:12:2022.12:38:41:640 EV log-file-read /var/dns/tokyo.log
+21:12:2022.12:38:41:640 EV log-file-read /var/dns/tokyo.log
+21:12:2022.12:38:41:652 EV conf-file-read tokyo.conf
+21:12:2022.12:38:41:652 EV conf-file-read tokyo.conf
+21:12:2022.12:38:41:653 EV db-file-read var//dns//tokyo.db
+21:12:2022.12:38:41:653 EV db-file-read var//dns//tokyo.db
+21:12:2022.12:38:50:896 QR /127.0.0.1 tokyo
+21:12:2022.12:38:50:903 RP /127.0.0.1 28
+21:12:2022.12:38:50:907 RR /127.0.0.1 java.net.Socket$SocketInputStream@6793cb03
+21:12:2022.12:38:50:908 QE /127.0.0.1 3600
+21:12:2022.12:38:50:915 ZT /127.0.0.1 SP 9262 971
+21:12:2022.12:38:54:536 RR /127.0.0.1 FIN
+21:12:2022.14:28:12:242 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:28:12:242 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:28:12:257 EV conf-file-read tokyo.conf
+21:12:2022.14:28:12:257 EV conf-file-read tokyo.conf
+21:12:2022.14:28:12:258 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:28:12:258 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:28:19:423 QR /127.0.0.1 tokyo
+21:12:2022.14:28:19:431 RP /127.0.0.1 28
+21:12:2022.14:28:19:434 RR /127.0.0.1 java.net.Socket$SocketInputStream@4472faf1
+21:12:2022.14:28:19:435 QE /127.0.0.1 3600
+21:12:2022.14:28:19:444 ZT /127.0.0.1 SP 7186 975
+21:12:2022.14:28:23:069 RR /127.0.0.1 FIN
+21:12:2022.14:36:12:736 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:36:12:736 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:36:12:748 EV conf-file-read tokyo.conf
+21:12:2022.14:36:12:748 EV conf-file-read tokyo.conf
+21:12:2022.14:36:12:749 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:36:12:749 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:42:20:662 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:42:20:662 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:42:20:677 EV conf-file-read tokyo.conf
+21:12:2022.14:42:20:677 EV conf-file-read tokyo.conf
+21:12:2022.14:42:20:677 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:42:20:677 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:43:53:855 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:43:53:855 EV log-file-read /var/dns/tokyo.log
+21:12:2022.14:43:53:867 EV conf-file-read tokyo.conf
+21:12:2022.14:43:53:867 EV conf-file-read tokyo.conf
+21:12:2022.14:43:53:867 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:43:53:867 EV db-file-read var//dns//tokyo.db
+21:12:2022.14:44:15:237 ST 0.0.0.0/0.0.0.0 4449 4000 debug
+21:12:2022.14:44:15:268 QR localhost 1,R,0,0,0,0;tokyo.,MX;
+
+21:12:2022.14:44:15:277 RP localhost 1,R,0,0,3,2;tokyo.,MX;
+tokyo. MX mx1.tokyo. 86400,
+tokyo. MX mx2.tokyo. 86400;
+mx1.tokyo. A 193.136.130.200 86400,
+mx2.tokyo. A 193.136.130.201 86400;
+22:12:2022.15:07:23:938 EV log-file-read /var/dns/tokyo.log
+22:12:2022.15:07:23:953 EV conf-file-read tokyo.conf
+22:12:2022.15:07:23:953 EV db-file-read var//dns//tokyo.db
+22:12:2022.15:07:47:003 EV log-file-read /var/dns/tokyo.log
+22:12:2022.15:07:47:003 EV log-file-read /var/dns/tokyo.log
+22:12:2022.15:07:47:020 EV conf-file-read tokyo.conf
+22:12:2022.15:07:47:020 EV conf-file-read tokyo.conf
+22:12:2022.15:07:47:021 EV db-file-read var//dns//tokyo.db
+22:12:2022.15:07:47:021 EV db-file-read var//dns//tokyo.db
+22:12:2022.15:09:14:102 EV log-file-read /var/dns/tokyo.log
+22:12:2022.15:09:14:102 EV log-file-read /var/dns/tokyo.log
+22:12:2022.15:09:14:119 EV conf-file-read tokyo.conf
+22:12:2022.15:09:14:119 EV conf-file-read tokyo.conf
+22:12:2022.15:09:14:120 EV db-file-read var//dns//tokyo.db
+22:12:2022.15:09:14:120 EV db-file-read var//dns//tokyo.db
+22:12:2022.15:10:05:816 QR /127.0.0.1 tokyo
+22:12:2022.15:10:05:827 RP /127.0.0.1 28
+22:12:2022.15:10:05:833 RR /127.0.0.1 java.net.Socket$SocketInputStream@25232c3b
+22:12:2022.15:10:05:834 QE /127.0.0.1 3600
+22:12:2022.15:10:05:842 ZT /127.0.0.1 SP 51722 979
+22:12:2022.15:10:09:470 RR /127.0.0.1 FIN
+22:12:2022.15:12:07:722 ST 0.0.0.0/0.0.0.0 4449 4000 debug
+22:12:2022.15:12:07:759 QR localhost 3,R,0,0,0,0;tokyo.,MX;
+
+22:12:2022.15:12:07:765 RP localhost 3,R,0,0,3,2;tokyo.,MX;
+tokyo. MX mx1.tokyo. 86400,
+tokyo. MX mx2.tokyo. 86400;
+mx1.tokyo. A 193.136.130.200 86400,
+mx2.tokyo. A 193.136.130.201 86400;
+22:12:2022.15:12:35:657 ST 0.0.0.0/0.0.0.0 4449 4000 debug
+22:12:2022.15:12:35:660 QR localhost 4,R,0,0,0,0;tokyo.,www;
+
+22:12:2022.15:12:35:666 RP localhost 4,R,0,2,3,0;tokyo.,www;
+www,A,193.136.130.80,TTL,200,,
+www,A,193.136.130.81,TTL,200,;
+
