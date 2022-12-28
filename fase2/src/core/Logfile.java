@@ -9,17 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Logfile {
-
     String logFilename;
-
-
-    public String getLogFilename() {
-        return logFilename;
-    }
-
-    public void setLogFilename(String logFilename) {
-        this.logFilename = logFilename;
-    }
 
     public Logfile(String logFilename) throws FileNotFoundException {
         this.logFilename = logFilename;
@@ -58,6 +48,15 @@ public class Logfile {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public String getLogFilename() {
+        return logFilename;
+    }
+
+    public void setLogFilename(String logFilename) {
+        this.logFilename = logFilename;
     }
 
     public void updateLogFileEV(String razao,LocalDateTime date,String type, String path){

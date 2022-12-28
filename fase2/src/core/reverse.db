@@ -1,0 +1,13 @@
+tokyoSP.tokyo. 12.4.0.10.in-addr.reverse
+tokyoSS1.tokyo. 11.4.0.10.in-addr.reverse
+tokyoSR.tokyo. 10.4.0.10.in-addr.reverse
+tokyoSS2.tokyo. 10.6.0.10.in-addr.reverse
+osakaSP.osaka.tokyo. 10.7.0.10.in-addr.reverse
+osakaSS1.osaka.tokyo. 11.7.0.10.in-addr.reverse
+osakaSS2.osaka.tokyo. 10.8.0.10.in-addr.reverse
+kyotoSP.kyoto. 10.11.0.10.in-addr.reverse
+kyotoSS1.kyoto. 11.11.0.10.in-addr.reverse
+kyotoSS2.kyoto. 10.12.0.10.in-addr.reverse
+nagoyaSP.nagoya.kyoto. 10.9.0.10.in-addr.reverse
+nagoyaSS1.nagoya.kyoto. 11.9.0.10.in-addr.reverse
+nagoyaSS2.nagoya.kyoto. 10.10.0.10.in-addr.reverse

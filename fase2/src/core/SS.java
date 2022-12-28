@@ -12,6 +12,7 @@ public class SS {
     static List<ParameterDB> dbCopiedLines = new ArrayList<>();
     static boolean allReceived=false;
     static String logFileName;
+    static String allLogFileName;
 
     public static void main(String[] args){
         Thread thread1 = new Thread(() -> {
@@ -47,19 +48,23 @@ public class SS {
         Socket socket = null;
         ObjectOutputStream oos = null;
         ObjectInputStream ois = null;
-        logFileName = parserConfig.getLogfilename();
+	logFileName = parserConfig.getLogfilename();          
+        parserConfig.alllogFilename();        
+        allLogFileName = parserConfig.getAllLogfile();
         //System.out.println(parserConfig.getWorkingDomain());
 
         boolean running=true;
         boolean connection=true;
         Logfile logfile = new Logfile(logFileName);
-        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", "/var/dns/tokyoSS.log");
+	Logfile allLog = new Logfile(allLogFileName);
+        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", "/var/dns/"+logFileName);
         logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", "tokyoSS.conf");
         LocalDateTime timeRR = LocalDateTime.now();
         int tamanho = 0;
 
         while(running) {
-            logfile.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST",  "127.0.0.1");
+            logfile.updateLogFileST(port, "debug", 5000, LocalDateTime.now(),"ST",host.getHostName());
+            logfile.updateLogFileST(port, "debug", 5000, LocalDateTime.now(),"ST",host.getHostName());
             while(connection) {
                 try {
                     socket = new Socket(host.getHostName(), port);
@@ -67,7 +72,7 @@ public class SS {
                     connection=false;
                 } catch (ConnectException e) {
                     System.out.println("Conexão com SP não foi estabelecida. Nova tentativa dentro de 5 segundos.");
-                    logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(), "TO", "127.0.0.1");
+                    logfile.updateLogFileTO("conexao-SP",5000, LocalDateTime.now(),"TO",host.getHostName());
 
                 }
                 Thread.sleep(5000);
@@ -76,8 +81,10 @@ public class SS {
 
             oos = new ObjectOutputStream(socket.getOutputStream());
             oos.writeObject(parserConfig.getWorkingDomain());//SS envia o domínio em que trabalha
+	    logfile.updateLogFileQR_QE(parserConfig.getWorkingDomain(), LocalDateTime.now(), "QE", socket.getInetAddress().toString());
             ois = new ObjectInputStream(socket.getInputStream());
             int i = (Integer) ois.readObject();
+	    logfile.updateLogFileRP_RR(String.valueOf(i),LocalDateTime.now(),"RR", socket.getInetAddress().toString());
             int n = 0;
             int soaretry = 0;
             int soarexpire =0;
@@ -85,10 +92,12 @@ public class SS {
             if (i < 65535) {
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject("Aceito");//SS aceita receber o n de linhas
+	        logfile.updateLogFileRP_RR(String.valueOf(i),LocalDateTime.now(),"RR", socket.getInetAddress().toString());
                 timeRR = LocalDateTime.now();
                 ois = new ObjectInputStream(socket.getInputStream());
                 soaretry = (Integer) ois.readObject();
                 tamanho += ois.toString().getBytes().length;
+	    	logfile.updateLogFileRP_RR(String.valueOf(soaretry),LocalDateTime.now(),"RR", socket.getInetAddress().toString());
                 ois = new ObjectInputStream(socket.getInputStream());
                 soarexpire = (Integer) ois.readObject();
                 tamanho += ois.toString().getBytes().length;
@@ -97,6 +106,7 @@ public class SS {
                     while (n < i) {
                         ois = new ObjectInputStream(socket.getInputStream());
                         String m = (String) ois.readObject();
+	    		logfile.updateLogFileRP_RR(m,LocalDateTime.now(),"RR", socket.getInetAddress().toString());
                         String[] aux = m.split(" ", 2);
                         if(entradas.containsKey(Integer.parseInt(aux[0]))) {
                             entradas.replace(Integer.parseInt(aux[0]), aux[1]);
@@ -108,6 +118,7 @@ public class SS {
                 } catch (SocketTimeoutException e) {
                     oos = new ObjectOutputStream(socket.getOutputStream());
                     oos.writeObject("FIN");
+	    	    logfile.updateLogFileRP_RR("FIN",LocalDateTime.now(),"RP", socket.getInetAddress().toString());
                     flag=2;
                 }
             } else {
@@ -125,6 +136,7 @@ public class SS {
                 System.out.println("Todas as entradas foram recebidas com sucesso.");
                 oos = new ObjectOutputStream(socket.getOutputStream());
                 oos.writeObject("FIN");
+	    	logfile.updateLogFileRP_RR("FIN",LocalDateTime.now(),"RP", socket.getInetAddress().toString());
                 running=false;
                 ParserDB parser = new ParserDB();
                 List<ParameterDB> l =parser.getDBLines(new ArrayList<>(entradas.values()));
@@ -147,24 +159,35 @@ public class SS {
         ServerSocket serverSocket = new ServerSocket(port);
         boolean running = true;
         byte[] buf = new byte[1024];
-
+	logFileName = parserConfig.getLogfilename();        
+        parserConfig.alllogFilename();
+        allLogFileName = parserConfig.getAllLogfile();       
+        Logfile allLog = new Logfile(allLogFileName);         
+        Logfile logfile = new Logfile(logFileName);
+        logfile.updateLogFileEV("log-file-read", LocalDateTime.now(), "EV", "/var/dns/"+logFileName);
+        logfile.updateLogFileEV("conf-file-read", LocalDateTime.now(), "EV", filename);
         while (running) {
+	    logfile.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST", address);
+            allLog.updateLogFileST(port, "debug", 5000, LocalDateTime.now(), "ST", address);
             System.out.println("nova iteracao");
             Socket socket = serverSocket.accept();
             ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
             DNSMsg receivedMessage = (DNSMsg) ois.readObject();
+	    logfile.updateLogFileQR_QE(receivedMessage.toString(), LocalDateTime.now(), "QR", address);
             System.out.println("recebi isto:"+receivedMessage);
             ParserDB parserDB = new ParserDB(dbCopiedLines);
             DNSMsg m = parserDB.respondeQuery(receivedMessage);
             System.out.println("Eis a resposta:");
             System.out.println(m.toString());
             ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+	    logfile.updateLogFileRP_RR(m.toString(),LocalDateTime.now(),"RP",address);
             oos.writeObject(m);
             if(m.getHeader().getResponse_code().equals(String.valueOf(1))) {
                 String ip="";
                 if(m.getData().getQinfo().getName().contains("osaka")) ip=parserDB.getIPSPsub();
                 System.out.println("IP a enviar "+ip);
                 oos.writeObject(ip);
+		logfile.updateLogFileRP_RR(ip,LocalDateTime.now(),"RP",address);
             }
         }
     }

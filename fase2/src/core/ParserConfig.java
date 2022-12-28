@@ -9,6 +9,7 @@ import java.util.List;
 
 public class ParserConfig {
     private List<LineParameter> lineParameters = new ArrayList<>();
+    private String allLogfile;
     private String logfilename;
     private String dbfile;
     private String workingDomain;
@@ -41,6 +42,14 @@ public class ParserConfig {
         return lines;
     }
 
+    public String getAllLogfile() {          
+        return this.allLogfile;
+    }
+     
+    public void setAllLogfile(String allLogfile) {
+        this.allLogfile = allLogfile;
+    }
+
     public String getSPaddress(){
       String ip ="";
       for(LineParameter l : lineParameters){
@@ -65,6 +74,13 @@ public class ParserConfig {
         this.setLogfilename(filename);
     }
 
+    public void alllogFilename(){
+        String filename = "";
+        for(LineParameter lp : lineParameters){
+            if(lp.getTipo().equals(LineParameter.Tipo.LG) && lp.getParametro().equals("all")) filename = lp.getValor();
+        } 
+        this.setAllLogfile(filename);    
+    }
 
     public String getIPPortSP(){
         String a="";
@@ -103,6 +119,14 @@ public class ParserConfig {
             if(lp.getTipo().equals(LineParameter.Tipo.LG) && !lp.getParametro().equals("all")) domain = lp.getParametro();
         }
         setWorkingDomain(domain);
+    }
+    
+    public String getroot(){
+        String a="";
+        for (LineParameter l:lineParameters){
+            if(l.getTipo().equals(LineParameter.Tipo.ST)) a= l.getValor();
+        }
+        return a;
     }
 
     public String getLogfilename() {

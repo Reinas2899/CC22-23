@@ -238,8 +238,9 @@ public class ParserDB {
     public List<String> procuraEntradas(String parametro){
         List<String> list = new ArrayList<>();
         for(ParameterDB db : this.linesParametersDB){
-            if(db.getParametro().equals(parametro)) list.add(db.toString());
-        }
+            if(db.getParametro().equals(parametro) && db.getPrioridade()==null) list.add(db.getParametro()+" "+db.getTipo()+" "+db.getValor());
+            if(db.getParametro().equals(parametro) && db.getPrioridade()!=null) list.add(db.getParametro()+" "+db.getTipo()+" "+db.getValor()+" "+db.getTtl()+" "+db.getPrioridade());        
+	}
         return list;
     }
         
