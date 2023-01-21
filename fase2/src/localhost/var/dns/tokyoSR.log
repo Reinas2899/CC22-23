@@ -1,0 +1,64 @@
+21:12:2022.12:38:32:216 EV log-file-read /var/dns/tokyoSR.log
+21:12:2022.12:38:32:230 EV conf-file-read tokyoSR.conf
+21:12:2022.12:38:32:230 EV root-file-read /var/dns/allroot
+21:12:2022.14:28:09:809 EV log-file-read /var/dns/tokyoSR.log
+21:12:2022.14:28:09:823 EV conf-file-read tokyoSR.conf
+21:12:2022.14:28:09:823 EV root-file-read /var/dns/allroot
+21:12:2022.14:32:49:904 EV log-file-read /var/dns/tokyoSR.log
+21:12:2022.14:32:49:917 EV conf-file-read tokyoSR.conf
+21:12:2022.14:32:49:917 EV root-file-read rootservers.db
+21:12:2022.14:36:16:192 EV log-file-read /var/dns/tokyoSR.log
+21:12:2022.14:36:16:202 EV conf-file-read tokyoSR.conf
+21:12:2022.14:36:16:203 EV root-file-read rootservers.db
+21:12:2022.14:42:22:895 EV log-file-read /var/dns/tokyoSR.log
+21:12:2022.14:42:22:906 EV conf-file-read tokyoSR.conf
+21:12:2022.14:42:22:906 EV root-file-read rootservers.db
+21:12:2022.14:43:56:222 EV log-file-read /var/dns/tokyoSR.log
+21:12:2022.14:43:56:236 EV conf-file-read tokyoSR.conf
+21:12:2022.14:43:56:236 EV root-file-read rootservers.db
+22:12:2022.15:08:23:539 EV log-file-read /var/dns/tokyoSR.log
+22:12:2022.15:08:23:553 EV conf-file-read tokyoSR.conf
+22:12:2022.15:08:23:553 EV root-file-read rootservers.db
+22:12:2022.15:09:19:287 EV log-file-read /var/dns/tokyoSR.log
+22:12:2022.15:09:19:303 EV conf-file-read tokyoSR.conf
+22:12:2022.15:09:19:304 EV root-file-read rootservers.db
+22:12:2022.15:10:52:215 EV log-file-read /var/dns/tokyoSR.log
+22:12:2022.15:10:52:229 EV conf-file-read tokyoSR.conf
+22:12:2022.15:10:52:229 EV root-file-read rootservers.db
+22:12:2022.15:11:55:899 EV log-file-read /var/dns/tokyoSR.log
+22:12:2022.15:11:55:912 EV conf-file-read tokyoSR.conf
+22:12:2022.15:11:55:912 EV root-file-read rootservers.db
+22:12:2022.15:12:05:588 ST /127.0.0.1 4445 4000 debug
+22:12:2022.15:12:05:644 QE /127.0.0.1 3,R,0,0,0,0;tokyo.,MX;
+
+22:12:2022.15:12:07:674 QE /127.0.0.1 3,R,0,0,0,0;tokyo.,MX;
+
+22:12:2022.15:12:07:717 RR /127.0.0.1 tokyo.,SP,localhost:4449;tokyo.,SS,localhost:4450;tokyo.,SS,localhost:4451;tokyo,LG,/var/dns/tokyoST1.log;
+22:12:2022.15:12:07:722 QE /127.0.0.1 3,R,0,0,0,0;tokyo.,MX;
+
+22:12:2022.15:12:07:768 RR /127.0.0.1 3,R,0,0,3,2;tokyo.,MX;
+tokyo. MX mx1.tokyo. 86400,
+tokyo. MX mx2.tokyo. 86400;
+mx1.tokyo. A 193.136.130.200 86400,
+mx2.tokyo. A 193.136.130.201 86400;
+22:12:2022.15:12:07:772 RP /127.0.0.1 java.net.DatagramPacket@18e8568
+22:12:2022.15:12:07:772 RP /127.0.0.1 java.net.DatagramPacket@33e5ccce
+22:12:2022.15:12:33:639 ST /127.0.0.1 4445 4000 debug
+22:12:2022.15:12:33:641 QE /127.0.0.1 4,R,0,0,0,0;tokyo.,www;
+
+22:12:2022.15:12:35:652 QE /127.0.0.1 4,R,0,0,0,0;tokyo.,www;
+
+22:12:2022.15:12:35:654 RR /127.0.0.1 tokyo.,SP,localhost:4449;tokyo.,SS,localhost:4450;tokyo.,SS,localhost:4451;tokyo,LG,/var/dns/tokyoST1.log;
+22:12:2022.15:12:35:657 QE /127.0.0.1 4,R,0,0,0,0;tokyo.,www;
+
+22:12:2022.15:12:35:667 RR /127.0.0.1 4,R,0,2,3,0;tokyo.,www;
+www,A,193.136.130.80,TTL,200,,
+www,A,193.136.130.81,TTL,200,;
+
+22:12:2022.15:12:35:668 RP /127.0.0.1 java.net.DatagramPacket@ba4d54
+22:12:2022.15:12:35:669 RP /127.0.0.1 java.net.DatagramPacket@12bc6874
+22:12:2022.15:13:43:494 ST /127.0.0.1 4445 4000 debug
+22:12:2022.15:13:43:497 QE /127.0.0.1 5,R,0,0,0,0;tokyo.,MX;
+
+22:12:2022.15:13:43:498 RP /127.0.0.1 java.net.DatagramPacket@de0a01f
+22:12:2022.15:13:43:499 RP /127.0.0.1 java.net.DatagramPacket@4c75cab9

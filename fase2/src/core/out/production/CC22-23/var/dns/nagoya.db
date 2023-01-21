@@ -1,0 +1,33 @@
+# DNS database file for domain nagoya.kyoto.
+
+@ DEFAULT nagoya.kyoto.
+TTL DEFAULT 86400
+
+@ SOASP nagoyaSP.nagoya.kyoto. TTL
+@ SOAADMIN dns\.admin.nagoya.kyoto. TTL
+@ SOASERIAL 0117102022 TTL
+@ SOAREFRESH 14400 TTL
+@ SOARETRY 3600 TTL
+@ SOAEXPIRE 6800 TTL
+
+@ NS nagoyaSP.nagoya.kyoto. TTL
+@ NS nagoyaSS1.nagoya.kyoto. TTL
+@ NS nagoyaSS2.nagoya.kyoto. TTL
+
+@ MX mx1.nagoya.kyoto TTL 10
+@ MX mx2.nagoya.kyoto TTL 20
+
+nagoyaSP A 10.0.9.10 TTL
+nagoyaSS1 A 10.0.9.11 TTL
+nagoyaSS2 A 10.0.10.10 TTL
+mx1 A 193.136.130.200 TTL
+mx2 A 193.136.130.201 TTL
+www A 193.136.130.80 TTL 200
+www A 193.136.130.81 TTL 200
+ftp A 193.136.130.20 TTL
+
+SP CNAME nagoyaSP TTL
+SS1 CNAME nagoyaSS1 TTL
+SS2 CNAME nagoyaSS2 TTL
+mail1 CNAME mx1 TTL
+mail2 CNAME mx2 TTL
